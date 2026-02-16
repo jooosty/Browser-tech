@@ -2,28 +2,44 @@
     box-sizing: border-box;
 }
 
+:root {
+    --ns-geel: #f6c800;
+    --ns-blauw: #00a0df;
+    --ns-donkergrijs: #383e42;
+}
+
 body {
     margin: 0;
     padding: 32px 16px;
-    font-family: "Times New Roman", Times, serif;
+    font-family: Segoe UI, Myriad, Verdana, sans-serif;;
     line-height: 1.5;
+    background: linear-gradient(135deg, var(--ns-geel) 0%, #ffffff 45%, #e3f6ff 100%);
+    color: var(--ns-donkergrijs);
 }
 
 form {
     max-width: 760px;
     margin: 0 auto;
+    padding: 18px;
+    background: #ffffff;
+    border: 2px solid var(--ns-blauw);
+    box-shadow: 0 16px 28px rgba(0, 160, 223, 0.18);
 }
 
 fieldset {
     padding: 16px;
     margin: 0 0 20px;
-    border-width: 1px;
+    border-width: 2px;
+    border-style: solid;
+    border-color: var(--ns-blauw);
     margin-top: 16px;
+    background: var(--ns-geel);
 }
 
 legend {
-    padding: 0 6px;
+    padding: 0 8px;
     font-weight: 600;
+    color: var(--ns-blauw);
 }
 
 label {
@@ -37,11 +53,23 @@ input[type="date"] {
     padding: 8px 10px;
     margin-top: 6px;
     border-width: 1px;
+    border-style: solid;
+    border-color: var(--ns-blauw);
     font: inherit;
+    background: #ffffff;
+}
+
+input[type="text"]:focus,
+input[type="date"]:focus,
+input[type="file"]:focus {
+    outline: 2px solid var(--ns-geel);
+    outline-offset: 2px;
+    border-color: var(--ns-geel);
 }
 
 input[type="radio"] {
     margin-right: 8px;
+    accent-color: var(--ns-blauw);
 }
 
 button,
@@ -49,6 +77,22 @@ input[type="submit"] {
     margin-top: 16px;
     padding: 10px 14px;
     font: inherit;
-    border-width: 1px;
+    border-width: 2px;
+    border-style: solid;
+    border-color: var(--ns-blauw);
+    background: var(--ns-blauw);
+    color: #ffffff;
     cursor: pointer;
+}
+
+button:hover,
+input[type="submit"]:hover {
+    background: var(--ns-geel);
+    color: var(--ns-donkergrijs);
+}
+
+button:focus,
+input[type="submit"]:focus {
+    outline: 2px solid var(--ns-geel);
+    outline-offset: 2px;
 }
