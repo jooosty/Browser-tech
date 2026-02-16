@@ -167,6 +167,7 @@ document.getElementById("volgende-vraag-1c").addEventListener("click", function(
 document.getElementById("geen-testament").addEventListener("change", function() {
     console.log("Geen testament");
     document.getElementById("volgende-vraag-1d").hidden = false;
+    document.getElementById("vraag-1d-2").hidden = true;
 });
 
 document.getElementById("wel-testament").addEventListener("change", function() {
