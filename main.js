@@ -20,10 +20,6 @@ document.getElementById("volgende-vraag-1a").addEventListener("click", function(
         alert("Vul alle velden in voor vraag 1a");
         return;
     }
-    console.log("Voorletters overledene: " + voorlettersOverledene);
-    console.log("Achternaam overledene: " + achternaamOverledene);
-    console.log("BSN overledene: " + bsnOverledene);
-    console.log("Datum overlijden: " + datumOverlijden);
     document.getElementById("vraag-1a").hidden = true;
     document.getElementById("vraag-1b").hidden = false;
 });
@@ -31,7 +27,6 @@ document.getElementById("volgende-vraag-1a").addEventListener("click", function(
 // Vraag 1b
 // Vraag 1b-1
 document.getElementById("niet-getrouwd").addEventListener("change", function() {
-    console.log("Niet getrouwd");
     document.getElementById("volgende-vraag-1b").hidden = false;
     document.getElementById("vraag-1b-2").hidden = true;
     document.getElementById("vraag-1b-2-voorwarden-kopie").hidden = true;
@@ -40,14 +35,12 @@ document.getElementById("niet-getrouwd").addEventListener("change", function() {
 });
 
 document.getElementById("getrouwd").addEventListener("change", function() {
-    console.log("Getrouwd");
     document.getElementById("vraag-1b-2").hidden = false;
     document.getElementById("volgende-vraag-1b").hidden = true;
 });
 
 // Vraag 1b-2
 document.getElementById("geen-voorwaarden").addEventListener("change", function() {
-    console.log("Geen voorwaarden");
     document.getElementById("volgende-vraag-1b").hidden = false;
     document.getElementById("vraag-1b-2-voorwarden-kopie").hidden = true;
     document.getElementById("vraag-1b-3").hidden = true;
@@ -55,7 +48,6 @@ document.getElementById("geen-voorwaarden").addEventListener("change", function(
 });
 
 document.getElementById("wel-voorwaarden").addEventListener("change", function() {
-    console.log("Wel voorwaarden");
     document.getElementById("vraag-1b-2-voorwarden-kopie").hidden = false;
     document.getElementById("vraag-1b-3").hidden = false;
     document.getElementById("vraag-1b-4").hidden = false;
@@ -99,10 +91,6 @@ document.getElementById("volgende-vraag-1b").addEventListener("click", function(
     } else if (vraag1b4Visible && datumVoorwaardenValue === "") {
         alert("Vul vraag 1b-4 in");
     } else {
-        console.log("Vraag 1b-1: " + huwelijkValue);
-        console.log("Vraag 1b-2: " + voorwaardenValue);
-        console.log("Vraag 1b-3: " + verrekenbedingValue);
-        console.log("Vraag 1b-4: " + datumVoorwaardenValue);
         document.getElementById("vraag-1b").hidden = true;
         document.getElementById("vraag-1c").hidden = false;
     }
@@ -111,34 +99,29 @@ document.getElementById("volgende-vraag-1b").addEventListener("click", function(
 // Vraag 1c
 // Vraag 1c-1
 document.getElementById("geen-kinderen").addEventListener("change", function() {
-    console.log("Geen kinderen");
     document.getElementById("volgende-vraag-1c").hidden = false;
     document.getElementById("vraag-1c-2").hidden = true;
     document.getElementById("vraag-1c-3").hidden = true;
 });
 
 document.getElementById("wel-kinderen").addEventListener("change", function() {
-    console.log("Wel kinderen");
     document.getElementById("vraag-1c-2").hidden = false;
     document.getElementById("volgende-vraag-1c").hidden = true;
 });
 
 // Vraag 1c-2
 document.getElementById("geen-overleden-kinderen").addEventListener("change", function() {
-    console.log("Geen overleden kinderen");
     document.getElementById("volgende-vraag-1c").hidden = false;
     document.getElementById("vraag-1c-3").hidden = true;
 });
 
 document.getElementById("wel-overleden-kinderen").addEventListener("change", function() {
-    console.log("Wel overleden kinderen");
     document.getElementById("vraag-1c-3").hidden = false;
     document.getElementById("volgende-vraag-1c").hidden = false;
 });
 
 // Vraag 1c - Volgende check
 document.getElementById("volgende-vraag-1c").addEventListener("click", function() {
-    console.log("Volgende vraag 1c");
     const vraag1c1Visible = document.getElementById("vraag-1c-1").hidden == false;
     const vraag1c2Visible = document.getElementById("vraag-1c-2").hidden == false;
     const vraag1c3Visible = document.getElementById("vraag-1c-3").hidden == false;
@@ -154,9 +137,6 @@ document.getElementById("volgende-vraag-1c").addEventListener("click", function(
     } else if (vraag1c3Visible && overledenKindKinderenValue === "") {
         alert("Vul vraag 1c-3 in");
     } else {
-        console.log("Vraag 1c-1: " + kinderenValue);
-        console.log("Vraag 1c-2: " + overledenKinderenValue);
-        console.log("Vraag 1c-3: " + overledenKindKinderenValue);
         document.getElementById("vraag-1c").hidden = true;
         document.getElementById("vraag-1d").hidden = false;
     }
@@ -165,13 +145,11 @@ document.getElementById("volgende-vraag-1c").addEventListener("click", function(
 // Vraag 1d
 // Vraag 1d-1
 document.getElementById("geen-testament").addEventListener("change", function() {
-    console.log("Geen testament");
     document.getElementById("volgende-vraag-1d").hidden = false;
     document.getElementById("vraag-1d-2").hidden = true;
 });
 
 document.getElementById("wel-testament").addEventListener("change", function() {
-    console.log("Wel testament");
     document.getElementById("vraag-1d-2").hidden = false;
     document.getElementById("volgende-vraag-1d").hidden = true;
 });
@@ -203,8 +181,6 @@ document.getElementById("volgende-vraag-1d").addEventListener("click", function(
     } else if (vraag1d2Visible && (protocalnummerNotaris === "" || voorlettersNotaris === "" || achternaamNotaris === "" || vestigingsplaatsNotaris === "" || datumTestament === "")) {
         alert("Vul vraag 1d-2 in");
     } else {
-        console.log("Vraag 1d-1: " + testamentValue);
-        console.log("Vraag 1d-2: " + protocalnummerNotaris + ", " + voorlettersNotaris + ", " + achternaamNotaris + ", " + vestigingsplaatsNotaris + ", " + datumTestament);
         // document.getElementById("vraag-1d").hidden = true;
         // document.getElementById("vraag-1e").hidden = false;
         location.reload();
