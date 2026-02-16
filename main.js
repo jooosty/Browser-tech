@@ -1,6 +1,6 @@
 // Vraag 1a
 // Vraag 1a - datum check
-document.getElementById("datum-overlijden").addEventListener("change", function() {
+document.getElementById("datum-overlijden").addEventListener("blur", function() {
     const datumOverlijden = document.getElementById("datum-overlijden").value;
     const vandaag = new Date().toISOString().split("T")[0];
     if (datumOverlijden > vandaag) {
@@ -55,7 +55,7 @@ document.getElementById("wel-voorwaarden").addEventListener("change", function()
 });
 
 // Vraag 1b-4 - datum check
-document.getElementById("datum-voorwaarden").addEventListener("change", function() {
+document.getElementById("datum-voorwaarden").addEventListener("blur", function() {
     const datumVoorwaarden = document.getElementById("datum-voorwaarden").value;
     const datumOverlijden = document.getElementById("datum-overlijden").value;
     if (datumVoorwaarden > datumOverlijden) {
@@ -66,8 +66,6 @@ document.getElementById("datum-voorwaarden").addEventListener("change", function
 
 // Vraag 1b - Volgende check
 document.getElementById("volgende-vraag-1b").addEventListener("click", function() {
-    console.log("Volgende vraag 1b");
-
     const vraag1b1Visible = document.getElementById("vraag-1b-1").hidden == false;
     const vraag1b2Visible = document.getElementById("vraag-1b-2").hidden == false;
     const vraag1b2KopieVisible = document.getElementById("vraag-1b-2-voorwarden-kopie").hidden == false;
@@ -155,7 +153,7 @@ document.getElementById("wel-testament").addEventListener("change", function() {
 });
 
 // Vraag 1d-2 - datum check
-document.getElementById("datum-testament").addEventListener("change", function() {
+document.getElementById("datum-testament").addEventListener("blur", function() {
     const datumTestament = document.getElementById("datum-testament").value;
     const datumOverlijden = document.getElementById("datum-overlijden").value;
     if (datumTestament > datumOverlijden) {
@@ -166,7 +164,6 @@ document.getElementById("datum-testament").addEventListener("change", function()
 
 // Vraag 1d - Volgende check
 document.getElementById("volgende-vraag-1d").addEventListener("click", function() {
-    console.log("Volgende vraag 1d");
     const vraag1d1Visible = document.getElementById("vraag-1d-1").hidden == false;
     const vraag1d2Visible = document.getElementById("vraag-1d-2").hidden == false;
 
