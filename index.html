@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
@@ -30,26 +31,38 @@
 
                 <fieldset id="vraag-1b-1">
                     <legend> Was de overledene getrouwd of had de overledene een geregistreerde partner op het moment van overlijden?</legend>
-                    <label for="niet-getrouwd">Nee</label>
+                    <label for="niet-getrouwd">Nee
                     <input type="radio" id="niet-getrouwd" name="huwelijk" value="nee">
-                    <label for="getrouwd">Ja</label>
+                    </label>
+                    <label for="getrouwd">Ja
                     <input type="radio" id="getrouwd" name="huwelijk" value="ja">
+                    </label>
                 </fieldset>
 
                 <fieldset id="vraag-1b-2" hidden>
                     <legend>Hadden de overledene en diens echtgenoot of geregistreerde partner huwelijkse of partnerschapsvoorwaarden laten vastleggen in een notariële akte?</legend>
-                    <label for="geen-voorwaarden">Nee</label>
+                    <label for="geen-voorwaarden">Nee
                     <input type="radio" id="geen-voorwaarden" name="voorwaarden" value="nee">
-                    <label for="wel-voorwaarden">Ja. Stuur een kopie van de akte mee met de aangifte.</label>
+                    </label>
+                    <label for="wel-voorwaarden">Ja. Stuur een kopie van de akte mee met de aangifte.
                     <input type="radio" id="wel-voorwaarden" name="voorwaarden" value="ja">
+                </label>
+                </fieldset>
+                
+                <fieldset id="vraag-1b-2-voorwarden-kopie" hidden>
+                    <legend>Kopie van de akte van huwelijkse of partnerschapsvoorwaarden</legend>
+                    <label for="kopie-akte">Kopie van de akte</label>
+                    <input type="file" id="kopie-akte" name="kopie-akte" accept=".pdf,.jpg,.jpeg,.png">
                 </fieldset>
 
                 <fieldset id="vraag-1b-3" hidden>
                     <legend>Hadden de overledene en diens partner een finaal verrekenbeding?</legend>
-                    <label for="geen-verrekenbeding">Nee</label>
+                    <label for="geen-verrekenbeding">Nee
                     <input type="radio" id="geen-verrekenbeding" name="verrekenbeding" value="nee">
-                    <label for="wel-verrekenbeding">Ja</label>
+                    </label>
+                    <label for="wel-verrekenbeding">Ja
                     <input type="radio" id="wel-verrekenbeding" name="verrekenbeding" value="ja">
+                    </label>
                 </fieldset>
 
                 <fieldset id="vraag-1b-4" hidden>
@@ -63,26 +76,32 @@
 
                 <fieldset id="vraag-1c-1">
                     <legend>Had de overledene kinderen?</legend>
-                    <label for="geen-kinderen">Nee</label>
+                    <label for="geen-kinderen">Nee
                     <input type="radio" id="geen-kinderen" name="kinderen" value="nee">
-                    <label for="wel-kinderen">Ja</label>
+                    </label>
+                    <label for="wel-kinderen">Ja
                     <input type="radio" id="wel-kinderen" name="kinderen" value="ja">
+                    </label>
                 </fieldset>
 
                 <fieldset id="vraag-1c-2" hidden>
                     <legend>Is 1 van deze kinderen eerder overleden dan de overledene voor wie u nu aangifte doet?</legend>
-                    <label for="geen-overleden-kinderen">Nee</label>
+                    <label for="geen-overleden-kinderen">Nee
                     <input type="radio" id="geen-overleden-kinderen" name="overleden-kinderen" value="nee">
-                    <label for="wel-overleden-kinderen">Ja</label>
+                    </label>
+                    <label for="wel-overleden-kinderen">Ja
                     <input type="radio" id="wel-overleden-kinderen" name="overleden-kinderen" value="ja">
+                    </label>
                 </fieldset>
 
                 <fieldset id="vraag-1c-3" hidden>
                     <legend>Had dit overleden kind zelf kinderen?</legend>
-                    <label for="geen-kinderen-overleden-kind">Nee</label>
+                    <label for="geen-kinderen-overleden-kind">Nee
                     <input type="radio" id="geen-kinderen-overleden-kind" name="kinderen-overleden-kind" value="nee">
-                    <label for="wel-kinderen-overleden-kind">Ja</label>
+                    </label>
+                    <label for="wel-kinderen-overleden-kind">Ja
                     <input type="radio" id="wel-kinderen-overleden-kind" name="kinderen-overleden-kind" value="ja">
+                    </label>
                 </fieldset>
 
                 <button type="button" id="volgende-vraag-1c" hidden>Volgende vraag</button>
@@ -91,10 +110,12 @@
 
                 <fieldset id="vraag-1d-1">
                     <legend>Had de overledene een testament?</legend>
-                    <label for="geen-testament">Nee</label>
+                    <label for="geen-testament">Nee
                     <input type="radio" id="geen-testament" name="testament" value="nee">
-                    <label for="wel-testament">Ja, Vul de gegevens in van de notaris die het testament heeft opgemaakt en dedatum van het testament.</label>
+                    </label>
+                    <label for="wel-testament">Ja, Vul de gegevens in van de notaris die het testament heeft opgemaakt en dedatum van het testament.
                     <input type="radio" id="wel-testament" name="testament" value="ja">
+                    </label>
                 </fieldset>
 
                 <fieldset id="vraag-1d-2" hidden>

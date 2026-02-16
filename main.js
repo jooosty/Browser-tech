@@ -34,6 +34,7 @@ document.getElementById("niet-getrouwd").addEventListener("change", function() {
     console.log("Niet getrouwd");
     document.getElementById("volgende-vraag-1b").hidden = false;
     document.getElementById("vraag-1b-2").hidden = true;
+    document.getElementById("vraag-1b-2-voorwarden-kopie").hidden = true;
     document.getElementById("vraag-1b-3").hidden = true;
     document.getElementById("vraag-1b-4").hidden = true;
 });
@@ -48,12 +49,14 @@ document.getElementById("getrouwd").addEventListener("change", function() {
 document.getElementById("geen-voorwaarden").addEventListener("change", function() {
     console.log("Geen voorwaarden");
     document.getElementById("volgende-vraag-1b").hidden = false;
+    document.getElementById("vraag-1b-2-voorwarden-kopie").hidden = true;
     document.getElementById("vraag-1b-3").hidden = true;
     document.getElementById("vraag-1b-4").hidden = true;
 });
 
 document.getElementById("wel-voorwaarden").addEventListener("change", function() {
     console.log("Wel voorwaarden");
+    document.getElementById("vraag-1b-2-voorwarden-kopie").hidden = false;
     document.getElementById("vraag-1b-3").hidden = false;
     document.getElementById("vraag-1b-4").hidden = false;
     document.getElementById("volgende-vraag-1b").hidden = false;
@@ -75,11 +78,13 @@ document.getElementById("volgende-vraag-1b").addEventListener("click", function(
 
     const vraag1b1Visible = document.getElementById("vraag-1b-1").hidden == false;
     const vraag1b2Visible = document.getElementById("vraag-1b-2").hidden == false;
+    const vraag1b2KopieVisible = document.getElementById("vraag-1b-2-voorwarden-kopie").hidden == false;
     const vraag1b3Visible = document.getElementById("vraag-1b-3").hidden == false;
     const vraag1b4Visible = document.getElementById("vraag-1b-4").hidden == false;
 
     const huwelijkValue = document.querySelector("input[name=\"huwelijk\"]:checked")?.value || "";
     const voorwaardenValue = document.querySelector("input[name=\"voorwaarden\"]:checked")?.value || "";
+    const kopieAktenValue = document.getElementById("kopie-akte").value;
     const verrekenbedingValue = document.querySelector("input[name=\"verrekenbeding\"]:checked")?.value || "";
     const datumVoorwaardenValue = document.getElementById("datum-voorwaarden").value;
 
@@ -87,6 +92,8 @@ document.getElementById("volgende-vraag-1b").addEventListener("click", function(
         alert("Vul vraag 1b-1 in");
     } else if (vraag1b2Visible && voorwaardenValue === "") {
         alert("Vul vraag 1b-2 in");
+    } else if (vraag1b2KopieVisible && kopieAktenValue === "") {
+        alert("Vul vraag 1b-2-voorwaarden-kopie in");
     } else if (vraag1b3Visible && verrekenbedingValue === "") {
         alert("Vul vraag 1b-3 in");
     } else if (vraag1b4Visible && datumVoorwaardenValue === "") {
