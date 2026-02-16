@@ -8,11 +8,19 @@
     --ns-donkergrijs: #383e42;
 }
 
+@font-face {
+    font-family: "NS Sans";
+    src: url("./nssans-regular.woff2") format("woff2");
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
 body {
     min-height: 100dvh;
     margin: 0;
     padding: 32px 16px;
-    font-family: Segoe UI, Myriad, Verdana, sans-serif;;
+    font-family: "NS Sans", "Segoe UI", Myriad, Verdana, sans-serif;
     line-height: 1.5;
     background: linear-gradient(135deg, var(--ns-geel) 0%, #ffffff 45%, var(--ns-blauw) 100%);
     color: var(--ns-donkergrijs);
