@@ -1,34 +1,4 @@
-/* MARK:Badge 
-*/
-.school-opdracht {
-    position: fixed;
-    top: 0;
-    left: 0;
-    margin: 12px;
-    padding: 6px 12px;
-    background: var(--ns-geel);
-    color: var(--ns-donkerblauw);
-    font-weight: 700;
-    border-radius: 6px;
-}
-
-* {
-    box-sizing: border-box;
-}
-
-/* MARK:Theme tokens 
-*/
-:root {
-    --ns-geel: #f6c800;
-    --ns-blauw: #00a0df;
-    --ns-donkergrijs: #383e42;
-    --ns-donkerblauw: #005b9f;
-    --ns-lichtgeel: #fff4b8;
-    --ns-lichtblauw: #d9f1fb;
-    --ns-wit: #ffffff;
-    --ns-schaduw: 0 18px 38px rgba(0, 91, 159, 0.22);
-}
-
+/* MARK: Custom font */
 @font-face {
     font-family: "NS Sans";
     src: url("./nssans-regular.woff2") format("woff2");
@@ -37,283 +7,573 @@
     font-display: swap;
 }
 
-/* MARK:Page layout 
-*/
+/* MARK: Design tokens */
+:root {
+    --ns-yellow:       #f6c800;
+    --ns-yellow-hover: #e0b500;
+    --ns-yellow-light: #fffbe6;
+    --ns-blue:         #0072ce;
+    --ns-blue-dark:    #00519c;
+    --ns-blue-darker:  #003b73;
+    --ns-blue-light:   #e8f4fd;
+    --ns-blue-xlight:  #f0f8ff;
+
+    --ns-white:        #ffffff;
+    --ns-grey-50:      #f5f6f7;
+    --ns-grey-100:     #eaecef;
+    --ns-grey-200:     #d1d5db;
+    --ns-grey-400:     #9ca3af;
+    --ns-grey-600:     #4b5563;
+    --ns-grey-800:     #1f2937;
+    --ns-grey-900:     #111827;
+
+    --ns-success:      #1a7f3c;
+    --ns-success-bg:   #edfdf3;
+    --ns-error:        #c0392b;
+    --ns-error-bg:     #fff5f5;
+    --ns-warning-bg:   #fffbe6;
+
+    --radius-sm:   6px;
+    --radius-md:   10px;
+    --radius-lg:   14px;
+    --radius-xl:   20px;
+    --radius-pill: 999px;
+
+    --shadow-sm: 0 1px 3px rgba(0,0,0,.08), 0 1px 2px rgba(0,0,0,.06);
+    --shadow-md: 0 4px 12px rgba(0,0,0,.08), 0 2px 4px rgba(0,0,0,.06);
+    --shadow-lg: 0 8px 24px rgba(0,0,0,.08), 0 4px 8px rgba(0,0,0,.05);
+}
+
+/* MARK: Reset & base */
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
 body {
-    min-height: 100dvh;
     margin: 0;
-    padding: 40px 18px 64px;
-    font-family: "NS Sans", "Segoe UI", Myriad, Verdana, sans-serif;
-    line-height: 1.5;
-    background:
-    radial-gradient(circle at top left, rgba(246, 200, 0, 0.35), transparent 45%),
-    radial-gradient(circle at 85% 20%, rgba(0, 160, 223, 0.28), transparent 40%),
-    linear-gradient(140deg, var(--ns-lichtgeel) 0%, #ffffff 48%, var(--ns-lichtblauw) 100%);
-    color: var(--ns-donkergrijs);
+    min-height: 100dvh;
+    padding: 56px 16px 80px;
+    font-family: "NS Sans", "Segoe UI", Arial, sans-serif;
+    font-size: 1rem;
+    line-height: 1.6;
+    color: var(--ns-grey-800);
+    background-color: var(--ns-grey-50);
 }
 
-/* MARK:Form containers 
-*/
-form {
-    max-width: 820px;
-    margin: 0 auto;
-    padding: 26px 24px;
-    background: rgba(255, 255, 255, 0.94);
-    border: 2px solid rgba(0, 160, 223, 0.35);
-    border-radius: 18px;
-    box-shadow: var(--ns-schaduw);
-    backdrop-filter: blur(6px);
+/* NS yellow top bar */
+body::before {
+    content: "";
+    display: block;
+    height: 4px;
+    background: var(--ns-yellow);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
 }
 
-/* MARK:Field groups 
-*/
-fieldset {
-    padding: 18px 18px 22px;
-    margin: 0 0 22px;
-    border-width: 2px;
-    border-style: solid;
-    border-color: rgba(0, 160, 223, 0.6);
-    margin-top: 18px;
-    background: linear-gradient(150deg, var(--ns-lichtgeel) 0%, #ffffff 65%);
-    border-radius: 14px;
-    box-shadow: inset 0 0 0 1px rgba(246, 200, 0, 0.3);
-}
-
-/* MARK:Typography 
-*/
-legend {
-    padding: 0 8px;
+/* MARK: School badge */
+.school-opdracht {
+    position: fixed;
+    top: 12px;
+    right: 12px;
+    z-index: 200;
+    margin: 0;
+    padding: 4px 12px;
+    background: var(--ns-yellow);
+    color: var(--ns-grey-900);
+    font-size: 0.7rem;
     font-weight: 700;
-    letter-spacing: 0.02em;
-    color: var(--ns-donkerblauw);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    border-radius: var(--radius-pill);
+    box-shadow: var(--shadow-sm);
 }
 
+/* MARK: Form / page containers */
+form,
+.answers {
+    width: 100%;
+    max-width: 680px;
+    margin: 0 auto;
+}
+
+/* MARK: Fieldsets – reset first, then theme */
+fieldset {
+    margin: 0 0 20px;
+    padding: 0;
+    border: none;
+    background: none;
+    border-radius: 0;
+}
+
+/* Top-level section card */
+#vraag-1,
+#vraag-2 {
+    background: var(--ns-white);
+    border: 1.5px solid var(--ns-grey-100);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-md);
+    padding: 0;
+    overflow: hidden;
+}
+
+#vraag-1 > legend,
+#vraag-2 > legend {
+    display: block;
+    width: 100%;
+    padding: 18px 28px 16px;
+    margin: 0;
+    background: var(--ns-blue-darker);
+    color: var(--ns-white);
+    font-size: 1.0625rem;
+    font-weight: 700;
+    letter-spacing: 0.01em;
+}
+
+/* Step containers inside the card */
+#vraag-1a,
+#vraag-1b,
+#vraag-1c,
+#vraag-1d {
+    padding: 24px 28px;
+    border: none;
+    background: transparent;
+    margin: 0;
+}
+
+/* Dividers between steps */
+#vraag-1b,
+#vraag-1c,
+#vraag-1d {
+    border-top: 1px solid var(--ns-grey-100);
+}
+
+/* Inner question groups */
+#vraag-1b-1, #vraag-1b-2, #vraag-1b-2-voorwarden-kopie,
+#vraag-1b-3, #vraag-1b-4,
+#vraag-1c-1, #vraag-1c-2, #vraag-1c-3,
+#vraag-1d-1, #vraag-1d-2 {
+    padding: 0;
+    border: none;
+    background: transparent;
+    margin: 0 0 24px;
+}
+
+#vraag-1b > fieldset:last-of-type,
+#vraag-1c > fieldset:last-of-type,
+#vraag-1d > fieldset:last-of-type {
+    margin-bottom: 0;
+}
+
+/* Separator between inner groups */
+#vraag-1b > fieldset + fieldset,
+#vraag-1c > fieldset + fieldset,
+#vraag-1d > fieldset + fieldset {
+    padding-top: 20px;
+    border-top: 1px dashed var(--ns-grey-100);
+    margin-top: 4px;
+}
+
+/* MARK: Legends */
+legend {
+    font-weight: 700;
+    color: var(--ns-grey-900);
+    padding: 0;
+    margin-bottom: 10px;
+    font-size: 0.9375rem;
+    line-height: 1.45;
+    display: block;
+    width: 100%;
+}
+
+/* MARK: Labels */
 label {
     display: block;
-    margin-top: 14px;
+    margin-top: 18px;
+    font-size: 0.875rem;
     font-weight: 600;
-    color: #1f2c35;
+    color: var(--ns-grey-800);
+    cursor: pointer;
 }
 
-/* MARK:Text/date inputs 
-*/
+/* MARK: Text / date inputs */
 input[type="text"],
 input[type="date"] {
+    display: block;
     width: 100%;
-    padding: 10px 12px;
-    margin-top: 6px;
-    border-width: 2px;
-    border-style: solid;
-    border-color: rgba(0, 160, 223, 0.6);
+    margin-top: 5px;
+    padding: 11px 14px;
     font: inherit;
-    background: #ffffff;
-    border-radius: 10px;
-    box-shadow: 0 8px 16px rgba(0, 91, 159, 0.08);
-        transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+    font-size: 0.9375rem;
+    color: var(--ns-grey-900);
+    background: var(--ns-white);
+    border: 1.5px solid var(--ns-grey-200);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-sm);
+    appearance: none;
+    -webkit-appearance: none;
+    transition: border-color 0.15s ease, box-shadow 0.15s ease;
 }
 
-/* MARK:Focus states 
-*/
+input[type="text"]:hover,
+input[type="date"]:hover {
+    border-color: var(--ns-blue);
+}
+
+/* MARK: Focus */
 input[type="text"]:focus,
 input[type="date"]:focus,
 input[type="file"]:focus {
-    outline: 2px solid var(--ns-geel);
-    outline-offset: 2px;
-    border-color: var(--ns-geel);
-    box-shadow: 0 0 0 3px rgba(246, 200, 0, 0.35);
-    transform: translateY(-1px);
+    outline: none;
+    border-color: var(--ns-blue);
+    box-shadow: 0 0 0 3px rgba(0, 114, 206, 0.2);
 }
 
-/* MARK:Radio buttons 
-*/
+/* MARK: File input */
+input[type="file"] {
+    display: block;
+    margin-top: 6px;
+    padding: 10px 14px;
+    width: 100%;
+    font: inherit;
+    font-size: 0.875rem;
+    color: var(--ns-grey-600);
+    background: var(--ns-grey-50);
+    border: 1.5px dashed var(--ns-grey-200);
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    transition: border-color 0.15s ease, background 0.15s ease;
+}
+
+input[type="file"]:hover {
+    border-color: var(--ns-blue);
+    background: var(--ns-blue-xlight);
+}
+
+/* MARK: Radio buttons as choice tiles */
 input[type="radio"] {
-    margin-right: 8px;
-    accent-color: var(--ns-blauw);
+    accent-color: var(--ns-blue);
+    flex-shrink: 0;
+    width: 18px;
+    height: 18px;
+    margin: 0;
+    cursor: pointer;
 }
 
-/* MARK:Buttons 
-*/
+/* Radio wrapper labels */
+fieldset label:has(input[type="radio"]) {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin-top: 10px;
+    padding: 12px 16px;
+    background: var(--ns-grey-50);
+    border: 1.5px solid var(--ns-grey-200);
+    border-radius: var(--radius-md);
+    font-weight: 400;
+    font-size: 0.9375rem;
+    color: var(--ns-grey-800);
+    cursor: pointer;
+    transition: border-color 0.15s ease, background 0.15s ease;
+    line-height: 1.45;
+}
+
+fieldset label:has(input[type="radio"]) input[type="radio"] {
+    margin-top: 2px;
+}
+
+fieldset label:has(input[type="radio"]):hover {
+    border-color: var(--ns-blue);
+    background: var(--ns-blue-xlight);
+}
+
+fieldset label:has(input[type="radio"]:checked) {
+    border-color: var(--ns-blue);
+    background: var(--ns-blue-light);
+    font-weight: 600;
+    color: var(--ns-blue-darker);
+}
+
+/* MARK: Buttons */
 button,
 input[type="submit"] {
-    margin-top: 18px;
-    padding: 12px 18px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 20px;
+    padding: 12px 24px;
     font: inherit;
-    border-width: 0;
-    border-style: solid;
-    border-color: transparent;
-    background: linear-gradient(135deg, var(--ns-blauw), var(--ns-donkerblauw));
-    color: #ffffff;
-    border-radius: 999px;
-    box-shadow: 0 12px 20px rgba(0, 91, 159, 0.25);
+    font-size: 0.9375rem;
+    font-weight: 700;
+    line-height: 1;
+    color: var(--ns-grey-900);
+    background: var(--ns-yellow);
+    border: none;
+    border-radius: var(--radius-pill);
+    box-shadow: var(--shadow-sm);
     cursor: pointer;
-    transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+    transition: background 0.15s ease, box-shadow 0.15s ease, transform 0.1s ease;
+    text-decoration: none;
 }
 
-/* MARK:Button interactions 
-*/
 button:hover,
 input[type="submit"]:hover {
-    background: linear-gradient(135deg, var(--ns-geel), #ffc938);
-    color: var(--ns-donkergrijs);
+    background: var(--ns-yellow-hover);
+    box-shadow: var(--shadow-md);
     transform: translateY(-1px);
-    box-shadow: 0 14px 24px rgba(246, 200, 0, 0.35);
 }
 
 button:focus,
 input[type="submit"]:focus {
-    outline: 2px solid var(--ns-geel);
-    outline-offset: 2px;
+    outline: 2px solid var(--ns-blue);
+    outline-offset: 3px;
 }
 
 button:active,
 input[type="submit"]:active {
     transform: translateY(0);
-    box-shadow: 0 10px 18px rgba(0, 91, 159, 0.22);
+    box-shadow: var(--shadow-sm);
 }
 
-/* MARK:Dialog 
-*/
-dialog {
-    width: min(90vw, 420px);
-    border: 0;
-    border-radius: 16px;
-    padding: 20px 22px 18px;
-    background: #ffffff;
-    color: var(--ns-donkergrijs);
-    box-shadow: var(--ns-schaduw);
+button[id^="volgende"]::after {
+    content: " →";
+    font-size: 1rem;
 }
 
-dialog::backdrop {
-    background: rgba(0, 91, 159, 0.25);
-}
-
-dialog h2 {
-    margin: 0 0 10px;
-    color: var(--ns-donkerblauw);
-    font-size: 1.2rem;
-}
-
-dialog p {
-    margin: 0 0 16px;
-}
-
-dialog form {
-    margin: 0;
-    padding: 0;
-    background: transparent;
-    box-shadow: none;
-    border: 0;
-}
-
-/* MARK:Answers page 
-*/
-.answers {
-    max-width: 820px;
-    margin: 0 auto;
-    padding: 26px 24px;
-    background: rgba(255, 255, 255, 0.94);
-    border: 2px solid rgba(0, 160, 223, 0.35);
-    border-radius: 18px;
-    box-shadow: var(--ns-schaduw);
-    backdrop-filter: blur(6px);
-}
-
-.answers h1 {
-    margin-top: 0;
-    margin-bottom: 16px;
-    color: var(--ns-donkerblauw);
-}
-
-#empty-state {
-    margin: 0 0 14px;
-    padding: 12px 14px;
-    border-radius: 10px;
-    background: var(--ns-lichtgeel);
-    color: var(--ns-donkergrijs);
-    border: 2px solid rgba(246, 200, 0, 0.45);
-}
-
-#answers-list {
-    margin: 0;
-    padding: 0;
-}
-
-#answers-list dt {
-    margin-top: 14px;
-    font-weight: 700;
-    color: var(--ns-donkerblauw);
-}
-
-#answers-list dd {
-    margin: 6px 0 0;
-    padding: 10px 12px;
-    border-radius: 10px;
-    background: var(--ns-wit);
-    border: 2px solid rgba(0, 160, 223, 0.3);
-}
-
-.answers a {
-    display: inline-block;
-    margin-top: 20px;
-    color: var(--ns-donkerblauw);
-    font-weight: 700;
-    text-decoration-thickness: 2px;
-    text-underline-offset: 3px;
-}
-
-.answers a:hover,
-.answers a:focus {
-    color: var(--ns-blauw);
-}
-/* MARK:Responsive */
-@media (max-width: 600px) {
-    body {
-        padding: 32px 12px 48px;
-    }
-
-        form,
-        .answers {
-        padding: 22px 18px;
-    }
-}
-
-/* MARK:Helpteksten 
-*/
+/* MARK: Help texts */
 .helptekst {
-    margin: 4px 0 0;
-    font-size: 0.875rem;
-    color: #4a5568;
+    margin: 7px 0 0;
+    font-size: 0.8125rem;
+    color: var(--ns-grey-600);
+    line-height: 1.45;
+    padding: 8px 12px;
+    background: var(--ns-blue-xlight);
+    border-left: 3px solid var(--ns-blue);
+    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+}
+
+/* MARK: Inline validation feedback */
+.inline-feedback {
+    display: block;
+    margin-top: 5px;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    min-height: 1.2em;
     line-height: 1.4;
 }
 
-/* MARK:Inline validation feedback 
-*/
-.inline-feedback {
-    display: block;
-    margin-top: 4px;
-    font-size: 0.875rem;
-    font-weight: 600;
-    min-height: 1.2em;
-}
-
 .inline-feedback.goed {
-    color: #1a6b2b;
+    color: var(--ns-success);
 }
 
 .inline-feedback.fout {
-    color: #c0392b;
+    color: var(--ns-error);
 }
 
-/* MARK:Valid/invalid field states 
-*/
+/* MARK: Valid/invalid field states */
 input[type="text"].veld-goed,
 input[type="date"].veld-goed {
-    border-color: #2ecc71;
-    background-color: #f0fff4;
+    border-color: var(--ns-success);
+    background: var(--ns-success-bg);
 }
 
 input[type="text"].veld-fout,
 input[type="date"].veld-fout {
-    border-color: #e74c3c;
-    background-color: #fff5f5;
+    border-color: var(--ns-error);
+    background: var(--ns-error-bg);
+}
+
+/* MARK: Dialog */
+dialog {
+    width: min(92vw, 440px);
+    padding: 0;
+    border: none;
+    border-radius: var(--radius-xl);
+    box-shadow: 0 20px 60px rgba(0,0,0,.2);
+    overflow: hidden;
+    animation: dialogIn 0.2s ease;
+}
+
+@keyframes dialogIn {
+    from { opacity: 0; transform: scale(0.97) translateY(6px); }
+    to   { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+dialog::backdrop {
+    background: rgba(0, 57, 115, 0.35);
+    backdrop-filter: blur(2px);
+}
+
+dialog h2 {
+    margin: 0;
+    padding: 18px 22px 14px;
+    font-size: 1.0625rem;
+    font-weight: 700;
+    color: var(--ns-white);
+    background: var(--ns-blue-dark);
+}
+
+dialog p {
+    margin: 0;
+    padding: 16px 22px;
+    font-size: 0.9375rem;
+    color: var(--ns-grey-800);
+    background: var(--ns-white);
+}
+
+dialog form {
+    margin: 0;
+    padding: 0 22px 20px;
+    background: var(--ns-white);
+    border: none;
+    box-shadow: none;
+    max-width: none;
+}
+
+dialog form button {
+    margin-top: 0;
+    background: var(--ns-yellow);
+    color: var(--ns-grey-900);
+}
+
+dialog form button::after {
+    content: none !important;
+}
+
+/* MARK: Answers page */
+.answers {
+    background: var(--ns-white);
+    border: 1.5px solid var(--ns-grey-100);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-md);
+    overflow: hidden;
+}
+
+.answers h1 {
+    margin: 0;
+    padding: 20px 28px 18px;
+    font-size: 1.375rem;
+    font-weight: 700;
+    color: var(--ns-white);
+    background: var(--ns-blue-darker);
+}
+
+#empty-state {
+    margin: 24px 28px;
+    padding: 14px 16px;
+    border-radius: var(--radius-md);
+    background: var(--ns-warning-bg);
+    color: var(--ns-grey-800);
+    border: 1.5px solid rgba(246, 200, 0, 0.55);
+    font-size: 0.9375rem;
+}
+
+#answers-list {
+    margin: 0;
+    padding: 20px 28px 4px;
+}
+
+#answers-list dt {
+    margin-top: 16px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    color: var(--ns-grey-600);
+}
+
+#answers-list dt:first-child {
+    margin-top: 0;
+}
+
+#answers-list dd {
+    margin: 4px 0 0;
+    padding: 10px 14px;
+    font-size: 0.9375rem;
+    border-radius: var(--radius-md);
+    background: var(--ns-grey-50);
+    border: 1.5px solid var(--ns-grey-100);
+    color: var(--ns-grey-900);
+}
+
+.answers > a,
+.answers-body > a {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin: 20px 28px 28px;
+    padding: 11px 22px;
+    background: var(--ns-yellow);
+    color: var(--ns-grey-900);
+    font-weight: 700;
+    font-size: 0.9375rem;
+    text-decoration: none;
+    border-radius: var(--radius-pill);
+    transition: background 0.15s ease, box-shadow 0.15s ease;
+    box-shadow: var(--shadow-sm);
+}
+
+.answers > a::before,
+.answers-body > a::before {
+    content: "←";
+}
+
+.answers > a:hover,
+.answers > a:focus,
+.answers-body > a:hover,
+.answers-body > a:focus {
+    background: var(--ns-yellow-hover);
+    box-shadow: var(--shadow-md);
+    outline: none;
+}
+
+/* MARK: Submit button – make it prominent */
+input[type="submit"] {
+    background: var(--ns-blue);
+    color: var(--ns-white);
+    font-size: 1rem;
+    padding: 14px 32px;
+}
+
+input[type="submit"]:hover {
+    background: var(--ns-blue-dark);
+}
+
+/* MARK: Responsive */
+@media (max-width: 640px) {
+    body {
+        padding: 48px 12px 64px;
+    }
+
+    #vraag-1 > legend,
+    #vraag-2 > legend {
+        padding: 16px 20px 14px;
+    }
+
+    #vraag-1a, #vraag-1b, #vraag-1c, #vraag-1d {
+        padding: 20px;
+    }
+
+    #answers-list {
+        padding: 16px 20px 4px;
+    }
+
+    .answers h1 {
+        padding: 18px 20px 16px;
+    }
+
+    .answers > a,
+    .answers-body > a {
+        margin: 16px 20px 24px;
+    }
+
+    #empty-state {
+        margin: 16px 20px;
+    }
 }

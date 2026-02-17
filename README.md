@@ -29,3 +29,25 @@
 - Add more questions to the form.
 - Add more styling to the form.
 - Add a page to see the results of the form.
+
+## 17 februari 2026
+### Things i did today
+- Added Answer showing page
+- Added helper functions to make main.js more readable
+- Added more styling to the form and the answer showing page
+- Added validation checking
+- Made it more NS styled
+
+### time it took
+- 1 hour
+- 1 hour
+- 1 hour
+- 2 hours
+
+### What i learned
+- Better understanding of how to use input elements and how to validate them.
+- Better understanding of how to use JavaScript to manipulate the DOM and show/hide elements.
+
+### What I want to do next
+- Add more questions to the form.
+- Add optional extra's
