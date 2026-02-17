@@ -43,6 +43,19 @@ const checkedValue = (name) => document.querySelector(`input[name="${name}"]:che
 const clearValues = (ids) => {
     ids.forEach((id) => setValue(id, ""));
 };
+const formatDateForInput = (date) => date.toISOString().split("T")[0];
+
+const vandaag = new Date();
+const maxOverlijdensdatum = formatDateForInput(vandaag);
+const achtMaandenGeleden = new Date(vandaag);
+achtMaandenGeleden.setMonth(achtMaandenGeleden.getMonth() - 8);
+const minOverlijdensdatum = formatDateForInput(achtMaandenGeleden);
+
+const datumOverlijdenInput = byId("datum-overlijden");
+if (datumOverlijdenInput) {
+    datumOverlijdenInput.min = minOverlijdensdatum;
+    datumOverlijdenInput.max = maxOverlijdensdatum;
+}
 
 if (feedbackDialogClose && feedbackDialog) {
     feedbackDialogClose.addEventListener("click", () => {
@@ -130,11 +143,12 @@ byId("bsn-overledene").addEventListener("blur", function() {
 
 byId("datum-overlijden").addEventListener("blur", function() {
     const val = this.value;
-    const vandaag = new Date().toISOString().split("T")[0];
     if (val === "") {
         markInvalid("datum-overlijden", "Overlijdensdatum is verplicht");
-    } else if (val > vandaag) {
+    } else if (val > maxOverlijdensdatum) {
         markInvalid("datum-overlijden", "De overlijdensdatum kan niet in de toekomst liggen");
+    } else if (val < minOverlijdensdatum) {
+        markInvalid("datum-overlijden", "De overlijdensdatum mag niet ouder zijn dan 8 maanden");
     } else {
         markValid("datum-overlijden");
     }
@@ -142,8 +156,7 @@ byId("datum-overlijden").addEventListener("blur", function() {
 
 byId("datum-overlijden").addEventListener("input", function() {
     const val = this.value;
-    const vandaag = new Date().toISOString().split("T")[0];
-    if (val !== "" && val <= vandaag) {
+    if (val !== "" && val >= minOverlijdensdatum && val <= maxOverlijdensdatum) {
         markValid("datum-overlijden");
     }
 });
@@ -265,9 +278,13 @@ byId("volgende-vraag-1a").addEventListener("click", function() {
         return;
     }
 
-    const vandaag = new Date().toISOString().split("T")[0];
-    if (datumOverlijden > vandaag) {
+    if (datumOverlijden > maxOverlijdensdatum) {
         showDialog("De datum van overlijden kan niet in de toekomst liggen");
+        return;
+    }
+
+    if (datumOverlijden < minOverlijdensdatum) {
+        showDialog("De datum van overlijden mag niet ouder zijn dan 8 maanden");
         return;
     }
 
