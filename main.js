@@ -105,24 +105,6 @@ document.querySelector("form").addEventListener("submit", function(event) {
 });
 
 // Vraag 1a
-// Vraag 1a - datum check
-byId("datum-overlijden").addEventListener("blur", function() {
-    const datumOverlijden = valueOf("datum-overlijden");
-    const vandaag = new Date().toISOString().split("T")[0];
-    if (datumOverlijden > vandaag) {
-        showDialog("De datum van overlijden kan niet in de toekomst liggen");
-        setValue("datum-overlijden", "");
-    }
-});
-
-byId("bsn-overledene").addEventListener("blur", function() {
-    const bsnOverledene = valueOf("bsn-overledene").trim();
-    if (bsnOverledene !== "" && !isValidBsn(bsnOverledene)) {
-        showDialog("Vul een geldig BSN in met precies 9 cijfers");
-        setValue("bsn-overledene", "");
-    }
-});
-
 // Vraag 1a - volgende Check
 byId("volgende-vraag-1a").addEventListener("click", function() {
     const voorlettersOverledene = valueOf("voorletters-overledene");
@@ -130,16 +112,31 @@ byId("volgende-vraag-1a").addEventListener("click", function() {
     const bsnOverledene = valueOf("bsn-overledene");
     const datumOverlijden = valueOf("datum-overlijden");
 
-    if (voorlettersOverledene === "" || achternaamOverledene === "" || bsnOverledene === "" || datumOverlijden === "") {
-        showDialog("Vul alle velden in voor vraag 1a");
+    if (voorlettersOverledene === "") {
+        showDialog("De vraag Voorletter(s) is verplicht");
+        return;
+    } else if (achternaamOverledene === "") {
+        showDialog("De vraag Achternaam is verplicht");
+        return;
+    } else if (bsnOverledene === "") {
+        showDialog("De vraag BSN is verplicht");
+        return;
+    } else if (datumOverlijden === "") {
+        showDialog("De vraag Overlijdensdatum is verplicht");
         return;
     }
 
     if (!isValidBsn(bsnOverledene.trim())) {
         showDialog("Vul een geldig BSN in met precies 9 cijfers");
-        setValue("bsn-overledene", "");
         return;
     }
+
+    const vandaag = new Date().toISOString().split("T")[0];
+    if (datumOverlijden > vandaag) {
+        showDialog("De datum van overlijden kan niet in de toekomst liggen");
+        return;
+    }
+
     setHidden("vraag-1a", true);
     setHidden("vraag-1b", false);
 });
@@ -181,16 +178,6 @@ byId("wel-voorwaarden").addEventListener("change", function() {
     setHidden("volgende-vraag-1b", false);
 });
 
-// Vraag 1b-4 - datum check
-byId("datum-voorwaarden").addEventListener("blur", function() {
-    const datumVoorwaarden = valueOf("datum-voorwaarden");
-    const datumOverlijden = valueOf("datum-overlijden");
-    if (datumVoorwaarden > datumOverlijden) {
-        showDialog("De datum van de voorwaarden kan niet na de datum van overlijden liggen");
-        setValue("datum-voorwaarden", "");
-    }
-});
-
 // Vraag 1b - Volgende check
 byId("volgende-vraag-1b").addEventListener("click", function() {
     const vraag1b2Visible = isVisible("vraag-1b-2");
@@ -206,15 +193,17 @@ byId("volgende-vraag-1b").addEventListener("click", function() {
     const moetDatumVoorwaardenIngevuldZijn = vraag1b4Visible && voorwaardenValue === "ja";
 
     if (huwelijkValue === "") {
-        showDialog("Vul vraag 1b-1 in");
+        showDialog("De vraag Getrouwd of geregistreerd partnerschap is verplicht");
     } else if (vraag1b2Visible && voorwaardenValue === "") {
-        showDialog("Vul vraag 1b-2 in");
+        showDialog("De vraag Huwelijkse/partnerschapsvoorwaarden is verplicht");
     } else if (vraag1b2KopieVisible && kopieAktenValue === "") {
-        showDialog("Vul vraag 1b-2-voorwaarden-kopie in");
+        showDialog("De vraag Kopie van de akte is verplicht");
     } else if (vraag1b3Visible && verrekenbedingValue === "") {
-        showDialog("Vul vraag 1b-3 in");
+        showDialog("De vraag Finaal verrekenbeding is verplicht");
     } else if (moetDatumVoorwaardenIngevuldZijn && datumVoorwaardenValue === "") {
-        showDialog("Vul vraag 1b-4 in");
+        showDialog("De vraag Datum voorwaarden is verplicht");
+    } else if (moetDatumVoorwaardenIngevuldZijn && datumVoorwaardenValue > valueOf("datum-overlijden")) {
+        showDialog("De datum van de voorwaarden kan niet na de datum van overlijden liggen");
     } else {
         setHidden("vraag-1b", true);
         setHidden("vraag-1c", false);
@@ -259,11 +248,11 @@ byId("volgende-vraag-1c").addEventListener("click", function() {
     const overledenKindKinderenValue = checkedValue("kinderen-overleden-kind");
 
     if (vraag1c1Visible && kinderenValue === "") {
-        showDialog("Vul vraag 1c-1 in");
+        showDialog("De vraag Kinderen is verplicht");
     } else if (vraag1c2Visible && overledenKinderenValue === "") {
-        showDialog("Vul vraag 1c-2 in");
+        showDialog("De vraag Eerder overleden kind is verplicht");
     } else if (vraag1c3Visible && overledenKindKinderenValue === "") {
-        showDialog("Vul vraag 1c-3 in");
+        showDialog("De vraag Kinderen van overleden kind is verplicht");
     } else {
         setHidden("vraag-1c", true);
         setHidden("vraag-1d", false);
@@ -290,16 +279,6 @@ byId("wel-testament").addEventListener("change", function() {
     setHidden("volgende-vraag-1d", true);
 });
 
-// Vraag 1d-2 - datum check
-byId("datum-testament").addEventListener("blur", function() {
-    const datumTestament = valueOf("datum-testament");
-    const datumOverlijden = valueOf("datum-overlijden");
-    if (datumTestament > datumOverlijden) {
-        showDialog("De datum van het testament kan niet na de datum van overlijden liggen");
-        setValue("datum-testament", "");
-    }
-});
-
 // Vraag 1d - Volgende check
 byId("volgende-vraag-1d").addEventListener("click", function() {
     const vraag1d2Visible = isVisible("vraag-1d-2");
@@ -312,9 +291,11 @@ byId("volgende-vraag-1d").addEventListener("click", function() {
     const vestigingsplaatsNotaris = valueOf("vestigingsplaats");
     const datumTestament = valueOf("datum-testament");
     if (testamentValue === "") {
-        showDialog("Vul vraag 1d-1 in");
+        showDialog("De vraag Testament is verplicht");
     } else if (vraag1d2Visible && (protocolnummerNotaris === "" || voorlettersNotaris === "" || tussenvoegselsNotaris === "" || achternaamNotaris === "" || vestigingsplaatsNotaris === "" || datumTestament === "")) {
-        showDialog("Vul vraag 1d-2 in");
+        showDialog("De vraag Notaris info is verplicht");
+    } else if (vraag1d2Visible && datumTestament > valueOf("datum-overlijden")) {
+        showDialog("De datum van het testament kan niet na de datum van overlijden liggen");
     } else {
         // document.getElementById("vraag-1d").hidden = true;
         // document.getElementById("vraag-1e").hidden = false;
