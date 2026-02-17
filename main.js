@@ -292,13 +292,12 @@ byId("volgende-vraag-1d").addEventListener("click", function() {
     const datumTestament = valueOf("datum-testament");
     if (testamentValue === "") {
         showDialog("De vraag Testament is verplicht");
-    } else if (vraag1d2Visible && (protocolnummerNotaris === "" || voorlettersNotaris === "" || tussenvoegselsNotaris === "" || achternaamNotaris === "" || vestigingsplaatsNotaris === "" || datumTestament === "")) {
+    } else if (vraag1d2Visible && (protocolnummerNotaris === "" || voorlettersNotaris === "" || achternaamNotaris === "" || vestigingsplaatsNotaris === "" || datumTestament === "")) {
         showDialog("De vraag Notaris info is verplicht");
     } else if (vraag1d2Visible && datumTestament > valueOf("datum-overlijden")) {
         showDialog("De datum van het testament kan niet na de datum van overlijden liggen");
     } else {
-        // document.getElementById("vraag-1d").hidden = true;
-        // document.getElementById("vraag-1e").hidden = false;
-        location.reload();
+        setHidden("vraag-1d", true);
+        setHidden("vraag-2", false);
     }
 });
