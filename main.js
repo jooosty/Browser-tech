@@ -18,6 +18,32 @@ const showDialog = (message) => {
     feedbackDialog.showModal();
 };
 
+const byId = (id) => document.getElementById(id);
+const valueOf = (id) => byId(id)?.value ?? "";
+const setValue = (id, value) => {
+    const element = byId(id);
+    if (element) {
+        element.value = value;
+    }
+};
+const setHidden = (id, hidden) => {
+    const element = byId(id);
+    if (element) {
+        element.hidden = hidden;
+    }
+};
+const isVisible = (id) => byId(id)?.hidden === false;
+const clearChecked = (name) => {
+    const selected = document.querySelector(`input[name="${name}"]:checked`);
+    if (selected) {
+        selected.checked = false;
+    }
+};
+const checkedValue = (name) => document.querySelector(`input[name="${name}"]:checked`)?.value || "";
+const clearValues = (ids) => {
+    ids.forEach((id) => setValue(id, ""));
+};
+
 if (feedbackDialogClose && feedbackDialog) {
     feedbackDialogClose.addEventListener("click", () => {
         feedbackDialog.close();
@@ -80,29 +106,29 @@ document.querySelector("form").addEventListener("submit", function(event) {
 
 // Vraag 1a
 // Vraag 1a - datum check
-document.getElementById("datum-overlijden").addEventListener("blur", function() {
-    const datumOverlijden = document.getElementById("datum-overlijden").value;
+byId("datum-overlijden").addEventListener("blur", function() {
+    const datumOverlijden = valueOf("datum-overlijden");
     const vandaag = new Date().toISOString().split("T")[0];
     if (datumOverlijden > vandaag) {
         showDialog("De datum van overlijden kan niet in de toekomst liggen");
-        document.getElementById("datum-overlijden").value = "";
+        setValue("datum-overlijden", "");
     }
 });
 
-document.getElementById("bsn-overledene").addEventListener("blur", function() {
-    const bsnOverledene = document.getElementById("bsn-overledene").value.trim();
+byId("bsn-overledene").addEventListener("blur", function() {
+    const bsnOverledene = valueOf("bsn-overledene").trim();
     if (bsnOverledene !== "" && !isValidBsn(bsnOverledene)) {
         showDialog("Vul een geldig BSN in met precies 9 cijfers");
-        document.getElementById("bsn-overledene").value = "";
+        setValue("bsn-overledene", "");
     }
 });
 
 // Vraag 1a - volgende Check
-document.getElementById("volgende-vraag-1a").addEventListener("click", function() {
-    const voorlettersOverledene = document.getElementById("voorletters-overledene").value;
-    const achternaamOverledene = document.getElementById("achternaam-overledene").value;
-    const bsnOverledene = document.getElementById("bsn-overledene").value;
-    const datumOverlijden = document.getElementById("datum-overlijden").value;
+byId("volgende-vraag-1a").addEventListener("click", function() {
+    const voorlettersOverledene = valueOf("voorletters-overledene");
+    const achternaamOverledene = valueOf("achternaam-overledene");
+    const bsnOverledene = valueOf("bsn-overledene");
+    const datumOverlijden = valueOf("datum-overlijden");
 
     if (voorlettersOverledene === "" || achternaamOverledene === "" || bsnOverledene === "" || datumOverlijden === "") {
         showDialog("Vul alle velden in voor vraag 1a");
@@ -111,81 +137,73 @@ document.getElementById("volgende-vraag-1a").addEventListener("click", function(
 
     if (!isValidBsn(bsnOverledene.trim())) {
         showDialog("Vul een geldig BSN in met precies 9 cijfers");
-        document.getElementById("bsn-overledene").value = "";
+        setValue("bsn-overledene", "");
         return;
     }
-    document.getElementById("vraag-1a").hidden = true;
-    document.getElementById("vraag-1b").hidden = false;
+    setHidden("vraag-1a", true);
+    setHidden("vraag-1b", false);
 });
 
 // Vraag 1b
 // Vraag 1b-1
-document.getElementById("niet-getrouwd").addEventListener("change", function() {
-    document.getElementById("volgende-vraag-1b").hidden = false;
-    document.getElementById("vraag-1b-2").hidden = true;
-    const voorwaardenSelected = document.querySelector("input[name=\"voorwaarden\"]:checked");
-    if (voorwaardenSelected) {
-        voorwaardenSelected.checked = false;
-    }
-    document.getElementById("vraag-1b-2-voorwarden-kopie").hidden = true;
-    document.querySelector("input[name=\"kopie-akte\"]").value = "";
-    document.getElementById("vraag-1b-3").hidden = true;
-    const verrekenbedingSelected = document.querySelector("input[name=\"verrekenbeding\"]:checked");
-    if (verrekenbedingSelected) {
-        verrekenbedingSelected.checked = false;
-    }
-    document.getElementById("vraag-1b-4").hidden = true;
-    document.getElementById("datum-voorwaarden").value = "";
+byId("niet-getrouwd").addEventListener("change", function() {
+    setHidden("volgende-vraag-1b", false);
+    setHidden("vraag-1b-2", true);
+    clearChecked("voorwaarden");
+    setHidden("vraag-1b-2-voorwarden-kopie", true);
+    setValue("kopie-akte", "");
+    setHidden("vraag-1b-3", true);
+    clearChecked("verrekenbeding");
+    setHidden("vraag-1b-4", true);
+    setValue("datum-voorwaarden", "");
 });
 
-document.getElementById("getrouwd").addEventListener("change", function() {
-    document.getElementById("vraag-1b-2").hidden = false;
-    document.getElementById("volgende-vraag-1b").hidden = true;
+byId("getrouwd").addEventListener("change", function() {
+    setHidden("vraag-1b-2", false);
+    setHidden("volgende-vraag-1b", true);
 });
 
 // Vraag 1b-2
-document.getElementById("geen-voorwaarden").addEventListener("change", function() {
-    document.getElementById("volgende-vraag-1b").hidden = false;
-    document.getElementById("vraag-1b-2-voorwarden-kopie").hidden = true;
-    document.querySelector("input[name=\"kopie-akte\"]").value = "";
-    document.getElementById("vraag-1b-3").hidden = true;
-    if (document.querySelector("input[name=\"verrekenbeding\"]:checked")) {
-        document.querySelector("input[name=\"verrekenbeding\"]:checked").checked = false;
-    }
-    document.getElementById("vraag-1b-4").hidden = true;
-    document.getElementById("datum-voorwaarden").value = "";
+byId("geen-voorwaarden").addEventListener("change", function() {
+    setHidden("volgende-vraag-1b", false);
+    setHidden("vraag-1b-2-voorwarden-kopie", true);
+    setValue("kopie-akte", "");
+    setHidden("vraag-1b-3", true);
+    clearChecked("verrekenbeding");
+    setHidden("vraag-1b-4", true);
+    setValue("datum-voorwaarden", "");
 });
 
-document.getElementById("wel-voorwaarden").addEventListener("change", function() {
-    document.getElementById("vraag-1b-2-voorwarden-kopie").hidden = false;
-    document.getElementById("vraag-1b-3").hidden = false;
-    document.getElementById("vraag-1b-4").hidden = false;
-    document.getElementById("volgende-vraag-1b").hidden = false;
+byId("wel-voorwaarden").addEventListener("change", function() {
+    setHidden("vraag-1b-2-voorwarden-kopie", false);
+    setHidden("vraag-1b-3", false);
+    setHidden("vraag-1b-4", false);
+    setHidden("volgende-vraag-1b", false);
 });
 
 // Vraag 1b-4 - datum check
-document.getElementById("datum-voorwaarden").addEventListener("blur", function() {
-    const datumVoorwaarden = document.getElementById("datum-voorwaarden").value;
-    const datumOverlijden = document.getElementById("datum-overlijden").value;
+byId("datum-voorwaarden").addEventListener("blur", function() {
+    const datumVoorwaarden = valueOf("datum-voorwaarden");
+    const datumOverlijden = valueOf("datum-overlijden");
     if (datumVoorwaarden > datumOverlijden) {
         showDialog("De datum van de voorwaarden kan niet na de datum van overlijden liggen");
-        document.getElementById("datum-voorwaarden").value = "";
+        setValue("datum-voorwaarden", "");
     }
 });
 
 // Vraag 1b - Volgende check
-document.getElementById("volgende-vraag-1b").addEventListener("click", function() {
-    const vraag1b1Visible = document.getElementById("vraag-1b-1").hidden == false;
-    const vraag1b2Visible = document.getElementById("vraag-1b-2").hidden == false;
-    const vraag1b2KopieVisible = document.getElementById("vraag-1b-2-voorwarden-kopie").hidden == false;
-    const vraag1b3Visible = document.getElementById("vraag-1b-3").hidden == false;
-    const vraag1b4Visible = document.getElementById("vraag-1b-4").hidden == false;
+byId("volgende-vraag-1b").addEventListener("click", function() {
+    const vraag1b1Visible = isVisible("vraag-1b-1");
+    const vraag1b2Visible = isVisible("vraag-1b-2");
+    const vraag1b2KopieVisible = isVisible("vraag-1b-2-voorwarden-kopie");
+    const vraag1b3Visible = isVisible("vraag-1b-3");
+    const vraag1b4Visible = isVisible("vraag-1b-4");
 
-    const huwelijkValue = document.querySelector("input[name=\"huwelijk\"]:checked")?.value || "";
-    const voorwaardenValue = document.querySelector("input[name=\"voorwaarden\"]:checked")?.value || "";
-    const kopieAktenValue = document.getElementById("kopie-akte").value;
-    const verrekenbedingValue = document.querySelector("input[name=\"verrekenbeding\"]:checked")?.value || "";
-    const datumVoorwaardenValue = document.getElementById("datum-voorwaarden").value;
+    const huwelijkValue = checkedValue("huwelijk");
+    const voorwaardenValue = checkedValue("voorwaarden");
+    const kopieAktenValue = valueOf("kopie-akte");
+    const verrekenbedingValue = checkedValue("verrekenbeding");
+    const datumVoorwaardenValue = valueOf("datum-voorwaarden");
 
     if (vraag1b1Visible && huwelijkValue === "") {
         showDialog("Vul vraag 1b-1 in");
@@ -198,53 +216,47 @@ document.getElementById("volgende-vraag-1b").addEventListener("click", function(
     } else if (vraag1b4Visible && datumVoorwaardenValue === "") {
         showDialog("Vul vraag 1b-4 in");
     } else {
-        document.getElementById("vraag-1b").hidden = true;
-        document.getElementById("vraag-1c").hidden = false;
+        setHidden("vraag-1b", true);
+        setHidden("vraag-1c", false);
     }
 });
 
 // Vraag 1c
 // Vraag 1c-1
-document.getElementById("geen-kinderen").addEventListener("change", function() {
-    document.getElementById("volgende-vraag-1c").hidden = false;
-    document.getElementById("vraag-1c-2").hidden = true;
-    if (document.querySelector("input[name=\"overleden-kinderen\"]:checked")) {
-        document.querySelector("input[name=\"overleden-kinderen\"]:checked").checked = false;
-    }
-    document.getElementById("vraag-1c-3").hidden = true;
-    if (document.querySelector("input[name=\"kinderen-overleden-kind\"]:checked")) {
-        document.querySelector("input[name=\"kinderen-overleden-kind\"]:checked").checked = false;
-    }
+byId("geen-kinderen").addEventListener("change", function() {
+    setHidden("volgende-vraag-1c", false);
+    setHidden("vraag-1c-2", true);
+    clearChecked("overleden-kinderen");
+    setHidden("vraag-1c-3", true);
+    clearChecked("kinderen-overleden-kind");
 });
 
-document.getElementById("wel-kinderen").addEventListener("change", function() {
-    document.getElementById("vraag-1c-2").hidden = false;
-    document.getElementById("volgende-vraag-1c").hidden = true;
+byId("wel-kinderen").addEventListener("change", function() {
+    setHidden("vraag-1c-2", false);
+    setHidden("volgende-vraag-1c", true);
 });
 
 // Vraag 1c-2
-document.getElementById("geen-overleden-kinderen").addEventListener("change", function() {
-    document.getElementById("volgende-vraag-1c").hidden = false;
-    document.getElementById("vraag-1c-3").hidden = true;
-    if (document.querySelector("input[name=\"kinderen-overleden-kind\"]:checked")) {
-        document.querySelector("input[name=\"kinderen-overleden-kind\"]:checked").checked = false;
-    }
+byId("geen-overleden-kinderen").addEventListener("change", function() {
+    setHidden("volgende-vraag-1c", false);
+    setHidden("vraag-1c-3", true);
+    clearChecked("kinderen-overleden-kind");
 });
 
-document.getElementById("wel-overleden-kinderen").addEventListener("change", function() {
-    document.getElementById("vraag-1c-3").hidden = false;
-    document.getElementById("volgende-vraag-1c").hidden = false;
+byId("wel-overleden-kinderen").addEventListener("change", function() {
+    setHidden("vraag-1c-3", false);
+    setHidden("volgende-vraag-1c", false);
 });
 
 // Vraag 1c - Volgende check
-document.getElementById("volgende-vraag-1c").addEventListener("click", function() {
-    const vraag1c1Visible = document.getElementById("vraag-1c-1").hidden == false;
-    const vraag1c2Visible = document.getElementById("vraag-1c-2").hidden == false;
-    const vraag1c3Visible = document.getElementById("vraag-1c-3").hidden == false;
+byId("volgende-vraag-1c").addEventListener("click", function() {
+    const vraag1c1Visible = isVisible("vraag-1c-1");
+    const vraag1c2Visible = isVisible("vraag-1c-2");
+    const vraag1c3Visible = isVisible("vraag-1c-3");
 
-    const kinderenValue = document.querySelector("input[name=\"kinderen\"]:checked")?.value || "";
-    const overledenKinderenValue = document.querySelector("input[name=\"overleden-kinderen\"]:checked")?.value || "";
-    const overledenKindKinderenValue = document.querySelector("input[name=\"kinderen-overleden-kind\"]:checked")?.value || "";
+    const kinderenValue = checkedValue("kinderen");
+    const overledenKinderenValue = checkedValue("overleden-kinderen");
+    const overledenKindKinderenValue = checkedValue("kinderen-overleden-kind");
 
     if (vraag1c1Visible && kinderenValue === "") {
         showDialog("Vul vraag 1c-1 in");
@@ -253,49 +265,51 @@ document.getElementById("volgende-vraag-1c").addEventListener("click", function(
     } else if (vraag1c3Visible && overledenKindKinderenValue === "") {
         showDialog("Vul vraag 1c-3 in");
     } else {
-        document.getElementById("vraag-1c").hidden = true;
-        document.getElementById("vraag-1d").hidden = false;
+        setHidden("vraag-1c", true);
+        setHidden("vraag-1d", false);
     }
 });
 
 // Vraag 1d
 // Vraag 1d-1
-document.getElementById("geen-testament").addEventListener("change", function() {
-    document.getElementById("volgende-vraag-1d").hidden = false;
-    document.getElementById("vraag-1d-2").hidden = true;
-    document.getElementById("protocalnummer-notaris").value = "";
-    document.getElementById("voorletters-notaris").value = "";
-    document.getElementById("achternaam-notaris").value = "";
-    document.getElementById("vestigingsplaats-notaris").value = "";
-    document.getElementById("datum-testament").value = "";
+byId("geen-testament").addEventListener("change", function() {
+    setHidden("volgende-vraag-1d", false);
+    setHidden("vraag-1d-2", true);
+    clearValues([
+        "protocalnummer-notaris",
+        "voorletters-notaris",
+        "achternaam-notaris",
+        "vestigingsplaats-notaris",
+        "datum-testament"
+    ]);
 });
 
-document.getElementById("wel-testament").addEventListener("change", function() {
-    document.getElementById("vraag-1d-2").hidden = false;
-    document.getElementById("volgende-vraag-1d").hidden = true;
+byId("wel-testament").addEventListener("change", function() {
+    setHidden("vraag-1d-2", false);
+    setHidden("volgende-vraag-1d", true);
 });
 
 // Vraag 1d-2 - datum check
-document.getElementById("datum-testament").addEventListener("blur", function() {
-    const datumTestament = document.getElementById("datum-testament").value;
-    const datumOverlijden = document.getElementById("datum-overlijden").value;
+byId("datum-testament").addEventListener("blur", function() {
+    const datumTestament = valueOf("datum-testament");
+    const datumOverlijden = valueOf("datum-overlijden");
     if (datumTestament > datumOverlijden) {
         showDialog("De datum van het testament kan niet na de datum van overlijden liggen");
-        document.getElementById("datum-testament").value = "";
+        setValue("datum-testament", "");
     }
 });
 
 // Vraag 1d - Volgende check
-document.getElementById("volgende-vraag-1d").addEventListener("click", function() {
-    const vraag1d1Visible = document.getElementById("vraag-1d-1").hidden == false;
-    const vraag1d2Visible = document.getElementById("vraag-1d-2").hidden == false;
+byId("volgende-vraag-1d").addEventListener("click", function() {
+    const vraag1d1Visible = isVisible("vraag-1d-1");
+    const vraag1d2Visible = isVisible("vraag-1d-2");
 
-    const testamentValue = document.querySelector("input[name=\"testament\"]:checked")?.value || "";
-    const protocalnummerNotaris = document.getElementById("protocalnummer-notaris").value;
-    const voorlettersNotaris = document.getElementById("voorletters-notaris").value;
-    const achternaamNotaris = document.getElementById("achternaam-notaris").value;
-    const vestigingsplaatsNotaris = document.getElementById("vestigingsplaats-notaris").value;
-    const datumTestament = document.getElementById("datum-testament").value;
+    const testamentValue = checkedValue("testament");
+    const protocalnummerNotaris = valueOf("protocalnummer-notaris");
+    const voorlettersNotaris = valueOf("voorletters-notaris");
+    const achternaamNotaris = valueOf("achternaam-notaris");
+    const vestigingsplaatsNotaris = valueOf("vestigingsplaats-notaris");
+    const datumTestament = valueOf("datum-testament");
     if (vraag1d1Visible && testamentValue === "") {
         showDialog("Vul vraag 1d-1 in");
     } else if (vraag1d2Visible && (protocalnummerNotaris === "" || voorlettersNotaris === "" || achternaamNotaris === "" || vestigingsplaatsNotaris === "" || datumTestament === "")) {
