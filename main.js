@@ -52,6 +52,140 @@ if (feedbackDialogClose && feedbackDialog) {
 
 const isValidBsn = (value) => /^\d{9}$/.test(value);
 
+// Inline field validation helpers
+const getFeedback = (el) => {
+    // Look for a feedback span that is the immediate next sibling of this input
+    let next = el.nextElementSibling;
+    while (next) {
+        if (next.classList.contains("inline-feedback")) return next;
+        // stop looking if we hit another input or label (belongs to a different field)
+        if (next.tagName === "INPUT" || next.tagName === "LABEL") break;
+        next = next.nextElementSibling;
+    }
+    // None found — create one right after this input
+    const feedback = document.createElement("span");
+    feedback.className = "inline-feedback";
+    feedback.setAttribute("aria-live", "polite");
+    el.insertAdjacentElement("afterend", feedback);
+    return feedback;
+};
+
+const markValid = (id) => {
+    const el = byId(id);
+    if (!el) return;
+    el.classList.remove("veld-fout");
+    el.classList.add("veld-goed");
+    const feedback = getFeedback(el);
+    feedback.textContent = "✓ Dit veld is correct ingevuld";
+    feedback.classList.remove("fout");
+    feedback.classList.add("goed");
+};
+
+const markInvalid = (id, message) => {
+    const el = byId(id);
+    if (!el) return;
+    el.classList.remove("veld-goed");
+    el.classList.add("veld-fout");
+    const feedback = getFeedback(el);
+    feedback.textContent = message;
+    feedback.classList.remove("goed");
+    feedback.classList.add("fout");
+};
+
+const clearMark = (id) => {
+    const el = byId(id);
+    if (!el) return;
+    el.classList.remove("veld-goed", "veld-fout");
+    const feedback = getFeedback(el);
+    feedback.textContent = "";
+};
+
+// Blur listeners for inline validation on text/date fields
+byId("voorletters-overledene").addEventListener("blur", function() {
+    if (this.value.trim() === "") {
+        markInvalid("voorletters-overledene", "Voorletter(s) is verplicht");
+    } else {
+        markValid("voorletters-overledene");
+    }
+});
+
+byId("achternaam-overledene").addEventListener("blur", function() {
+    if (this.value.trim() === "") {
+        markInvalid("achternaam-overledene", "Achternaam is verplicht");
+    } else {
+        markValid("achternaam-overledene");
+    }
+});
+
+byId("bsn-overledene").addEventListener("blur", function() {
+    const val = this.value.trim();
+    if (val === "") {
+        markInvalid("bsn-overledene", "BSN is verplicht");
+    } else if (!isValidBsn(val)) {
+        markInvalid("bsn-overledene", "BSN moet precies 9 cijfers bevatten");
+    } else {
+        markValid("bsn-overledene");
+    }
+});
+
+byId("datum-overlijden").addEventListener("blur", function() {
+    const val = this.value;
+    const vandaag = new Date().toISOString().split("T")[0];
+    if (val === "") {
+        markInvalid("datum-overlijden", "Overlijdensdatum is verplicht");
+    } else if (val > vandaag) {
+        markInvalid("datum-overlijden", "De overlijdensdatum kan niet in de toekomst liggen");
+    } else {
+        markValid("datum-overlijden");
+    }
+});
+
+byId("datum-overlijden").addEventListener("input", function() {
+    const val = this.value;
+    const vandaag = new Date().toISOString().split("T")[0];
+    if (val !== "" && val <= vandaag) {
+        markValid("datum-overlijden");
+    }
+});
+
+byId("datum-voorwaarden").addEventListener("blur", function() {
+    if (!isVisible("vraag-1b-4")) return;
+    const val = this.value;
+    const datumOverlijden = valueOf("datum-overlijden");
+    if (val === "") {
+        markInvalid("datum-voorwaarden", "Datum voorwaarden is verplicht");
+    } else if (datumOverlijden && val > datumOverlijden) {
+        markInvalid("datum-voorwaarden", "De datum van de voorwaarden kan niet na de datum van overlijden liggen");
+    } else {
+        markValid("datum-voorwaarden");
+    }
+});
+
+byId("datum-testament").addEventListener("blur", function() {
+    if (!isVisible("vraag-1d-2")) return;
+    const val = this.value;
+    const datumOverlijden = valueOf("datum-overlijden");
+    if (val === "") {
+        markInvalid("datum-testament", "Datum testament is verplicht");
+    } else if (datumOverlijden && val > datumOverlijden) {
+        markInvalid("datum-testament", "De datum van het testament kan niet na de datum van overlijden liggen");
+    } else {
+        markValid("datum-testament");
+    }
+});
+
+// Clear marks when notaris fields are filled
+["protocolnummer-notaris", "voorletters-notaris", "achternaam-notaris", "vestigingsplaats"].forEach((id) => {
+    byId(id).addEventListener("blur", function() {
+        if (!isVisible("vraag-1d-2")) return;
+        if (this.value.trim() === "") {
+            markInvalid(id, "Dit veld is verplicht");
+        } else {
+            markValid(id);
+        }
+    });
+});
+
 // Form submit
 const labelMap = {
     "voorletters-overledene": "Voorletter(s)",
@@ -169,6 +303,7 @@ byId("geen-voorwaarden").addEventListener("change", function() {
     clearChecked("verrekenbeding");
     setHidden("vraag-1b-4", true);
     setValue("datum-voorwaarden", "");
+    clearMark("datum-voorwaarden");
 });
 
 byId("wel-voorwaarden").addEventListener("change", function() {
@@ -272,6 +407,7 @@ byId("geen-testament").addEventListener("change", function() {
         "vestigingsplaats",
         "datum-testament"
     ]);
+    ["protocolnummer-notaris", "voorletters-notaris", "achternaam-notaris", "vestigingsplaats", "datum-testament"].forEach(clearMark);
 });
 
 byId("wel-testament").addEventListener("change", function() {

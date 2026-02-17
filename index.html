@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Aangifte erfbelasting – Gegevens overledene</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -16,15 +16,23 @@
             <fieldset id="vraag-1a">
                 <legend>Vul hier de gegevens in van de overledene</legend>
                 <label for="voorletters-overledene">Voorletter(s)*</label>
-                <input type="text" id="voorletters-overledene" name="voorletters-overledene" autocomplete="off">
+                <input type="text" id="voorletters-overledene" name="voorletters-overledene" autocomplete="off" required aria-required="true" aria-describedby="help-voorletters">
+                <p class="helptekst" id="help-voorletters">Vul de voorletters in, gescheiden door punten. Bijvoorbeeld: A.B.</p>
+
                 <label for="tussenvoegsels-overledene">Tussenvoegsel(s)</label>
                 <input type="text" id="tussenvoegsels-overledene" name="tussenvoegsels-overledene" autocomplete="off">
+
                 <label for="achternaam-overledene">Achternaam*</label>
-                <input type="text" id="achternaam-overledene" name="achternaam-overledene" autocomplete="off">
+                <input type="text" id="achternaam-overledene" name="achternaam-overledene" autocomplete="off" required aria-required="true">
+
                 <label for="bsn-overledene">BSN*</label>
-                <input type="text" id="bsn-overledene" name="bsn-overledene" autocomplete="off">
-                <label for="overlijdensdatum">Overlijdensdatum*</label>
-                <input type="date" id="datum-overlijden" name="datum-overlijden">
+                <input type="text" id="bsn-overledene" name="bsn-overledene" autocomplete="off" required aria-required="true" inputmode="numeric" maxlength="9" aria-describedby="help-bsn">
+                <p class="helptekst" id="help-bsn">Het BSN (Burgerservicenummer) bestaat uit precies 9 cijfers. U vindt het BSN op het paspoort, rijbewijs of identiteitskaart van de overledene.</p>
+
+                <label for="datum-overlijden">Overlijdensdatum*</label>
+                <input type="date" id="datum-overlijden" name="datum-overlijden" required aria-required="true" aria-describedby="help-datum-overlijden">
+                <p class="helptekst" id="help-datum-overlijden">Vul de datum in waarop de overledene is gestorven. Deze datum staat op de overlijdensakte.</p>
+
                 <button type="button" id="volgende-vraag-1a">Volgende vraag</button>
             </fieldset>
 
@@ -32,6 +40,7 @@
 
                 <fieldset id="vraag-1b-1">
                     <legend> Was de overledene getrouwd of had de overledene een geregistreerde partner op het moment van overlijden?</legend>
+                    <p class="helptekst">Een geregistreerd partnerschap is een wettelijke samenlevingsvorm vergelijkbaar met het huwelijk. Als de overledene samenwoonde zonder huwelijk of geregistreerd partnerschap, kiest u 'Nee'.</p>
                     <label for="niet-getrouwd">Nee
                     <input type="radio" id="niet-getrouwd" name="huwelijk" value="nee">
                     </label>
@@ -42,6 +51,7 @@
 
                 <fieldset id="vraag-1b-2" hidden>
                     <legend>Hadden de overledene en diens echtgenoot of geregistreerde partner huwelijkse of partnerschapsvoorwaarden laten vastleggen in een notariële akte?</legend>
+                    <p class="helptekst">Huwelijkse voorwaarden zijn afspraken over geld en bezit die voor het huwelijk bij de notaris zijn vastgelegd. Weet u het niet zeker, neem dan contact op met de notaris of controleer uw documenten.</p>
                     <label for="geen-voorwaarden">Nee
                     <input type="radio" id="geen-voorwaarden" name="voorwaarden" value="nee">
                     </label>
@@ -58,6 +68,7 @@
 
                 <fieldset id="vraag-1b-3" hidden>
                     <legend>Hadden de overledene en diens partner een finaal verrekenbeding?</legend>
+                    <p class="helptekst">Een finaal verrekenbeding is een afspraak in de huwelijkse voorwaarden waarbij bij overlijden afgerekend wordt alsof er gemeenschap van goederen was. Dit staat vermeld in de notariële akte van de huwelijkse voorwaarden.</p>
                     <label for="geen-verrekenbeding">Nee
                     <input type="radio" id="geen-verrekenbeding" name="verrekenbeding" value="nee">
                     </label>
@@ -111,10 +122,11 @@
 
                 <fieldset id="vraag-1d-1">
                     <legend>Had de overledene een testament?</legend>
+                    <p class="helptekst">Een testament is een document waarin de overledene heeft vastgelegd hoe diens bezittingen verdeeld moeten worden. U kunt dit controleren via het Centraal Testamentenregister (CTR) of de notaris.</p>
                     <label for="geen-testament">Nee
                     <input type="radio" id="geen-testament" name="testament" value="nee">
                     </label>
-                    <label for="wel-testament">Ja, Vul de gegevens in van de notaris die het testament heeft opgemaakt en dedatum van het testament.
+                    <label for="wel-testament">Ja, Vul de gegevens in van de notaris die het testament heeft opgemaakt en de datum van het testament.
                     <input type="radio" id="wel-testament" name="testament" value="ja">
                     </label>
                 </fieldset>

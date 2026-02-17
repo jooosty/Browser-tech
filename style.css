@@ -249,3 +249,41 @@ dialog form {
         padding: 22px 18px;
     }
 }
+
+/* Helpteksten */
+.helptekst {
+    margin: 4px 0 0;
+    font-size: 0.875rem;
+    color: #4a5568;
+    line-height: 1.4;
+}
+
+/* Inline validation feedback */
+.inline-feedback {
+    display: block;
+    margin-top: 4px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    min-height: 1.2em;
+}
+
+.inline-feedback.goed {
+    color: #1a6b2b;
+}
+
+.inline-feedback.fout {
+    color: #c0392b;
+}
+
+/* Valid/invalid field states */
+input[type="text"].veld-goed,
+input[type="date"].veld-goed {
+    border-color: #2ecc71;
+    background-color: #f0fff4;
+}
+
+input[type="text"].veld-fout,
+input[type="date"].veld-fout {
+    border-color: #e74c3c;
+    background-color: #fff5f5;
+}
