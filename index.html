@@ -16,13 +16,13 @@
             <fieldset id="vraag-1a">
                 <legend>Vul hier de gegevens in van de overledene</legend>
                 <label for="voorletters-overledene">Voorletter(s)*</label>
-                <input type="text" id="voorletters-overledene" name="voorletters-overledene">
+                <input type="text" id="voorletters-overledene" name="voorletters-overledene" autocomplete="off">
                 <label for="tussenvoegsels-overledene">Tussenvoegsel(s)</label>
-                <input type="text" id="tussenvoegsels-overledene" name="tussenvoegsels-overledene">
+                <input type="text" id="tussenvoegsels-overledene" name="tussenvoegsels-overledene" autocomplete="off">
                 <label for="achternaam-overledene">Achternaam*</label>
-                <input type="text" id="achternaam-overledene" name="achternaam-overledene">
-                <label for="bsn">BSN*</label>
-                <input type="text" id="bsn-overledene" name="bsn-overledene">
+                <input type="text" id="achternaam-overledene" name="achternaam-overledene" autocomplete="off">
+                <label for="bsn-overledene">BSN*</label>
+                <input type="text" id="bsn-overledene" name="bsn-overledene" autocomplete="off">
                 <label for="overlijdensdatum">Overlijdensdatum*</label>
                 <input type="date" id="datum-overlijden" name="datum-overlijden">
                 <button type="button" id="volgende-vraag-1a">Volgende vraag</button>
@@ -122,19 +122,19 @@
                 <fieldset id="vraag-1d-2" hidden>
                     <legend>Notaris info</legend>
                     <label for="Protocolnummer-notaris">Protocolnummer notaris</label>
-                    <input type="text" id="protocolnummer-notaris" name="Protocolnummer-notaris">
+                    <input type="text" id="protocolnummer-notaris" name="Protocolnummer-notaris" autocomplete="off">
                     <label for="Voorletters-notaris">Voorletter(s) notaris</label>
-                    <input type="text" id="voorletters-notaris" name="Voorletters-notaris">
+                    <input type="text" id="voorletters-notaris" name="Voorletters-notaris" autocomplete="off">
                     <label for="Tussenvoegsels-notaris">Tussenvoegsel(s) notaris</label>
-                    <input type="text" id="tussenvoegsels-notaris" name="Tussenvoegsels-notaris">
+                    <input type="text" id="tussenvoegsels-notaris" name="Tussenvoegsels-notaris" autocomplete="off">
                     <label for="Achternaam-notaris">Achternaam notaris</label>
-                    <input type="text" id="achternaam-notaris" name="Achternaam-notaris">
+                    <input type="text" id="achternaam-notaris" name="Achternaam-notaris" autocomplete="off">
                     <label for="vestigingsplaats">Vestigingsplaats notaris</label>
-                    <input type="text" id="vestigingsplaats" name="vestigingsplaats">
+                    <input type="text" id="vestigingsplaats" name="vestigingsplaats" autocomplete="off">
                     <label for="datum-testament">Datum van het testament of van de laatste wijziging</label>
                     <input type="date" id="datum-testament" name="datum-testament">
-                    <button type="button" id="volgende-vraag-1d" hidden>Volgende vraag</button>
                 </fieldset>
+                <button type="button" id="volgende-vraag-1d" hidden>Volgende vraag</button>
             </fieldset>
         </fieldset>
         <input type="submit" value="Submit">

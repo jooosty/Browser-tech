@@ -193,7 +193,6 @@ byId("datum-voorwaarden").addEventListener("blur", function() {
 
 // Vraag 1b - Volgende check
 byId("volgende-vraag-1b").addEventListener("click", function() {
-    const vraag1b1Visible = isVisible("vraag-1b-1");
     const vraag1b2Visible = isVisible("vraag-1b-2");
     const vraag1b2KopieVisible = isVisible("vraag-1b-2-voorwarden-kopie");
     const vraag1b3Visible = isVisible("vraag-1b-3");
@@ -204,8 +203,9 @@ byId("volgende-vraag-1b").addEventListener("click", function() {
     const kopieAktenValue = valueOf("kopie-akte");
     const verrekenbedingValue = checkedValue("verrekenbeding");
     const datumVoorwaardenValue = valueOf("datum-voorwaarden");
+    const moetDatumVoorwaardenIngevuldZijn = vraag1b4Visible && voorwaardenValue === "ja";
 
-    if (vraag1b1Visible && huwelijkValue === "") {
+    if (huwelijkValue === "") {
         showDialog("Vul vraag 1b-1 in");
     } else if (vraag1b2Visible && voorwaardenValue === "") {
         showDialog("Vul vraag 1b-2 in");
@@ -213,7 +213,7 @@ byId("volgende-vraag-1b").addEventListener("click", function() {
         showDialog("Vul vraag 1b-2-voorwaarden-kopie in");
     } else if (vraag1b3Visible && verrekenbedingValue === "") {
         showDialog("Vul vraag 1b-3 in");
-    } else if (vraag1b4Visible && datumVoorwaardenValue === "") {
+    } else if (moetDatumVoorwaardenIngevuldZijn && datumVoorwaardenValue === "") {
         showDialog("Vul vraag 1b-4 in");
     } else {
         setHidden("vraag-1b", true);
@@ -276,10 +276,11 @@ byId("geen-testament").addEventListener("change", function() {
     setHidden("volgende-vraag-1d", false);
     setHidden("vraag-1d-2", true);
     clearValues([
-        "protocalnummer-notaris",
+        "protocolnummer-notaris",
         "voorletters-notaris",
+        "tussenvoegsels-notaris",
         "achternaam-notaris",
-        "vestigingsplaats-notaris",
+        "vestigingsplaats",
         "datum-testament"
     ]);
 });
@@ -301,18 +302,18 @@ byId("datum-testament").addEventListener("blur", function() {
 
 // Vraag 1d - Volgende check
 byId("volgende-vraag-1d").addEventListener("click", function() {
-    const vraag1d1Visible = isVisible("vraag-1d-1");
     const vraag1d2Visible = isVisible("vraag-1d-2");
 
     const testamentValue = checkedValue("testament");
-    const protocalnummerNotaris = valueOf("protocalnummer-notaris");
+    const protocolnummerNotaris = valueOf("protocolnummer-notaris");
     const voorlettersNotaris = valueOf("voorletters-notaris");
+    const tussenvoegselsNotaris = valueOf("tussenvoegsels-notaris");
     const achternaamNotaris = valueOf("achternaam-notaris");
-    const vestigingsplaatsNotaris = valueOf("vestigingsplaats-notaris");
+    const vestigingsplaatsNotaris = valueOf("vestigingsplaats");
     const datumTestament = valueOf("datum-testament");
-    if (vraag1d1Visible && testamentValue === "") {
+    if (testamentValue === "") {
         showDialog("Vul vraag 1d-1 in");
-    } else if (vraag1d2Visible && (protocalnummerNotaris === "" || voorlettersNotaris === "" || achternaamNotaris === "" || vestigingsplaatsNotaris === "" || datumTestament === "")) {
+    } else if (vraag1d2Visible && (protocolnummerNotaris === "" || voorlettersNotaris === "" || tussenvoegselsNotaris === "" || achternaamNotaris === "" || vestigingsplaatsNotaris === "" || datumTestament === "")) {
         showDialog("Vul vraag 1d-2 in");
     } else {
         // document.getElementById("vraag-1d").hidden = true;

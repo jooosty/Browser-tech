@@ -181,12 +181,71 @@ dialog form {
     border: 0;
 }
 
+.answers {
+    max-width: 820px;
+    margin: 0 auto;
+    padding: 26px 24px;
+    background: rgba(255, 255, 255, 0.94);
+    border: 2px solid rgba(0, 160, 223, 0.35);
+    border-radius: 18px;
+    box-shadow: var(--ns-schaduw);
+    backdrop-filter: blur(6px);
+}
+
+.answers h1 {
+    margin-top: 0;
+    margin-bottom: 16px;
+    color: var(--ns-donkerblauw);
+}
+
+#empty-state {
+    margin: 0 0 14px;
+    padding: 12px 14px;
+    border-radius: 10px;
+    background: var(--ns-lichtgeel);
+    color: var(--ns-donkergrijs);
+    border: 2px solid rgba(246, 200, 0, 0.45);
+}
+
+#answers-list {
+    margin: 0;
+    padding: 0;
+}
+
+#answers-list dt {
+    margin-top: 14px;
+    font-weight: 700;
+    color: var(--ns-donkerblauw);
+}
+
+#answers-list dd {
+    margin: 6px 0 0;
+    padding: 10px 12px;
+    border-radius: 10px;
+    background: var(--ns-wit);
+    border: 2px solid rgba(0, 160, 223, 0.3);
+}
+
+.answers a {
+    display: inline-block;
+    margin-top: 20px;
+    color: var(--ns-donkerblauw);
+    font-weight: 700;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 3px;
+}
+
+.answers a:hover,
+.answers a:focus {
+    color: var(--ns-blauw);
+}
 @media (max-width: 600px) {
     body {
         padding: 32px 12px 48px;
     }
 
-    form {
+        form,
+        .answers {
         padding: 22px 18px;
     }
 }
