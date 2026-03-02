@@ -723,6 +723,13 @@ button[id^="volgende"]::after {
     font-size: var(--typography-size-m);
 }
 
+#wis-opgeslagen-gegevens {
+    position: fixed;
+    left: var(--spacing-spacer-4);
+    bottom: var(--spacing-spacer-4);
+    margin-top: 0;
+    z-index: 250;
+}
 /* MARK: Help texts */
 .helptekst {
     margin: var(--spacing-spacer-2) 0 0;

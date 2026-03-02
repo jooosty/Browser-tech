@@ -46,6 +46,7 @@ const clearValues = (ids) => {
 const formatDateForInput = (date) => date.toISOString().split("T")[0];
 const formElement = document.querySelector("form");
 const draftStorageKey = "erfbelasting-form-draft";
+const clearSavedDataButton = byId("wis-opgeslagen-gegevens");
 
 const saveFormDraft = () => {
     if (!formElement) {
@@ -113,6 +114,14 @@ const restoreFormDraft = () => {
 
         matchingFields[0].value = String(value);
     });
+};
+
+const clearStoredFormDraft = () => {
+    localStorage.removeItem(draftStorageKey);
+    if (formElement) {
+        formElement.reset();
+    }
+    window.location.reload();
 };
 
 const vandaag = new Date();
@@ -337,6 +346,10 @@ formElement.addEventListener("submit", function(event) {
 if (formElement) {
     formElement.addEventListener("input", saveFormDraft);
     formElement.addEventListener("change", saveFormDraft);
+}
+
+if (clearSavedDataButton) {
+    clearSavedDataButton.addEventListener("click", clearStoredFormDraft);
 }
 
 // Vraag 1a
