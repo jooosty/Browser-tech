@@ -7,9 +7,24 @@
     font-display: swap;
 }
 
-/* ============================================
-   Typography Tokens — CSS Custom Properties
-   ============================================ */
+/* ============================================================
+   Design System Tokens
+   Sections:
+   1. Typography
+   2. Border
+   3. Elevation
+   4. Spacing
+   5. Layout
+   6. Color — Content
+   7. Color — Background
+   8. Color — Border
+   9. Color — Chart
+   ============================================================ */
+
+
+/* ============================================================
+   1. TYPOGRAPHY
+   ============================================================ */
 
 :root {
   /* --- Size: Fluid --- */
@@ -19,9 +34,9 @@
   --typography-size-l:    clamp(1rem, 0.9167rem + 0.2778vi, 1.125rem);    /* 16px → 18px */
 
   /* --- Size: Fixed --- */
-  --typography-size-m:  1rem;       /* 16px */
-  --typography-size-s:  0.875rem;   /* 14px */
-  --typography-size-xs: 0.75rem;    /* 12px */
+  --typography-size-m:  1rem;      /* 16px */
+  --typography-size-s:  0.875rem;  /* 14px */
+  --typography-size-xs: 0.75rem;   /* 12px */
 
   /* --- Line Height --- */
   --typography-leading-l: 1.5;
@@ -35,53 +50,258 @@
 }
 
 
-/* ============================================
-   Design Tokens — CSS Custom Properties
-   Light mode (default) | Dark mode via [data-theme="dark"]
-   ============================================ */
-
-/* ============================================
-   CONTENT TOKENS
-   ============================================ */
+/* ============================================================
+   2. BORDER
+   ============================================================ */
 
 :root {
-  /* --- Content: Default --- */
+  /* --- Stroke Width --- */
+  --border-width-thin:   1px;
+  --border-width-medium: 2px;
+  --border-width-thick:  4px;
+
+  /* --- Style --- */
+  --border-style-normal: solid;
+
+  /* --- Radius --- */
+  --border-radius-s:    3px;
+  --border-radius-m:    6px;
+  --border-radius-l:    12px;
+  --border-radius-full: 9999px;
+}
+
+
+/* ============================================================
+   3. ELEVATION
+   ============================================================ */
+
+:root {
+  /* --- Web Shadows --- */
+  --web-shadow-elevated-1:
+    0px 1px 4px 0px rgba(0, 0, 0, 0.08),
+    0px 1px 2px 0px rgba(0, 0, 0, 0.08);
+
+  --web-shadow-elevated-2:
+    0px 8px 20px 0px rgba(0, 0, 0, 0.04),
+    0px 1px 1px 0px rgba(0, 0, 0, 0.03);
+
+  /* --- App Shadows --- */
+  --app-shadow-elevated-1:
+    0px 1px 4px 0px rgba(0, 0, 0, 0.16),
+    0px 1px 2px 0px rgba(0, 0, 0, 0.08);
+
+  --app-shadow-elevated-2:
+    0px 2px 12px 0px rgba(0, 0, 0, 0.24),
+    0px 2px 4px 0px rgba(0, 0, 0, 0.16);
+}
+
+
+/* ============================================================
+   4. SPACING
+   ============================================================ */
+
+:root {
+  /* --- Scale (4px base unit) --- */
+  --spacing-spacer-0-5: 0.125rem;  /*   2px */
+  --spacing-spacer-1:   0.25rem;   /*   4px */
+  --spacing-spacer-2:   0.5rem;    /*   8px */
+  --spacing-spacer-3:   0.75rem;   /*  12px */
+  --spacing-spacer-4:   1rem;      /*  16px */
+  --spacing-spacer-5:   1.25rem;   /*  20px */
+  --spacing-spacer-6:   1.5rem;    /*  24px */
+  --spacing-spacer-8:   2rem;      /*  32px */
+  --spacing-spacer-10:  2.5rem;    /*  40px */
+  --spacing-spacer-12:  3rem;      /*  48px */
+  --spacing-spacer-14:  3.5rem;    /*  56px */
+  --spacing-spacer-16:  4rem;      /*  64px */
+  --spacing-spacer-20:  5rem;      /*  80px */
+  --spacing-spacer-24:  6rem;      /*  96px */
+  --spacing-spacer-32:  8rem;      /* 128px */
+
+  /* --- Gap --- */
+  --spacing-gap-xs: var(--spacing-spacer-1);  /*  4px */
+  --spacing-gap-s:  var(--spacing-spacer-2);  /*  8px */
+  --spacing-gap-m:  var(--spacing-spacer-4);  /* 16px */
+  --spacing-gap-l:  var(--spacing-spacer-6);  /* 24px */
+  --spacing-gap-xl: var(--spacing-spacer-8);  /* 32px */
+
+  /* --- Inset (breakpoints xl, l) --- */
+  --spacing-inset-xs: var(--spacing-spacer-2);  /*  8px */
+  --spacing-inset-s:  var(--spacing-spacer-3);  /* 12px */
+  --spacing-inset-m:  var(--spacing-spacer-4);  /* 16px */
+  --spacing-inset-l:  var(--spacing-spacer-6);  /* 24px */
+}
+
+/* Inset-l collapses at breakpoint m and below */
+@media (max-width: 1023px) {
+  :root {
+    --spacing-inset-l: var(--spacing-spacer-4); /* 24px → 16px */
+  }
+}
+
+
+/* ============================================================
+   5. LAYOUT
+   ============================================================ */
+
+:root {
+  /* --- Breakpoints (for reference) ---
+     xs: < 480px
+     s:  < 768px
+     m:  < 1024px
+     l:  < 1200px
+     xl: >= 1200px
+  */
+  --breakpoint-xs: 480px;
+  --breakpoint-s:  768px;
+  --breakpoint-m:  1024px;
+  --breakpoint-l:  1200px;
+
+  /* --- Grid --- */
+  --layout-columns:   6;
+  --layout-gap-m:     var(--spacing-spacer-4);  /* 16px — default */
+  --layout-gap-xl:    var(--spacing-spacer-8);  /* 32px — less dense */
+  --layout-max-width: 1200px;
+}
+
+/* Page Layout — Navigation Top */
+.layout-nav-top {
+  display: grid;
+  grid-template-rows: auto 1fr;
+  grid-template-areas:
+    "nav"
+    "main";
+  min-height: 100vh;
+}
+
+.layout-nav-top__nav  { grid-area: nav; }
+.layout-nav-top__main { grid-area: main; }
+
+.layout-nav-top--with-panels .layout-nav-top__main {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  grid-template-areas: "panel-left default panel-right";
+}
+
+.layout-nav-top__panel-left  { grid-area: panel-left; }
+.layout-nav-top__default     { grid-area: default; }
+.layout-nav-top__panel-right { grid-area: panel-right; }
+
+/* Page Layout — Navigation Left */
+.layout-nav-left {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-template-areas: "nav main";
+  min-height: 100vh;
+}
+
+.layout-nav-left__nav  { grid-area: nav; }
+.layout-nav-left__main { grid-area: main; }
+
+.layout-nav-left--with-panel .layout-nav-left__main {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  grid-template-areas: "default panel-right";
+}
+
+.layout-nav-left__default      { grid-area: default; }
+.layout-nav-left__panel-right  { grid-area: panel-right; }
+
+/* Default Content Area */
+.layout-default {
+  width: 100%;
+  max-width: var(--layout-max-width);
+  margin-inline: auto;
+  padding-inline: var(--spacing-inset-l);
+}
+
+/* Grid System */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(var(--layout-columns), 1fr);
+  gap: var(--layout-gap-m);
+}
+
+.grid--gap-xl { gap: var(--layout-gap-xl); }
+
+.col-1    { grid-column: span 1; }
+.col-2    { grid-column: span 2; }
+.col-3    { grid-column: span 3; }
+.col-4    { grid-column: span 4; }
+.col-5    { grid-column: span 5; }
+.col-6    { grid-column: span 6; }
+.col-fill { grid-column: 1 / -1; }
+
+/* Responsive: l < 1200px */
+@media (max-width: 1199px) {
+  :root { --layout-columns: 6; }
+}
+
+/* Responsive: m < 1024px */
+@media (max-width: 1023px) {
+  :root { --layout-columns: 4; }
+
+  .layout-nav-left {
+    grid-template-columns: 1fr;
+    grid-template-areas: "nav" "main";
+  }
+
+  .col-5,
+  .col-6 { grid-column: span 4; }
+}
+
+/* Responsive: s < 768px */
+@media (max-width: 767px) {
+  :root { --layout-columns: 2; }
+
+  .layout-nav-top--with-panels .layout-nav-top__main {
+    grid-template-columns: 1fr;
+    grid-template-areas: "panel-left" "default" "panel-right";
+  }
+
+  .col-3,
+  .col-4,
+  .col-5,
+  .col-6 { grid-column: span 2; }
+}
+
+/* Responsive: xs < 480px */
+@media (max-width: 479px) {
+  :root { --layout-columns: 1; }
+
+  .col-2,
+  .col-3,
+  .col-4,
+  .col-5,
+  .col-6 { grid-column: span 1; }
+}
+
+
+/* ============================================================
+   6. COLOR — CONTENT
+   ============================================================ */
+
+:root {
   --color-content-default: var(--gray-800);
   --color-content-default-inverse: white;
-
-  /* --- Content: Emphasis --- */
   --color-content-emphasis: var(--blue-700);
-
-  /* --- Content: Subtle / Placeholder --- */
   --color-content-subtle: var(--alpha-black-500);
   --color-content-placeholder: var(--alpha-black-400);
-
-  /* --- Content: Interactive --- */
   --color-content-interactive-default: var(--blue-500);
   --color-content-interactive-default-inverse: white;
   --color-content-interactive-hover: var(--blue-600);
   --color-content-interactive-pressed: var(--blue-700);
-
-  /* --- Content: Selected --- */
   --color-content-selected: var(--blue-500);
-
-  /* --- Content: Semantic --- */
   --color-content-info: var(--blue-500);
   --color-content-success: var(--green-600);
   --color-content-warning: var(--orange-500);
   --color-content-error: var(--red-600);
   --color-content-error-inverse: var(--red-300);
-
-  /* --- Content: Destructive --- */
   --color-content-destructive-default: var(--red-600);
   --color-content-destructive-hover: var(--red-700);
   --color-content-destructive-pressed: var(--red-800);
-
-  /* --- Content: On Accent --- */
   --color-content-on-accent-subtle: var(--alpha-black-600);
   --color-content-on-accent-yellow-default: var(--alpha-black-600);
-
-  /* --- Content: Logo --- */
   --color-content-logo: var(--blue-700);
 }
 
@@ -110,83 +330,56 @@
 }
 
 
-/* ============================================
-   BACKGROUND TOKENS
-   ============================================ */
+/* ============================================================
+   7. COLOR — BACKGROUND
+   ============================================================ */
 
 :root {
-  /* --- Background: Base --- */
   --color-background-default: white;
   --color-background-default-inverse: var(--gray-900);
   --color-background-raised: white;
   --color-background-sunken: var(--gray-75);
-
-  /* --- Background: Overlay --- */
   --color-background-overlay: white;
   --color-background-overlay-backdrop: var(--alpha-black-300);
-
-  /* --- Background: Primary Button --- */
   --color-background-primary-default: var(--blue-500);
   --color-background-primary-hover: var(--blue-600);
   --color-background-primary-pressed: var(--blue-700);
-
-  /* --- Background: Input --- */
   --color-background-input-default: white;
   --color-background-input-hover: var(--gray-75);
   --color-background-input-pressed: white;
-
-  /* --- Background: Selected --- */
   --color-background-selected-default: var(--alpha-blue-100);
   --color-background-selected-emphasis-default: var(--blue-500);
   --color-background-selected-emphasis-hover: var(--blue-600);
   --color-background-selected-emphasis-pressed: var(--blue-700);
-
-  /* --- Background: Interactive --- */
   --color-background-interactive-default: transparent;
   --color-background-interactive-hover: var(--alpha-black-75);
   --color-background-interactive-pressed: var(--alpha-black-100);
   --color-background-interactive-active: var(--alpha-blue-100);
   --color-background-interactive-active-hover: var(--alpha-blue-150);
   --color-background-interactive-active-pressed: var(--alpha-blue-200);
-
-  /* --- Background: Info --- */
   --color-background-info-subtle: var(--blue-100);
   --color-background-info: var(--blue-500);
-
-  /* --- Background: Neutral --- */
   --color-background-neutral-default: var(--gray-100);
   --color-background-neutral-hover: var(--gray-200);
   --color-background-neutral-pressed: var(--gray-300);
-
-  /* --- Background: Success --- */
   --color-background-success-subtle: var(--green-100);
   --color-background-success: var(--green-500);
   --color-background-success-hover: var(--green-600);
   --color-background-success-pressed: var(--green-700);
-
-  /* --- Background: Warning --- */
   --color-background-warning-subtle: var(--orange-100);
   --color-background-warning: var(--orange-500);
   --color-background-warning-hover: var(--orange-600);
   --color-background-warning-pressed: var(--orange-700);
-
-  /* --- Background: Error --- */
   --color-background-error-subtle: var(--red-100);
   --color-background-error: var(--red-500);
   --color-background-error-hover: var(--red-600);
   --color-background-error-pressed: var(--red-700);
-
-  /* --- Background: Destructive --- */
   --color-background-destructive-default: var(--red-500);
   --color-background-destructive-hover: var(--red-600);
   --color-background-destructive-pressed: var(--red-700);
-
-  /* --- Background: Destructive Gray --- */
   --color-background-destructive-gray-default: var(--alpha-black-75);
   --color-background-destructive-gray-hover: var(--alpha-black-100);
   --color-background-destructive-gray-pressed: var(--alpha-black-150);
-
-  /* --- Background: Accent --- */
   --color-background-accent-blue-default: var(--blue-100);
   --color-background-accent-blue-subtle: var(--blue-75);
   --color-background-accent-orange-default: var(--orange-100);
@@ -270,46 +463,31 @@
 }
 
 
-/* ============================================
-   BORDER TOKENS
-   ============================================ */
+/* ============================================================
+   8. COLOR — BORDER
+   ============================================================ */
 
 :root {
-  /* --- Border: Default --- */
   --color-border-default: var(--alpha-black-100);
   --color-border-default-inverse: white;
   --color-border-subtle: var(--alpha-black-75);
   --color-border-emphasis: var(--alpha-black-300);
-
-  /* --- Border: Interactive --- */
   --color-border-interactive-default: var(--blue-500);
   --color-border-interactive-default-inverse: white;
   --color-border-interactive-hover: var(--blue-600);
   --color-border-interactive-pressed: var(--blue-700);
-
-  /* --- Border: Input --- */
   --color-border-input-default: var(--alpha-black-400);
   --color-border-input-hover: var(--alpha-black-500);
-
-  /* --- Border: Semantic --- */
   --color-border-info: var(--blue-500);
   --color-border-success: var(--green-600);
   --color-border-warning: var(--orange-500);
   --color-border-error: var(--red-600);
-
-  /* --- Border: Destructive --- */
   --color-border-destructive-default: var(--red-600);
   --color-border-destructive-hover: var(--red-700);
   --color-border-destructive-pressed: var(--red-800);
-
-  /* --- Border: Logo --- */
   --color-border-logo: transparent;
-
-  /* --- Border: Selected --- */
   --color-border-selected-default: var(--blue-500);
   --color-border-selected-emphasis: var(--blue-700);
-
-  /* --- Border: Focus --- */
   --color-border-focus: var(--blue-500);
 }
 
@@ -338,9 +516,9 @@
 }
 
 
-/* ============================================
-   CHART TOKENS
-   ============================================ */
+/* ============================================================
+   9. COLOR — CHART
+   ============================================================ */
 
 :root {
   --color-chart-category-1: var(--blue-600);
@@ -370,96 +548,6 @@
   --color-chart-success: var(--green-400);
   --color-chart-warning: var(--orange-400);
   --color-chart-error: var(--red-500);
-}
-
-
-/* ============================================
-   Border Tokens — CSS Custom Properties
-   ============================================ */
-
-:root {
-  /* --- Stroke Width --- */
-  --border-width-thin:   1px;
-  --border-width-medium: 2px;
-  --border-width-thick:  4px;
-
-  /* --- Style --- */
-  --border-style-normal: solid;
-
-  /* --- Radius --- */
-  --border-radius-s:    3px;
-  --border-radius-m:    6px;
-  --border-radius-l:    12px;
-  --border-radius-full: 9999px;
-}
-
-
-/* ============================================
-   Elevation Tokens — CSS Custom Properties
-   ============================================ */
-
-:root {
-  /* --- Web Shadows --- */
-  --web-shadow-elevated-1:
-    0px 1px 4px 0px rgba(0, 0, 0, 0.08),
-    0px 1px 2px 0px rgba(0, 0, 0, 0.08);
-
-  --web-shadow-elevated-2:
-    0px 8px 20px 0px rgba(0, 0, 0, 0.04),
-    0px 1px 1px 0px rgba(0, 0, 0, 0.03);
-
-  /* --- App Shadows --- */
-  --app-shadow-elevated-1:
-    0px 1px 4px 0px rgba(0, 0, 0, 0.16),
-    0px 1px 2px 0px rgba(0, 0, 0, 0.08);
-
-  --app-shadow-elevated-2:
-    0px 2px 12px 0px rgba(0, 0, 0, 0.24),
-    0px 2px 4px 0px rgba(0, 0, 0, 0.16);
-}
-
-
-/* ============================================
-   Spacing Tokens — CSS Custom Properties
-   ============================================ */
-
-:root {
-  /* --- Scale (4px base unit) --- */
-  --spacing-spacer-0-5: 0.125rem;  /*  2px */
-  --spacing-spacer-1:   0.25rem;   /*  4px */
-  --spacing-spacer-2:   0.5rem;    /*  8px */
-  --spacing-spacer-3:   0.75rem;   /* 12px */
-  --spacing-spacer-4:   1rem;      /* 16px */
-  --spacing-spacer-5:   1.25rem;   /* 20px */
-  --spacing-spacer-6:   1.5rem;    /* 24px */
-  --spacing-spacer-8:   2rem;      /* 32px */
-  --spacing-spacer-10:  2.5rem;    /* 40px */
-  --spacing-spacer-12:  3rem;      /* 48px */
-  --spacing-spacer-14:  3.5rem;    /* 56px */
-  --spacing-spacer-16:  4rem;      /* 64px */
-  --spacing-spacer-20:  5rem;      /* 80px */
-  --spacing-spacer-24:  6rem;      /* 96px */
-  --spacing-spacer-32:  8rem;      /* 128px */
-
-  /* --- Gap --- */
-  --spacing-gap-xs: var(--spacing-spacer-1);  /*  4px */
-  --spacing-gap-s:  var(--spacing-spacer-2);  /*  8px */
-  --spacing-gap-m:  var(--spacing-spacer-4);  /* 16px */
-  --spacing-gap-l:  var(--spacing-spacer-6);  /* 24px */
-  --spacing-gap-xl: var(--spacing-spacer-8);  /* 32px */
-
-  /* --- Inset (breakpoints xl, l) --- */
-  --spacing-inset-xs: var(--spacing-spacer-2);  /*  8px */
-  --spacing-inset-s:  var(--spacing-spacer-3);  /* 12px */
-  --spacing-inset-m:  var(--spacing-spacer-4);  /* 16px */
-  --spacing-inset-l:  var(--spacing-spacer-6);  /* 24px */
-}
-
-/* --- Inset overrides for breakpoints m, s, xs --- */
-@media (max-width: 1024px) {
-  :root {
-    --spacing-inset-l: var(--spacing-spacer-4); /* 24px → 16px */
-  }
 }
 
 
