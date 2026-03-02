@@ -51,3 +51,24 @@
 ### What I want to do next
 - Add more questions to the form.
 - Add optional extra's
+
+
+## 2 march 2026
+### Things i did today
+- Added elf validation to the form
+- Added all ns stylesheet tokens
+- Changed css from own to ns stylesheet
+- Added answer saving to local storage
+
+### time it took
+- 30 minuits
+- 2,5 hours
+- 1 hour
+- 1 hour
+
+### What i learned
+- Better understanding of how to use JavaScript to validate form inputs and provide feedback to the user.
+- Better understanding of how to use local storage to save data on the client side.
+
+### What I want to do next
+- Change the print styling to make it more printer friendly.
