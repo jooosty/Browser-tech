@@ -63,7 +63,7 @@ if (feedbackDialogClose && feedbackDialog) {
     });
 }
 
-const isValidBsn = (value) => /^\d{9}$/.test(value);
+const isValidBsn = (value) => /^\d{8,9}$/.test(value);
 
 // Inline field validation helpers
 const getFeedback = (el) => {
@@ -113,6 +113,17 @@ const clearMark = (id) => {
     feedback.textContent = "";
 };
 
+const elfValidBsn = (bsn) => {
+    if (!/^\d{8,9}$/.test(bsn)) return false;
+    const normalizedBsn = bsn.padStart(9, "0");
+    const digits = normalizedBsn.split("").map(Number);
+    const sum = digits.reduce((acc, digit, index) => {
+        const weight = index === 8 ? -1 : 9 - index;
+        return acc + digit * weight;
+    }, 0);
+    return sum % 11 === 0;
+};
+
 // Blur listeners for inline validation on text/date fields
 byId("voorletters-overledene").addEventListener("blur", function() {
     if (this.value.trim() === "") {
@@ -135,7 +146,9 @@ byId("bsn-overledene").addEventListener("blur", function() {
     if (val === "") {
         markInvalid("bsn-overledene", "BSN is verplicht");
     } else if (!isValidBsn(val)) {
-        markInvalid("bsn-overledene", "BSN moet precies 9 cijfers bevatten");
+        markInvalid("bsn-overledene", "BSN moet 8 of 9 cijfers bevatten");
+    } else if (!elfValidBsn(val)) {
+        markInvalid("bsn-overledene", "BSN is niet geldig");
     } else {
         markValid("bsn-overledene");
     }
@@ -274,7 +287,7 @@ byId("volgende-vraag-1a").addEventListener("click", function() {
     }
 
     if (!isValidBsn(bsnOverledene.trim())) {
-        showDialog("Vul een geldig BSN in met precies 9 cijfers");
+        showDialog("Vul een geldig BSN in met 8 of 9 cijfers");
         return;
     }
 
