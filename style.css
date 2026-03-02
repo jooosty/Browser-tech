@@ -8,6 +8,145 @@
 }
 
 /* ============================================================
+   Primitive Color Scale
+   These are the raw color values that semantic tokens reference.
+   ============================================================ */
+
+:root {
+  /* --- Gray --- */
+  --gray-75:   #f5f6f7;
+  --gray-100:  #eaecef;
+  --gray-200:  #d1d5db;
+  --gray-300:  #b0b7c3;
+  --gray-400:  #9ca3af;
+  --gray-500:  #6b7280;
+  --gray-600:  #4b5563;
+  --gray-700:  #374151;
+  --gray-800:  #1f2937;
+  --gray-900:  #111827;
+  --gray-950:  #080d14;
+
+  /* --- Blue --- */
+  --blue-75:   #f0f8ff;
+  --blue-100:  #e8f4fd;
+  --blue-200:  #bfdbfe;
+  --blue-300:  #93c5fd;
+  --blue-400:  #60a5fa;
+  --blue-500:  #0072ce;
+  --blue-600:  #00519c;
+  --blue-700:  #003b73;
+  --blue-900:  #1e3a5f;
+  --blue-950:  #0f1f35;
+
+  /* --- Green --- */
+  --green-75:  #f0fdf4;
+  --green-100: #edfdf3;
+  --green-300: #6ee7b7;
+  --green-400: #34d399;
+  --green-500: #10b981;
+  --green-600: #1a7f3c;
+  --green-700: #15693a;
+  --green-900: #064e3b;
+  --green-950: #022c22;
+
+  /* --- Red --- */
+  --red-75:    #fff5f5;
+  --red-100:   #fff5f5;
+  --red-200:   #fecaca;
+  --red-300:   #fca5a5;
+  --red-400:   #f87171;
+  --red-500:   #ef4444;
+  --red-600:   #c0392b;
+  --red-700:   #b91c1c;
+  --red-800:   #991b1b;
+  --red-900:   #7f1d1d;
+  --red-950:   #450a0a;
+
+  /* --- Orange --- */
+  --orange-75:  #fff7ed;
+  --orange-100: #ffedd5;
+  --orange-300: #fdba74;
+  --orange-400: #fb923c;
+  --orange-500: #f97316;
+  --orange-600: #ea580c;
+  --orange-700: #c2410c;
+  --orange-900: #7c2d12;
+  --orange-950: #431407;
+
+  /* --- Yellow --- */
+  --yellow-100: #fffbe6;
+  --yellow-200: #fef9c3;
+  --yellow-400: #f6c800;
+  --yellow-700: #a16207;
+  --yellow-900: #713f12;
+  --yellow-950: #422006;
+
+  /* --- Teal --- */
+  --teal-75:   #f0fdfa;
+  --teal-100:  #ccfbf1;
+  --teal-200:  #99f6e4;
+  --teal-400:  #2dd4bf;
+  --teal-500:  #14b8a6;
+  --teal-600:  #0d9488;
+  --teal-900:  #134e4a;
+  --teal-950:  #042f2e;
+
+  /* --- Purple --- */
+  --purple-75:  #faf5ff;
+  --purple-100: #f3e8ff;
+  --purple-400: #a78bfa;
+  --purple-500: #8b5cf6;
+  --purple-900: #4c1d95;
+  --purple-950: #2e1065;
+
+  /* --- Pink --- */
+  --pink-75:   #fdf2f8;
+  --pink-100:  #fce7f3;
+  --pink-300:  #f9a8d4;
+  --pink-400:  #f472b6;
+  --pink-500:  #ec4899;
+  --pink-600:  #db2777;
+  --pink-900:  #831843;
+  --pink-950:  #500724;
+
+  /* --- Alpha Black --- */
+  --alpha-black-75:  rgba(0, 0, 0, 0.04);
+  --alpha-black-100: rgba(0, 0, 0, 0.06);
+  --alpha-black-150: rgba(0, 0, 0, 0.09);
+  --alpha-black-200: rgba(0, 0, 0, 0.12);
+  --alpha-black-300: rgba(0, 0, 0, 0.18);
+  --alpha-black-400: rgba(0, 0, 0, 0.28);
+  --alpha-black-500: rgba(0, 0, 0, 0.40);
+  --alpha-black-600: rgba(0, 0, 0, 0.55);
+
+  /* --- Alpha White --- */
+  --alpha-white-75:  rgba(255, 255, 255, 0.04);
+  --alpha-white-100: rgba(255, 255, 255, 0.06);
+  --alpha-white-150: rgba(255, 255, 255, 0.09);
+  --alpha-white-200: rgba(255, 255, 255, 0.12);
+  --alpha-white-300: rgba(255, 255, 255, 0.18);
+  --alpha-white-400: rgba(255, 255, 255, 0.28);
+  --alpha-white-500: rgba(255, 255, 255, 0.40);
+
+  /* --- Alpha Blue --- */
+  --alpha-blue-100: rgba(0, 114, 206, 0.08);
+  --alpha-blue-150: rgba(0, 114, 206, 0.12);
+  --alpha-blue-200: rgba(0, 114, 206, 0.16);
+  --alpha-blue-250: rgba(0, 114, 206, 0.22);
+  --alpha-blue-300: rgba(0, 114, 206, 0.28);
+}
+
+/* MARK: Custom font */
+@font-face {
+    font-family: "NS Sans";
+    src: url("./nssans-regular.woff2") format("woff2");
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+
+/* ============================================================
    Design System Tokens
    Sections:
    1. Typography
@@ -550,43 +689,26 @@
   --color-chart-error: var(--red-500);
 }
 
+/* ============================================================
+   NS Brand Tokens
+   Brand-specific values not covered by the design system.
+   ============================================================ */
 
-/* MARK: Design tokens */
 :root {
+    /* NS brand yellow (no equivalent in design system) */
     --ns-yellow:       #f6c800;
     --ns-yellow-hover: #e0b500;
-    --ns-yellow-light: #fffbe6;
-    --ns-blue:         #0072ce;
-    --ns-blue-dark:    #00519c;
-    --ns-blue-darker:  #003b73;
-    --ns-blue-light:   #e8f4fd;
-    --ns-blue-xlight:  #f0f8ff;
 
-    --ns-white:        #ffffff;
-    --ns-grey-50:      #f5f6f7;
-    --ns-grey-100:     #eaecef;
-    --ns-grey-200:     #d1d5db;
-    --ns-grey-400:     #9ca3af;
-    --ns-grey-600:     #4b5563;
-    --ns-grey-800:     #1f2937;
-    --ns-grey-900:     #111827;
+    /* Radius — design system has s(3px), m(6px), l(12px), full(9999px)
+       These intermediate values are NS-specific                        */
+    --border-radius-md-ns: 10px;
+    --border-radius-lg-ns: 14px;
+    --border-radius-xl-ns: 20px;
 
-    --ns-success:      #1a7f3c;
-    --ns-success-bg:   #edfdf3;
-    --ns-error:        #c0392b;
-    --ns-error-bg:     #fff5f5;
-    --ns-warning-bg:   #fffbe6;
-
-    --radius-sm:   6px;
-    --radius-md:   10px;
-    --radius-lg:   14px;
-    --radius-xl:   20px;
-    --radius-pill: 999px;
-
-    --shadow-sm: 0 1px 3px rgba(0,0,0,.08), 0 1px 2px rgba(0,0,0,.06);
-    --shadow-md: 0 4px 12px rgba(0,0,0,.08), 0 2px 4px rgba(0,0,0,.06);
+    /* Elevation — shadow-lg has no design system equivalent */
     --shadow-lg: 0 8px 24px rgba(0,0,0,.08), 0 4px 8px rgba(0,0,0,.05);
 }
+
 
 /* MARK: Reset & base */
 *, *::before, *::after {
@@ -602,17 +724,17 @@ body {
     min-height: 100dvh;
     padding: 56px 16px 80px;
     font-family: "NS Sans", "Segoe UI", Arial, sans-serif;
-    font-size: 1rem;
-    line-height: 1.6;
-    color: var(--ns-grey-800);
-    background-color: var(--ns-grey-50);
+    font-size: var(--typography-size-m);
+    line-height: var(--typography-leading-l);
+    color: var(--color-content-default);
+    background-color: var(--color-background-sunken);
 }
 
 /* NS yellow top bar */
 body::before {
     content: "";
     display: block;
-    height: 4px;
+    height: var(--border-width-thick);
     background: var(--ns-yellow);
     position: fixed;
     top: 0;
@@ -628,15 +750,15 @@ body::before {
     right: 12px;
     z-index: 200;
     margin: 0;
-    padding: 4px 12px;
+    padding: var(--spacing-spacer-1) var(--spacing-spacer-3);
     background: var(--ns-yellow);
-    color: var(--ns-grey-900);
+    color: var(--color-background-default-inverse);
     font-size: 0.7rem;
-    font-weight: 700;
+    font-weight: var(--typography-weight-bold);
     letter-spacing: 0.06em;
     text-transform: uppercase;
-    border-radius: var(--radius-pill);
-    box-shadow: var(--shadow-sm);
+    border-radius: var(--border-radius-full);
+    box-shadow: var(--web-shadow-elevated-1);
 }
 
 /* MARK: Form / page containers */
@@ -649,7 +771,7 @@ form,
 
 /* MARK: Fieldsets – reset first, then theme */
 fieldset {
-    margin: 0 0 20px;
+    margin: 0 0 var(--spacing-spacer-5);
     padding: 0;
     border: none;
     background: none;
@@ -659,10 +781,11 @@ fieldset {
 /* Top-level section card */
 #vraag-1,
 #vraag-2 {
-    background: var(--ns-white);
-    border: 1.5px solid var(--ns-grey-100);
-    border-radius: var(--radius-xl);
-    box-shadow: var(--shadow-md);
+    background: var(--color-background-default);
+    border: var(--border-width-thin) var(--border-style-normal) var(--color-border-default);
+    border-width: 1.5px;
+    border-radius: var(--border-radius-xl-ns);
+    box-shadow: var(--web-shadow-elevated-2);
     padding: 0;
     overflow: hidden;
 }
@@ -673,10 +796,10 @@ fieldset {
     width: 100%;
     padding: 18px 28px 16px;
     margin: 0;
-    background: var(--ns-blue-darker);
-    color: var(--ns-white);
+    background: var(--color-content-emphasis);
+    color: var(--color-background-default);
     font-size: 1.0625rem;
-    font-weight: 700;
+    font-weight: var(--typography-weight-bold);
     letter-spacing: 0.01em;
 }
 
@@ -685,7 +808,7 @@ fieldset {
 #vraag-1b,
 #vraag-1c,
 #vraag-1d {
-    padding: 24px 28px;
+    padding: var(--spacing-spacer-6) 28px;
     border: none;
     background: transparent;
     margin: 0;
@@ -695,7 +818,7 @@ fieldset {
 #vraag-1b,
 #vraag-1c,
 #vraag-1d {
-    border-top: 1px solid var(--ns-grey-100);
+    border-top: var(--border-width-thin) var(--border-style-normal) var(--color-border-default);
 }
 
 /* Inner question groups */
@@ -706,7 +829,7 @@ fieldset {
     padding: 0;
     border: none;
     background: transparent;
-    margin: 0 0 24px;
+    margin: 0 0 var(--spacing-spacer-6);
 }
 
 #vraag-1b > fieldset:last-of-type,
@@ -719,19 +842,19 @@ fieldset {
 #vraag-1b > fieldset + fieldset,
 #vraag-1c > fieldset + fieldset,
 #vraag-1d > fieldset + fieldset {
-    padding-top: 20px;
-    border-top: 1px dashed var(--ns-grey-100);
-    margin-top: 4px;
+    padding-top: var(--spacing-spacer-5);
+    border-top: var(--border-width-thin) dashed var(--color-border-default);
+    margin-top: var(--spacing-spacer-1);
 }
 
 /* MARK: Legends */
 legend {
-    font-weight: 700;
-    color: var(--ns-grey-900);
+    font-weight: var(--typography-weight-bold);
+    color: var(--color-background-default-inverse);
     padding: 0;
-    margin-bottom: 10px;
+    margin-bottom: var(--spacing-spacer-3);
     font-size: 0.9375rem;
-    line-height: 1.45;
+    line-height: var(--typography-leading-m);
     display: block;
     width: 100%;
 }
@@ -740,9 +863,9 @@ legend {
 label {
     display: block;
     margin-top: 18px;
-    font-size: 0.875rem;
+    font-size: var(--typography-size-s);
     font-weight: 600;
-    color: var(--ns-grey-800);
+    color: var(--color-content-default);
     cursor: pointer;
 }
 
@@ -751,15 +874,15 @@ input[type="text"],
 input[type="date"] {
     display: block;
     width: 100%;
-    margin-top: 5px;
+    margin-top: calc(var(--spacing-spacer-1) + var(--spacing-spacer-0-5));
     padding: 11px 14px;
     font: inherit;
     font-size: 0.9375rem;
-    color: var(--ns-grey-900);
-    background: var(--ns-white);
-    border: 1.5px solid var(--ns-grey-200);
-    border-radius: var(--radius-md);
-    box-shadow: var(--shadow-sm);
+    color: var(--color-background-default-inverse);
+    background: var(--color-background-input-default);
+    border: 1.5px var(--border-style-normal) var(--color-border-input-default);
+    border-radius: var(--border-radius-md-ns);
+    box-shadow: var(--web-shadow-elevated-1);
     appearance: none;
     -webkit-appearance: none;
     transition: border-color 0.15s ease, box-shadow 0.15s ease;
@@ -767,7 +890,7 @@ input[type="date"] {
 
 input[type="text"]:hover,
 input[type="date"]:hover {
-    border-color: var(--ns-blue);
+    border-color: var(--color-border-interactive-default);
 }
 
 /* MARK: Focus */
@@ -775,34 +898,34 @@ input[type="text"]:focus,
 input[type="date"]:focus,
 input[type="file"]:focus {
     outline: none;
-    border-color: var(--ns-blue);
+    border-color: var(--color-border-focus);
     box-shadow: 0 0 0 3px rgba(0, 114, 206, 0.2);
 }
 
 /* MARK: File input */
 input[type="file"] {
     display: block;
-    margin-top: 6px;
-    padding: 10px 14px;
+    margin-top: var(--spacing-spacer-2);
+    padding: var(--spacing-spacer-3) 14px;
     width: 100%;
     font: inherit;
-    font-size: 0.875rem;
-    color: var(--ns-grey-600);
-    background: var(--ns-grey-50);
-    border: 1.5px dashed var(--ns-grey-200);
-    border-radius: var(--radius-md);
+    font-size: var(--typography-size-s);
+    color: var(--color-content-subtle);
+    background: var(--color-background-sunken);
+    border: 1.5px dashed var(--color-border-input-default);
+    border-radius: var(--border-radius-md-ns);
     cursor: pointer;
     transition: border-color 0.15s ease, background 0.15s ease;
 }
 
 input[type="file"]:hover {
-    border-color: var(--ns-blue);
-    background: var(--ns-blue-xlight);
+    border-color: var(--color-border-interactive-default);
+    background: var(--color-background-accent-blue-subtle);
 }
 
 /* MARK: Radio buttons as choice tiles */
 input[type="radio"] {
-    accent-color: var(--ns-blue);
+    accent-color: var(--color-content-interactive-default);
     flex-shrink: 0;
     width: 18px;
     height: 18px;
@@ -814,18 +937,18 @@ input[type="radio"] {
 fieldset label:has(input[type="radio"]) {
     display: flex;
     align-items: flex-start;
-    gap: 12px;
-    margin-top: 10px;
-    padding: 12px 16px;
-    background: var(--ns-grey-50);
-    border: 1.5px solid var(--ns-grey-200);
-    border-radius: var(--radius-md);
-    font-weight: 400;
+    gap: var(--spacing-spacer-3);
+    margin-top: var(--spacing-spacer-3);
+    padding: var(--spacing-spacer-3) var(--spacing-spacer-4);
+    background: var(--color-background-sunken);
+    border: 1.5px var(--border-style-normal) var(--color-border-input-default);
+    border-radius: var(--border-radius-md-ns);
+    font-weight: var(--typography-weight-normal);
     font-size: 0.9375rem;
-    color: var(--ns-grey-800);
+    color: var(--color-content-default);
     cursor: pointer;
     transition: border-color 0.15s ease, background 0.15s ease;
-    line-height: 1.45;
+    line-height: var(--typography-leading-m);
 }
 
 fieldset label:has(input[type="radio"]) input[type="radio"] {
@@ -833,15 +956,15 @@ fieldset label:has(input[type="radio"]) input[type="radio"] {
 }
 
 fieldset label:has(input[type="radio"]):hover {
-    border-color: var(--ns-blue);
-    background: var(--ns-blue-xlight);
+    border-color: var(--color-border-interactive-default);
+    background: var(--color-background-accent-blue-subtle);
 }
 
 fieldset label:has(input[type="radio"]:checked) {
-    border-color: var(--ns-blue);
-    background: var(--ns-blue-light);
+    border-color: var(--color-border-interactive-default);
+    background: var(--color-background-accent-blue-default);
     font-weight: 600;
-    color: var(--ns-blue-darker);
+    color: var(--color-content-emphasis);
 }
 
 /* MARK: Buttons */
@@ -849,18 +972,18 @@ button,
 input[type="submit"] {
     display: inline-flex;
     align-items: center;
-    gap: 8px;
-    margin-top: 20px;
-    padding: 12px 24px;
+    gap: var(--spacing-spacer-2);
+    margin-top: var(--spacing-spacer-5);
+    padding: var(--spacing-spacer-3) var(--spacing-spacer-6);
     font: inherit;
     font-size: 0.9375rem;
-    font-weight: 700;
-    line-height: 1;
-    color: var(--ns-grey-900);
+    font-weight: var(--typography-weight-bold);
+    line-height: var(--typography-leading-s);
+    color: var(--color-background-default-inverse);
     background: var(--ns-yellow);
     border: none;
-    border-radius: var(--radius-pill);
-    box-shadow: var(--shadow-sm);
+    border-radius: var(--border-radius-full);
+    box-shadow: var(--web-shadow-elevated-1);
     cursor: pointer;
     transition: background 0.15s ease, box-shadow 0.15s ease, transform 0.1s ease;
     text-decoration: none;
@@ -869,68 +992,68 @@ input[type="submit"] {
 button:hover,
 input[type="submit"]:hover {
     background: var(--ns-yellow-hover);
-    box-shadow: var(--shadow-md);
+    box-shadow: var(--web-shadow-elevated-2);
     transform: translateY(-1px);
 }
 
 button:focus,
 input[type="submit"]:focus {
-    outline: 2px solid var(--ns-blue);
+    outline: var(--border-width-medium) var(--border-style-normal) var(--color-border-focus);
     outline-offset: 3px;
 }
 
 button:active,
 input[type="submit"]:active {
     transform: translateY(0);
-    box-shadow: var(--shadow-sm);
+    box-shadow: var(--web-shadow-elevated-1);
 }
 
 button[id^="volgende"]::after {
     content: " →";
-    font-size: 1rem;
+    font-size: var(--typography-size-m);
 }
 
 /* MARK: Help texts */
 .helptekst {
-    margin: 7px 0 0;
+    margin: var(--spacing-spacer-2) 0 0;
     font-size: 0.8125rem;
-    color: var(--ns-grey-600);
-    line-height: 1.45;
-    padding: 8px 12px;
-    background: var(--ns-blue-xlight);
-    border-left: 3px solid var(--ns-blue);
-    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+    color: var(--color-content-subtle);
+    line-height: var(--typography-leading-m);
+    padding: var(--spacing-spacer-2) var(--spacing-spacer-3);
+    background: var(--color-background-accent-blue-subtle);
+    border-left: var(--border-width-thick) var(--border-style-normal) var(--color-border-interactive-default);
+    border-radius: 0 var(--border-radius-m) var(--border-radius-m) 0;
 }
 
 /* MARK: Inline validation feedback */
 .inline-feedback {
     display: block;
-    margin-top: 5px;
+    margin-top: calc(var(--spacing-spacer-1) + var(--spacing-spacer-0-5));
     font-size: 0.8125rem;
     font-weight: 600;
     min-height: 1.2em;
-    line-height: 1.4;
+    line-height: var(--typography-leading-m);
 }
 
 .inline-feedback.goed {
-    color: var(--ns-success);
+    color: var(--color-content-success);
 }
 
 .inline-feedback.fout {
-    color: var(--ns-error);
+    color: var(--color-content-error);
 }
 
 /* MARK: Valid/invalid field states */
 input[type="text"].veld-goed,
 input[type="date"].veld-goed {
-    border-color: var(--ns-success);
-    background: var(--ns-success-bg);
+    border-color: var(--color-border-success);
+    background: var(--color-background-success-subtle);
 }
 
 input[type="text"].veld-fout,
 input[type="date"].veld-fout {
-    border-color: var(--ns-error);
-    background: var(--ns-error-bg);
+    border-color: var(--color-border-error);
+    background: var(--color-background-error-subtle);
 }
 
 /* MARK: Dialog */
@@ -938,7 +1061,7 @@ dialog {
     width: min(92vw, 440px);
     padding: 0;
     border: none;
-    border-radius: var(--radius-xl);
+    border-radius: var(--border-radius-xl-ns);
     box-shadow: 0 20px 60px rgba(0,0,0,.2);
     overflow: hidden;
     animation: dialogIn 0.2s ease;
@@ -958,23 +1081,23 @@ dialog h2 {
     margin: 0;
     padding: 18px 22px 14px;
     font-size: 1.0625rem;
-    font-weight: 700;
-    color: var(--ns-white);
-    background: var(--ns-blue-dark);
+    font-weight: var(--typography-weight-bold);
+    color: var(--color-background-default);
+    background: var(--color-background-primary-hover);
 }
 
 dialog p {
     margin: 0;
-    padding: 16px 22px;
+    padding: var(--spacing-spacer-4) 22px;
     font-size: 0.9375rem;
-    color: var(--ns-grey-800);
-    background: var(--ns-white);
+    color: var(--color-content-default);
+    background: var(--color-background-default);
 }
 
 dialog form {
     margin: 0;
-    padding: 0 22px 20px;
-    background: var(--ns-white);
+    padding: 0 22px var(--spacing-spacer-5);
+    background: var(--color-background-default);
     border: none;
     box-shadow: none;
     max-width: none;
@@ -983,7 +1106,7 @@ dialog form {
 dialog form button {
     margin-top: 0;
     background: var(--ns-yellow);
-    color: var(--ns-grey-900);
+    color: var(--color-background-default-inverse);
 }
 
 dialog form button::after {
@@ -992,44 +1115,44 @@ dialog form button::after {
 
 /* MARK: Answers page */
 .answers {
-    background: var(--ns-white);
-    border: 1.5px solid var(--ns-grey-100);
-    border-radius: var(--radius-xl);
-    box-shadow: var(--shadow-md);
+    background: var(--color-background-default);
+    border: 1.5px var(--border-style-normal) var(--color-border-default);
+    border-radius: var(--border-radius-xl-ns);
+    box-shadow: var(--web-shadow-elevated-2);
     overflow: hidden;
 }
 
 .answers h1 {
     margin: 0;
-    padding: 20px 28px 18px;
-    font-size: 1.375rem;
-    font-weight: 700;
-    color: var(--ns-white);
-    background: var(--ns-blue-darker);
+    padding: var(--spacing-spacer-5) 28px 18px;
+    font-size: var(--typography-size-xxxl);
+    font-weight: var(--typography-weight-bold);
+    color: var(--color-background-default);
+    background: var(--color-content-emphasis);
 }
 
 #empty-state {
-    margin: 24px 28px;
-    padding: 14px 16px;
-    border-radius: var(--radius-md);
-    background: var(--ns-warning-bg);
-    color: var(--ns-grey-800);
-    border: 1.5px solid rgba(246, 200, 0, 0.55);
+    margin: var(--spacing-spacer-6) 28px;
+    padding: 14px var(--spacing-spacer-4);
+    border-radius: var(--border-radius-md-ns);
+    background: var(--color-background-accent-yellow-subtle);
+    color: var(--color-content-default);
+    border: 1.5px var(--border-style-normal) rgba(246, 200, 0, 0.55);
     font-size: 0.9375rem;
 }
 
 #answers-list {
     margin: 0;
-    padding: 20px 28px 4px;
+    padding: var(--spacing-spacer-5) 28px var(--spacing-spacer-1);
 }
 
 #answers-list dt {
-    margin-top: 16px;
-    font-size: 0.75rem;
-    font-weight: 700;
+    margin-top: var(--spacing-spacer-4);
+    font-size: var(--typography-size-xs);
+    font-weight: var(--typography-weight-bold);
     text-transform: uppercase;
     letter-spacing: 0.07em;
-    color: var(--ns-grey-600);
+    color: var(--color-content-subtle);
 }
 
 #answers-list dt:first-child {
@@ -1037,30 +1160,30 @@ dialog form button::after {
 }
 
 #answers-list dd {
-    margin: 4px 0 0;
-    padding: 10px 14px;
+    margin: var(--spacing-spacer-1) 0 0;
+    padding: var(--spacing-spacer-3) 14px;
     font-size: 0.9375rem;
-    border-radius: var(--radius-md);
-    background: var(--ns-grey-50);
-    border: 1.5px solid var(--ns-grey-100);
-    color: var(--ns-grey-900);
+    border-radius: var(--border-radius-md-ns);
+    background: var(--color-background-sunken);
+    border: 1.5px var(--border-style-normal) var(--color-border-default);
+    color: var(--color-background-default-inverse);
 }
 
 .answers > a,
 .answers-body > a {
     display: inline-flex;
     align-items: center;
-    gap: 6px;
-    margin: 20px 28px 28px;
+    gap: var(--spacing-spacer-2);
+    margin: var(--spacing-spacer-5) 28px var(--spacing-spacer-6);
     padding: 11px 22px;
     background: var(--ns-yellow);
-    color: var(--ns-grey-900);
-    font-weight: 700;
+    color: var(--color-background-default-inverse);
+    font-weight: var(--typography-weight-bold);
     font-size: 0.9375rem;
     text-decoration: none;
-    border-radius: var(--radius-pill);
+    border-radius: var(--border-radius-full);
     transition: background 0.15s ease, box-shadow 0.15s ease;
-    box-shadow: var(--shadow-sm);
+    box-shadow: var(--web-shadow-elevated-1);
 }
 
 .answers > a::before,
@@ -1073,51 +1196,51 @@ dialog form button::after {
 .answers-body > a:hover,
 .answers-body > a:focus {
     background: var(--ns-yellow-hover);
-    box-shadow: var(--shadow-md);
+    box-shadow: var(--web-shadow-elevated-2);
     outline: none;
 }
 
 /* MARK: Submit button – make it prominent */
 input[type="submit"] {
-    background: var(--ns-blue);
-    color: var(--ns-white);
-    font-size: 1rem;
-    padding: 14px 32px;
+    background: var(--color-background-primary-default);
+    color: var(--color-background-default);
+    font-size: var(--typography-size-m);
+    padding: 14px var(--spacing-spacer-8);
 }
 
 input[type="submit"]:hover {
-    background: var(--ns-blue-dark);
+    background: var(--color-background-primary-hover);
 }
 
 /* MARK: Responsive */
 @media (max-width: 640px) {
     body {
-        padding: 48px 12px 64px;
+        padding: 48px var(--spacing-spacer-3) 64px;
     }
 
     #vraag-1 > legend,
     #vraag-2 > legend {
-        padding: 16px 20px 14px;
+        padding: var(--spacing-spacer-4) var(--spacing-spacer-5) 14px;
     }
 
     #vraag-1a, #vraag-1b, #vraag-1c, #vraag-1d {
-        padding: 20px;
+        padding: var(--spacing-spacer-5);
     }
 
     #answers-list {
-        padding: 16px 20px 4px;
+        padding: var(--spacing-spacer-4) var(--spacing-spacer-5) var(--spacing-spacer-1);
     }
 
     .answers h1 {
-        padding: 18px 20px 16px;
+        padding: 18px var(--spacing-spacer-5) var(--spacing-spacer-4);
     }
 
     .answers > a,
     .answers-body > a {
-        margin: 16px 20px 24px;
+        margin: var(--spacing-spacer-4) var(--spacing-spacer-5) var(--spacing-spacer-6);
     }
 
     #empty-state {
-        margin: 16px 20px;
+        margin: var(--spacing-spacer-4) var(--spacing-spacer-5);
     }
 }
