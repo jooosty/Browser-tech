@@ -44,6 +44,76 @@ const clearValues = (ids) => {
     ids.forEach((id) => setValue(id, ""));
 };
 const formatDateForInput = (date) => date.toISOString().split("T")[0];
+const formElement = document.querySelector("form");
+const draftStorageKey = "erfbelasting-form-draft";
+
+const saveFormDraft = () => {
+    if (!formElement) {
+        return;
+    }
+
+    const draft = {};
+    const fields = formElement.querySelectorAll("input, select, textarea");
+
+    fields.forEach((field) => {
+        const { name, type } = field;
+        if (!name || type === "file") {
+            return;
+        }
+
+        if (type === "radio") {
+            if (field.checked) {
+                draft[name] = field.value;
+            }
+            return;
+        }
+
+        draft[name] = field.value;
+    });
+
+    localStorage.setItem(draftStorageKey, JSON.stringify(draft));
+};
+
+const restoreFormDraft = () => {
+    if (!formElement) {
+        return;
+    }
+
+    const storedDraft = localStorage.getItem(draftStorageKey);
+    if (!storedDraft) {
+        return;
+    }
+
+    let draft;
+    try {
+        draft = JSON.parse(storedDraft);
+    } catch {
+        return;
+    }
+
+    if (!draft || typeof draft !== "object") {
+        return;
+    }
+
+    Object.entries(draft).forEach(([name, value]) => {
+        const matchingFields = formElement.querySelectorAll(`[name="${name}"]`);
+        if (!matchingFields.length) {
+            return;
+        }
+
+        const firstType = matchingFields[0].type;
+        if (firstType === "radio") {
+            const selected = Array.from(matchingFields).find((field) => field.value === value);
+            if (selected) {
+                selected.checked = true;
+                selected.dispatchEvent(new Event("change", { bubbles: true }));
+            }
+            return;
+        }
+
+        matchingFields[0].value = String(value);
+    });
+};
 
 const vandaag = new Date();
 const maxOverlijdensdatum = formatDateForInput(vandaag);
@@ -235,7 +305,7 @@ const labelMap = {
     "datum-testament": "Datum testament"
 };
 
-document.querySelector("form").addEventListener("submit", function(event) {
+formElement.addEventListener("submit", function(event) {
     event.preventDefault();
 
     const formData = new FormData(event.target);
@@ -263,6 +333,11 @@ document.querySelector("form").addEventListener("submit", function(event) {
     localStorage.setItem("answers", JSON.stringify(answers));
     window.location.href = "answer.html";
 });
+
+if (formElement) {
+    formElement.addEventListener("input", saveFormDraft);
+    formElement.addEventListener("change", saveFormDraft);
+}
 
 // Vraag 1a
 // Vraag 1a - volgende Check
@@ -467,3 +542,5 @@ byId("volgende-vraag-1d").addEventListener("click", function() {
         setHidden("vraag-2", false);
     }
 });
+
+restoreFormDraft();
