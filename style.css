@@ -419,6 +419,50 @@
 }
 
 
+/* ============================================
+   Spacing Tokens — CSS Custom Properties
+   ============================================ */
+
+:root {
+  /* --- Scale (4px base unit) --- */
+  --spacing-spacer-0-5: 0.125rem;  /*  2px */
+  --spacing-spacer-1:   0.25rem;   /*  4px */
+  --spacing-spacer-2:   0.5rem;    /*  8px */
+  --spacing-spacer-3:   0.75rem;   /* 12px */
+  --spacing-spacer-4:   1rem;      /* 16px */
+  --spacing-spacer-5:   1.25rem;   /* 20px */
+  --spacing-spacer-6:   1.5rem;    /* 24px */
+  --spacing-spacer-8:   2rem;      /* 32px */
+  --spacing-spacer-10:  2.5rem;    /* 40px */
+  --spacing-spacer-12:  3rem;      /* 48px */
+  --spacing-spacer-14:  3.5rem;    /* 56px */
+  --spacing-spacer-16:  4rem;      /* 64px */
+  --spacing-spacer-20:  5rem;      /* 80px */
+  --spacing-spacer-24:  6rem;      /* 96px */
+  --spacing-spacer-32:  8rem;      /* 128px */
+
+  /* --- Gap --- */
+  --spacing-gap-xs: var(--spacing-spacer-1);  /*  4px */
+  --spacing-gap-s:  var(--spacing-spacer-2);  /*  8px */
+  --spacing-gap-m:  var(--spacing-spacer-4);  /* 16px */
+  --spacing-gap-l:  var(--spacing-spacer-6);  /* 24px */
+  --spacing-gap-xl: var(--spacing-spacer-8);  /* 32px */
+
+  /* --- Inset (breakpoints xl, l) --- */
+  --spacing-inset-xs: var(--spacing-spacer-2);  /*  8px */
+  --spacing-inset-s:  var(--spacing-spacer-3);  /* 12px */
+  --spacing-inset-m:  var(--spacing-spacer-4);  /* 16px */
+  --spacing-inset-l:  var(--spacing-spacer-6);  /* 24px */
+}
+
+/* --- Inset overrides for breakpoints m, s, xs --- */
+@media (max-width: 1024px) {
+  :root {
+    --spacing-inset-l: var(--spacing-spacer-4); /* 24px → 16px */
+  }
+}
+
+
 /* MARK: Design tokens */
 :root {
     --ns-yellow:       #f6c800;
