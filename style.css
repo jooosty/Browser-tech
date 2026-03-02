@@ -373,6 +373,27 @@
 }
 
 
+/* ============================================
+   Border Tokens — CSS Custom Properties
+   ============================================ */
+
+:root {
+  /* --- Stroke Width --- */
+  --border-width-thin:   1px;
+  --border-width-medium: 2px;
+  --border-width-thick:  4px;
+
+  /* --- Style --- */
+  --border-style-normal: solid;
+
+  /* --- Radius --- */
+  --border-radius-s:    3px;
+  --border-radius-m:    6px;
+  --border-radius-l:    12px;
+  --border-radius-full: 9999px;
+}
+
+
 /* MARK: Design tokens */
 :root {
     --ns-yellow:       #f6c800;
