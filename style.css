@@ -1,12 +1,3 @@
-/* MARK: Custom font */
-@font-face {
-    font-family: "NS Sans";
-    src: url("./nssans-regular.woff2") format("woff2");
-    font-weight: 400;
-    font-style: normal;
-    font-display: swap;
-}
-
 /* ============================================================
    Primitive Color Scale
    These are the raw color values that semantic tokens reference.
