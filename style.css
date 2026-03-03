@@ -1134,4 +1134,53 @@ input[type="submit"]:hover {
         margin-top: 6pt;
         font-size: 10pt;
     }
+
+    label[for="niet-getrouwd"]::after {
+        content: " Ga verder met vraag 1c.";
+        font-style: italic;
+        color: #555;
+        font-size: 9pt;
+    }
+
+    label[for="geen-voorwaarden"]::after {
+        content: " Ga verder met vraag 1c.";
+        font-style: italic;
+        color: #555;
+        font-size: 9pt;
+    }
+
+    label[for="geen-verrekenbeding"]::after {
+        content: " Ga verder met vraag 1c.";
+        font-style: italic;
+        color: #555;
+        font-size: 9pt;
+    }
+
+    label[for="geen-kinderen"]::after {
+        content: " Ga verder met vraag 1d.";
+        font-style: italic;
+        color: #555;
+        font-size: 9pt;
+    }
+
+    label[for="geen-overleden-kinderen"]::after {
+        content: " Ga verder met vraag 1d.";
+        font-style: italic;
+        color: #555;
+        font-size: 9pt;
+    }
+
+    label[for="geen-kinderen-overleden-kind"]::after {
+        content: " Ga verder met vraag 1d.";
+        font-style: italic;
+        color: #555;
+        font-size: 9pt;
+    }
+
+    label[for="geen-testament"]::after {
+        content: " Ga verder met vraag 2.";
+        font-style: italic;
+        color: #555;
+        font-size: 9pt;
+    }
 }
