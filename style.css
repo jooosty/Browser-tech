@@ -947,3 +947,107 @@ input[type="submit"]:hover {
         margin: var(--spacing-spacer-4) var(--spacing-spacer-5);
     }
 }
+
+
+/* MARK: Print */
+@media print {
+    @page {
+        size: A4;
+        margin: 14mm;
+    }
+
+    body {
+        margin: 0;
+        padding: 0;
+        min-height: auto;
+        background: #fff !important;
+        color: #000 !important;
+        font-size: 12pt;
+        line-height: 1.35;
+    }
+
+    body::before,
+    .school-opdracht,
+    .clear-saved-data-btn,
+    #feedback-dialog,
+    .answers>a,
+    .answers-body>a,
+    button,
+    input[type="submit"] {
+        display: none !important;
+    }
+
+    form,
+    .answers,
+    .form-section-card,
+    .form-section-card>legend,
+    .form-step,
+    fieldset,
+    label,
+    .helptekst {
+        background: #fff !important;
+        color: #000 !important;
+        box-shadow: none !important;
+    }
+
+    .form-section-card>fieldset,
+    .form-section-card fieldset,
+    .form-section-card[hidden],
+    .form-section-card>fieldset[hidden],
+    .form-section-card fieldset[hidden] {
+        display: block !important;
+        visibility: visible !important;
+    }
+
+    form,
+    .answers {
+        max-width: none;
+        width: 100%;
+        margin: 0;
+    }
+
+    fieldset {
+        border: 1px solid #000 !important;
+        border-radius: 0;
+        padding: 10pt;
+        margin: 0 0 10pt;
+        page-break-inside: avoid;
+    }
+
+    legend {
+        font-weight: 700;
+        padding: 0 4pt;
+    }
+
+    input[type="text"],
+    input[type="date"] {
+        border: 1px solid #000 !important;
+        background: #fff !important;
+        color: #000 !important;
+        border-radius: 0;
+        min-height: 22pt;
+    }
+
+    input[type="radio"] {
+        accent-color: #000;
+    }
+
+    .helptekst,
+    .inline-feedback {
+        border: none !important;
+        padding: 0;
+        margin-top: 4pt;
+        font-size: 10pt;
+    }
+
+    .file-copy-section label[for="kopie-akte"],
+    .file-copy-section input[type="file"] {
+        display: none !important;
+    }
+
+    .file-copy-section::after {
+        content: "lever bestand erbij";
+        display: block;
+        margin-top: 4pt;
+    }
+}
