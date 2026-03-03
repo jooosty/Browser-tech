@@ -1026,6 +1026,11 @@ input[type="submit"]:hover {
 
     .form-step {
         counter-increment: step;
+        counter-reset: sub-question;
+    }
+
+    .question-group {
+        counter-increment: sub-question;
     }
 
     /* ----------------------------------------
@@ -1125,6 +1130,19 @@ input[type="submit"]:hover {
         padding: 0 4pt 0 0 !important;
         margin: 0 !important;
         line-height: 1.35;
+    }
+
+    .question-group > legend::before {
+        content: counter(section) counter(step, lower-alpha) "-" counter(sub-question) "  ";
+        font-weight: 700;
+        font-style: normal;
+    }
+
+    /* 1d has only one question-group, hide the sub-number */
+    #vraag-1d .question-group > legend::before {
+        content: counter(section) counter(step, lower-alpha) "  ";
+        font-weight: 700;
+        font-style: normal;
     }
 
     fieldset label:has(input[type="radio"]) {
