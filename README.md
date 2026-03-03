@@ -71,4 +71,23 @@
 - Better understanding of how to use local storage to save data on the client side.
 
 ### What I want to do next
-- Change the print styling to make it more printer friendly.
+- Make the print styling.
+
+
+## 3 march 2026
+
+### Things i did today
+- Made print styling for the answer showing page
+- Made the print styling look more like a official document
+
+### time it took
+- 2 hours
+- 1 hour
+
+### What i learned
+- Better understanding of how to use CSS to create print styles and make them look more professional.
+
+### What I want to do next
+- Make my javascript more css
+
+
