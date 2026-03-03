@@ -129,13 +129,12 @@ Sections:
 :root {
     /* --- Web Shadows --- */
     --web-shadow-elevated-1:
-    0px 1px 4px 0px rgba(0, 0, 0, 0.08),
-    0px 1px 2px 0px rgba(0, 0, 0, 0.08);
+        0px 1px 4px 0px rgba(0, 0, 0, 0.08),
+        0px 1px 2px 0px rgba(0, 0, 0, 0.08);
 
     --web-shadow-elevated-2:
-    0px 8px 20px 0px rgba(0, 0, 0, 0.04),
-    0px 1px 1px 0px rgba(0, 0, 0, 0.03);
-
+        0px 8px 20px 0px rgba(0, 0, 0, 0.04),
+        0px 1px 1px 0px rgba(0, 0, 0, 0.03);
 }
 
 
@@ -145,33 +144,23 @@ Sections:
 
 :root {
     /* --- Scale (4px base unit) --- */
-    --spacing-spacer-0-5: 0.125rem;
-    /*   2px */
-    --spacing-spacer-1: 0.25rem;
-    /*   4px */
-    --spacing-spacer-2: 0.5rem;
-    /*   8px */
-    --spacing-spacer-3: 0.75rem;
-    /*  12px */
-    --spacing-spacer-4: 1rem;
-    /*  16px */
-    --spacing-spacer-5: 1.25rem;
-    /*  20px */
-    --spacing-spacer-6: 1.5rem;
-    /*  24px */
-    --spacing-spacer-8: 2rem;
-    /*  32px */
+    --spacing-spacer-0-5: 0.125rem;  /*  2px */
+    --spacing-spacer-1:   0.25rem;   /*  4px */
+    --spacing-spacer-2:   0.5rem;    /*  8px */
+    --spacing-spacer-3:   0.75rem;   /* 12px */
+    --spacing-spacer-4:   1rem;      /* 16px */
+    --spacing-spacer-5:   1.25rem;   /* 20px */
+    --spacing-spacer-6:   1.5rem;    /* 24px */
+    --spacing-spacer-8:   2rem;      /* 32px */
 
     /* --- Inset (breakpoints xl, l) --- */
-    --spacing-inset-l: var(--spacing-spacer-6);
-    /* 24px */
+    --spacing-inset-l: var(--spacing-spacer-6); /* 24px */
 }
 
 /* Inset-l collapses at breakpoint m and below */
 @media (max-width: 1023px) {
     :root {
-        --spacing-inset-l: var(--spacing-spacer-4);
-        /* 24px → 16px */
+        --spacing-inset-l: var(--spacing-spacer-4); /* 24px → 16px */
     }
 }
 
@@ -188,12 +177,11 @@ Sections:
     l:  < 1200px
     xl: >= 1200px
     */
+
     /* --- Grid --- */
     --layout-columns: 6;
-    --layout-gap-m: var(--spacing-spacer-4);
-    /* 16px — default */
-    --layout-gap-xl: var(--spacing-spacer-8);
-    /* 32px — less dense */
+    --layout-gap-m: var(--spacing-spacer-4);  /* 16px — default */
+    --layout-gap-xl: var(--spacing-spacer-8); /* 32px — less dense */
     --layout-max-width: 1200px;
 }
 
@@ -202,8 +190,8 @@ Sections:
     display: grid;
     grid-template-rows: auto 1fr;
     grid-template-areas:
-    "nav"
-    "main";
+        "nav"
+        "main";
     min-height: 100vh;
 }
 
@@ -237,8 +225,8 @@ Sections:
     grid-template-areas: "default panel-right";
 }
 
-.layout-nav-left__default      { grid-area: default; }
-.layout-nav-left__panel-right  { grid-area: panel-right; }
+.layout-nav-left__default     { grid-area: default; }
+.layout-nav-left__panel-right { grid-area: panel-right; }
 
 /* Default Content Area */
 .layout-default {
@@ -329,21 +317,21 @@ Sections:
 ============================================================ */
 
 :root {
-    --color-content-default: var(--gray-800);
-    --color-content-emphasis: var(--blue-700);
-    --color-content-subtle: var(--alpha-black-500);
-    --color-content-interactive-default: var(--blue-500);
-    --color-content-success: var(--green-600);
-    --color-content-error: var(--red-600);
+    --color-content-default:              var(--gray-800);
+    --color-content-emphasis:             var(--blue-700);
+    --color-content-subtle:               var(--alpha-black-500);
+    --color-content-interactive-default:  var(--blue-500);
+    --color-content-success:              var(--green-600);
+    --color-content-error:                var(--red-600);
 }
 
 [data-theme="dark"] {
-    --color-content-default: var(--gray-300);
-    --color-content-emphasis: var(--gray-100);
-    --color-content-subtle: var(--alpha-white-500);
-    --color-content-interactive-default: var(--blue-400);
-    --color-content-success: var(--green-300);
-    --color-content-error: var(--red-300);
+    --color-content-default:              var(--gray-300);
+    --color-content-emphasis:             var(--gray-100);
+    --color-content-subtle:               var(--alpha-white-500);
+    --color-content-interactive-default:  var(--blue-400);
+    --color-content-success:              var(--green-300);
+    --color-content-error:                var(--red-300);
 }
 
 
@@ -352,31 +340,31 @@ Sections:
 ============================================================ */
 
 :root {
-    --color-background-default: white;
-    --color-background-default-inverse: var(--gray-900);
-    --color-background-sunken: var(--gray-75);
-    --color-background-primary-default: var(--blue-500);
-    --color-background-primary-hover: var(--blue-600);
-    --color-background-input-default: white;
-    --color-background-success-subtle: var(--green-100);
-    --color-background-error-subtle: var(--red-100);
-    --color-background-accent-blue-default: var(--blue-100);
-    --color-background-accent-blue-subtle: var(--blue-75);
-    --color-background-accent-yellow-subtle: var(--yellow-100);
+    --color-background-default:               white;
+    --color-background-default-inverse:       var(--gray-900);
+    --color-background-sunken:                var(--gray-75);
+    --color-background-primary-default:       var(--blue-500);
+    --color-background-primary-hover:         var(--blue-600);
+    --color-background-input-default:         white;
+    --color-background-success-subtle:        var(--green-100);
+    --color-background-error-subtle:          var(--red-100);
+    --color-background-accent-blue-default:   var(--blue-100);
+    --color-background-accent-blue-subtle:    var(--blue-75);
+    --color-background-accent-yellow-subtle:  var(--yellow-100);
 }
 
 [data-theme="dark"] {
-    --color-background-default: var(--gray-900);
-    --color-background-default-inverse: white;
-    --color-background-sunken: var(--gray-950);
-    --color-background-primary-default: var(--blue-500);
-    --color-background-primary-hover: var(--blue-400);
-    --color-background-input-default: var(--alpha-white-75);
-    --color-background-success-subtle: var(--green-900);
-    --color-background-error-subtle: var(--red-900);
-    --color-background-accent-blue-default: var(--blue-900);
-    --color-background-accent-blue-subtle: var(--blue-950);
-    --color-background-accent-yellow-subtle: var(--yellow-950);
+    --color-background-default:               var(--gray-900);
+    --color-background-default-inverse:       white;
+    --color-background-sunken:                var(--gray-950);
+    --color-background-primary-default:       var(--blue-500);
+    --color-background-primary-hover:         var(--blue-400);
+    --color-background-input-default:         var(--alpha-white-75);
+    --color-background-success-subtle:        var(--green-900);
+    --color-background-error-subtle:          var(--red-900);
+    --color-background-accent-blue-default:   var(--blue-900);
+    --color-background-accent-blue-subtle:    var(--blue-950);
+    --color-background-accent-yellow-subtle:  var(--yellow-950);
 }
 
 
@@ -385,21 +373,21 @@ Sections:
 ============================================================ */
 
 :root {
-    --color-border-default: var(--alpha-black-100);
-    --color-border-interactive-default: var(--blue-500);
-    --color-border-input-default: var(--alpha-black-400);
-    --color-border-success: var(--green-600);
-    --color-border-error: var(--red-600);
-    --color-border-focus: var(--blue-500);
+    --color-border-default:              var(--alpha-black-100);
+    --color-border-interactive-default:  var(--blue-500);
+    --color-border-input-default:        var(--alpha-black-400);
+    --color-border-success:              var(--green-600);
+    --color-border-error:                var(--red-600);
+    --color-border-focus:                var(--blue-500);
 }
 
 [data-theme="dark"] {
-    --color-border-default: var(--alpha-white-100);
-    --color-border-interactive-default: var(--blue-400);
-    --color-border-input-default: var(--alpha-white-400);
-    --color-border-success: var(--green-300);
-    --color-border-error: var(--red-300);
-    --color-border-focus: var(--blue-400);
+    --color-border-default:              var(--alpha-white-100);
+    --color-border-interactive-default:  var(--blue-400);
+    --color-border-input-default:        var(--alpha-white-400);
+    --color-border-success:              var(--green-300);
+    --color-border-error:                var(--red-300);
+    --color-border-focus:                var(--blue-400);
 }
 
 
@@ -421,7 +409,9 @@ Brand-specific values not covered by the design system.
 
 
 /* MARK: Reset & base */
-*, *::before, *::after {
+*,
+*::before,
+*::after {
     box-sizing: border-box;
 }
 
@@ -499,7 +489,7 @@ fieldset {
     overflow: hidden;
 }
 
-.form-section-card>legend {
+.form-section-card > legend {
     display: block;
     width: 100%;
     padding: 18px 28px 16px;
@@ -532,12 +522,12 @@ fieldset {
     margin: 0 0 var(--spacing-spacer-6);
 }
 
-.form-step>fieldset:last-of-type {
+.form-step > fieldset:last-of-type {
     margin-bottom: 0;
 }
 
 /* Separator between inner groups */
-.form-step>fieldset+fieldset {
+.form-step > fieldset + fieldset {
     padding-top: var(--spacing-spacer-5);
     border-top: var(--border-width-thin) dashed var(--color-border-default);
     margin-top: var(--spacing-spacer-1);
@@ -716,6 +706,7 @@ button[id^="volgende"]::after {
     margin-top: 0;
     z-index: 250;
 }
+
 /* MARK: Help texts */
 .helptekst {
     margin: var(--spacing-spacer-2) 0 0;
@@ -765,14 +756,20 @@ dialog {
     padding: 0;
     border: none;
     border-radius: var(--border-radius-xl-ns);
-    box-shadow: 0 20px 60px rgba(0,0,0,.2);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
     overflow: hidden;
     animation: dialogIn 0.2s ease;
 }
 
 @keyframes dialogIn {
-    from { opacity: 0; transform: scale(0.97) translateY(6px); }
-    to   { opacity: 1; transform: scale(1) translateY(0); }
+    from {
+        opacity: 0;
+        transform: scale(0.97) translateY(6px);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
 }
 
 dialog::backdrop {
@@ -926,7 +923,10 @@ input[type="submit"]:hover {
         padding: var(--spacing-spacer-4) var(--spacing-spacer-5) 14px;
     }
 
-    #vraag-1a, #vraag-1b, #vraag-1c, #vraag-1d {
+    #vraag-1a,
+    #vraag-1b,
+    #vraag-1c,
+    #vraag-1d {
         padding: var(--spacing-spacer-5);
     }
 
@@ -951,20 +951,69 @@ input[type="submit"]:hover {
 
 /* MARK: Print */
 @media print {
+
     /* ----------------------------------------
        Page setup
     ---------------------------------------- */
     @page {
         size: A4;
-        margin: 14mm;
+        margin: 10mm 12mm 10mm 12mm;
     }
 
     /* ----------------------------------------
-       CSS Counters for question numbering
-       Structure:
-         section     → 1, 2, …          (form-section-card)
-         step        → a, b, c, …       (form-step inside a section)
-         subquestion → 1, 2, …          (question-group inside a step)
+       Hide all screen-only chrome
+    ---------------------------------------- */
+    body::before,
+    .school-opdracht,
+    .clear-saved-data-btn,
+    #feedback-dialog,
+    .answers > a,
+    .answers-body > a,
+    button,
+    input[type="submit"],
+    .helptekst,
+    .inline-feedback {
+        display: none !important;
+    }
+
+    /* ----------------------------------------
+       Base reset
+    ---------------------------------------- */
+    body {
+        margin: 0;
+        padding: 0;
+        min-height: auto;
+        background: #fff !important;
+        color: #000 !important;
+        font-family: Arial, sans-serif;
+        font-size: 9pt;
+        line-height: 1.35;
+    }
+
+    form,
+    .answers {
+        max-width: none;
+        width: 100%;
+        margin: 0;
+        background: #fff !important;
+        box-shadow: none !important;
+    }
+
+    /* ----------------------------------------
+       Force all hidden elements to show
+    ---------------------------------------- */
+    .form-section-card,
+    .form-section-card > fieldset,
+    .form-section-card fieldset,
+    .form-section-card[hidden],
+    .form-section-card > fieldset[hidden],
+    .form-section-card fieldset[hidden] {
+        display: block !important;
+        visibility: visible !important;
+    }
+
+    /* ----------------------------------------
+       CSS Counters
     ---------------------------------------- */
     form {
         counter-reset: section;
@@ -977,210 +1026,414 @@ input[type="submit"]:hover {
 
     .form-step {
         counter-increment: step;
-        counter-reset: subquestion;
-    }
-
-    .question-group {
-        counter-increment: subquestion;
-    }
-
-    /* Section legend: "1. Gegevens van de overledene" */
-    .form-section-card > legend::before {
-        content: counter(section) ". ";
-    }
-
-    /* Step legend: "1.b Vul hier de gegevens in…" */
-    .form-step > legend::before {
-        content: counter(section) "." counter(step, lower-alpha) " ";
-    }
-
-    /* Sub-question legend: "1.b.1 Was de overledene getrouwd…" */
-    .question-group > legend::before {
-        content: counter(section) "." counter(step, lower-alpha) "." counter(subquestion) " ";
     }
 
     /* ----------------------------------------
-       Base resets
+       Section card
     ---------------------------------------- */
-    body {
-        margin: 0;
-        padding: 0;
-        min-height: auto;
-        background: #fff !important;
-        color: #000 !important;
-        font-size: 12pt;
-        line-height: 1.35;
-    }
-
-    body::before,
-    .school-opdracht,
-    .clear-saved-data-btn,
-    #feedback-dialog,
-    .answers > a,
-    .answers-body > a,
-    button,
-    input[type="submit"] {
-        display: none !important;
-    }
-
-    form,
-    .answers,
-    .form-section-card,
-    .form-section-card > legend,
-    .form-step,
-    fieldset,
-    label,
-    .helptekst {
-        background: #fff !important;
-        color: #000 !important;
+    .form-section-card {
+        border: 1pt solid #000 !important;
+        border-radius: 0 !important;
         box-shadow: none !important;
-    }
-
-    /* Force all hidden steps and groups to show in print */
-    .form-section-card > fieldset,
-    .form-section-card fieldset,
-    .form-section-card[hidden],
-    .form-section-card > fieldset[hidden],
-    .form-section-card fieldset[hidden] {
-        display: block !important;
-        visibility: visible !important;
-    }
-
-    form,
-    .answers {
-        max-width: none;
-        width: 100%;
-        margin: 0;
-    }
-
-    /* ----------------------------------------
-       Fieldset & legend styling
-    ---------------------------------------- */
-    fieldset {
-        border: 1pt solid #ccc !important;
-        border-radius: 0;
-        padding: 10pt;
-        margin: 0 0 8pt;
+        background: #fff !important;
+        margin-bottom: 6pt;
+        padding: 0 !important;
+        overflow: visible;
         page-break-inside: avoid;
     }
 
-    /* Section card gets a heavier top border as visual separator */
-    .form-section-card {
-        border: 1.5pt solid #000 !important;
-        margin-bottom: 14pt;
+    /* Black header bar */
+    .form-section-card > legend {
+        display: block !important;
+        width: 100%;
+        background: #000 !important;
+        color: #fff !important;
+        font-size: 9pt;
+        font-weight: 700;
+        padding: 3pt 8pt !important;
+        margin: 0 !important;
+        box-sizing: border-box;
     }
 
-    .form-section-card > legend {
-        font-size: 14pt;
-        font-weight: 700;
-        padding: 0 4pt;
-        border-bottom: 1pt solid #000;
-        width: 100%;
-        margin-bottom: 6pt;
+    .form-section-card > legend::before {
+        content: counter(section) "  ";
+    }
+
+    .form-step {
+        display: grid !important;
+        grid-template-columns: 35% 65%;
+        column-gap: 6pt;
+        row-gap: 0;
+        border: none !important;
+        border-top: 0.5pt solid #ddd !important;
+        padding: 5pt 8pt !important;
+        margin: 0 !important;
+        background: #fff !important;
+        box-shadow: none !important;
+        align-items: start;
+        page-break-inside: avoid;
+    }
+
+    .form-step:first-of-type {
+        border-top: none !important;
     }
 
     .form-step > legend {
-        font-size: 11pt;
+        grid-column: 1;
+        grid-row: 1 / 99;
+        font-size: 8.5pt;
+        font-weight: 400;
+        font-style: italic;
+        color: #000 !important;
+        padding: 0 4pt 0 0 !important;
+        margin: 0 !important;
+        align-self: start;
+        line-height: 1.35;
+    }
+
+    .form-step > legend::before {
+        content: counter(section) counter(step, lower-alpha) "  ";
         font-weight: 700;
-        padding: 0 4pt;
-        margin-bottom: 4pt;
+        font-style: normal;
+    }
+
+    .form-step > fieldset,
+    .form-step > label,
+    .form-step > input {
+        grid-column: 2;
+    }
+
+    .question-group {
+        display: grid !important;
+        grid-template-columns: 48% 52%;
+        column-gap: 6pt;
+        align-items: start;
+        grid-column: 2;
+        border: none !important;
+        padding: 0 !important;
+        margin: 0 0 3pt !important;
+        background: #fff !important;
+        box-shadow: none !important;
+        page-break-inside: avoid;
     }
 
     .question-group > legend {
-        font-size: 10pt;
-        font-weight: 600;
-        padding: 0 4pt;
-        margin-bottom: 4pt;
+        grid-column: 1;
+        font-size: 8.5pt;
+        font-weight: 400;
+        color: #000 !important;
+        padding: 0 4pt 0 0 !important;
+        margin: 0 !important;
+        line-height: 1.35;
+    }
+
+    fieldset label:has(input[type="radio"]) {
+        display: flex !important;
+        flex-direction: row !important;
+        align-items: flex-start !important;
+        gap: 4pt !important;
+        background: none !important;
+        border: none !important;
+        border-radius: 0 !important;
+        padding: 1.5pt 0 !important;
+        margin: 0 !important;
+        font-size: 8.5pt;
+        font-weight: 400 !important;
+        color: #000 !important;
+        line-height: 1.3;
+        grid-column: 2;
+    }
+
+    fieldset label:has(input[type="radio"]) input[type="radio"] {
+        flex-shrink: 0;
+        order: 2;
+        width: 8pt;
+        height: 8pt;
+        margin-top: 1.5pt;
+        appearance: none;
+        -webkit-appearance: none;
+        border: 0.75pt solid #000;
+        background: #fff;
+        display: inline-block;
+    }
+
+    label[for="niet-getrouwd"]::after {
+        content: " Ga verder met vraag 1c.";
+        font-style: italic;
+    }
+
+    label[for="geen-voorwaarden"]::after {
+        content: " Ga verder met vraag 1c.";
+        font-style: italic;
+    }
+
+    label[for="geen-verrekenbeding"]::after {
+        content: " Ga verder met vraag 1c.";
+        font-style: italic;
+    }
+
+    label[for="geen-kinderen"]::after {
+        content: " Ga verder met vraag 1d.";
+        font-style: italic;
+    }
+
+    label[for="geen-overleden-kinderen"]::after {
+        content: " Ga verder met vraag 1d.";
+        font-style: italic;
+    }
+
+    label[for="geen-kinderen-overleden-kind"]::after {
+        content: " Ga verder met vraag 1d.";
+        font-style: italic;
+    }
+
+    label[for="geen-testament"]::after {
+        content: " Ga verder met vraag 2.";
+        font-style: italic;
+    }
+
+    input[type="text"],
+    input[type="date"] {
+        border: none !important;
+        border-bottom: 1pt dotted #000 !important;
+        border-radius: 0 !important;
+        background: #fff !important;
+        color: #000 !important;
+        box-shadow: none !important;
+        padding: 0 2pt 1pt !important;
+        height: 15pt;
+        font-size: 8.5pt;
+        width: 100%;
+        display: block;
+        min-height: unset;
+    }
+
+    input[type="date"] {
+        color: transparent !important;
+        text-shadow: none !important;
+    }
+
+    input[type="date"]::-webkit-datetime-edit,
+    input[type="date"]::-webkit-datetime-edit-fields-wrapper,
+    input[type="date"]::-webkit-datetime-edit-text,
+    input[type="date"]::-webkit-datetime-edit-day-field,
+    input[type="date"]::-webkit-datetime-edit-month-field,
+    input[type="date"]::-webkit-datetime-edit-year-field {
+        color: transparent !important;
+    }
+
+    input[type="date"]::-webkit-calendar-picker-indicator,
+    input[type="date"]::-webkit-clear-button,
+    input[type="date"]::-webkit-inner-spin-button {
+        display: none !important;
     }
 
     /* ----------------------------------------
-       Form controls
+       Labels for text inputs
     ---------------------------------------- */
-    input[type="text"],
-    input[type="date"] {
-        border: 1pt solid #000 !important;
-        background: #fff !important;
+    label[for="voorletters-overledene"],
+    label[for="tussenvoegsels-overledene"],
+    label[for="achternaam-overledene"],
+    label[for="bsn-overledene"],
+    label[for="datum-overlijden"],
+    label[for="datum-voorwaarden"],
+    label[for="protocolnummer-notaris"],
+    label[for="voorletters-notaris"],
+    label[for="tussenvoegsels-notaris"],
+    label[for="achternaam-notaris"],
+    label[for="vestigingsplaats"],
+    label[for="datum-testament"] {
+        font-size: 8.5pt;
+        font-weight: 400;
         color: #000 !important;
-        border-radius: 0;
-        min-height: 22pt;
+        margin: 3pt 0 1pt !important;
+        display: block !important;
+        padding: 0 !important;
+        background: none !important;
+        border: none !important;
+        grid-column: 2;
+    }
+
+    #vraag-1a {
+        display: grid !important;
+        grid-template-columns: 35% 31% 34%;
+        grid-template-rows: auto auto auto auto auto auto;
+        column-gap: 6pt;
+        padding: 5pt 8pt !important;
+        border-top: none !important;
+        align-items: end;
+    }
+
+    #vraag-1a > legend {
+        grid-column: 1;
+        grid-row: 1 / 7;
+        font-style: italic;
+        font-weight: 400;
+        font-size: 8.5pt;
+        align-self: start;
+    }
+
+    #vraag-1a > legend::before {
+        content: "1a  ";
+        font-weight: 700;
+        font-style: normal;
+    }
+
+    label[for="voorletters-overledene"] {
+        grid-column: 2;
+        grid-row: 1;
+        margin-top: 0 !important;
+    }
+
+    #voorletters-overledene {
+        grid-column: 2;
+        grid-row: 2;
+    }
+
+    label[for="tussenvoegsels-overledene"] {
+        grid-column: 3;
+        grid-row: 1;
+        margin-top: 0 !important;
+    }
+
+    #tussenvoegsels-overledene {
+        grid-column: 3;
+        grid-row: 2;
+    }
+
+    label[for="achternaam-overledene"] {
+        grid-column: 2 / 4;
+        grid-row: 3;
+    }
+
+    #achternaam-overledene {
+        grid-column: 2 / 4;
+        grid-row: 4;
+    }
+
+    label[for="bsn-overledene"] {
+        grid-column: 2;
+        grid-row: 5;
+    }
+
+    #bsn-overledene {
+        grid-column: 2;
+        grid-row: 6;
+    }
+
+    label[for="datum-overlijden"] {
+        grid-column: 3;
+        grid-row: 5;
+    }
+
+    #datum-overlijden {
+        grid-column: 3;
+        grid-row: 6;
+    }
+
+    /* ----------------------------------------
+       Notaris fields — 3-column grid
+    ---------------------------------------- */
+    #vraag-1d-2 {
+        display: grid !important;
+        grid-template-columns: 35% 32% 33%;
+        grid-template-rows: auto auto auto auto auto auto;
+        column-gap: 6pt;
+        align-items: end;
+        grid-column: 2;
+        border: none !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        background: #fff !important;
         box-shadow: none !important;
     }
 
-    input[type="radio"] {
-        accent-color: #000;
+    #vraag-1d-2 > legend {
+        display: none !important;
     }
 
-    .helptekst,
-    .inline-feedback {
-        border: none !important;
-        border-left: 2pt solid #999 !important;
-        padding: 0 0 0 6pt;
-        margin-top: 4pt;
-        font-size: 9pt;
-        color: #555 !important;
+    label[for="protocolnummer-notaris"] {
+        grid-column: 1;
+        grid-row: 1;
+        margin-top: 0 !important;
+    }
+
+    #protocolnummer-notaris {
+        grid-column: 1;
+        grid-row: 2;
+    }
+
+    label[for="voorletters-notaris"] {
+        grid-column: 2;
+        grid-row: 1;
+        margin-top: 0 !important;
+    }
+
+    #voorletters-notaris {
+        grid-column: 2;
+        grid-row: 2;
+    }
+
+    label[for="tussenvoegsels-notaris"] {
+        display: none !important;
+    }
+
+    #tussenvoegsels-notaris {
+        display: none !important;
+    }
+
+    label[for="achternaam-notaris"] {
+        grid-column: 3;
+        grid-row: 1;
+        margin-top: 0 !important;
+    }
+
+    #achternaam-notaris {
+        grid-column: 3;
+        grid-row: 2;
+    }
+
+    label[for="vestigingsplaats"] {
+        grid-column: 1 / 4;
+        grid-row: 3;
+    }
+
+    #vestigingsplaats {
+        grid-column: 1 / 4;
+        grid-row: 4;
+    }
+
+    label[for="datum-testament"] {
+        grid-column: 1;
+        grid-row: 5;
+    }
+
+    #datum-testament {
+        grid-column: 1;
+        grid-row: 6;
     }
 
     /* ----------------------------------------
-       File upload section
+       File upload — checkbox placeholder
     ---------------------------------------- */
     .file-copy-section label[for="kopie-akte"],
     .file-copy-section input[type="file"] {
         display: none !important;
     }
 
-    .file-copy-section::after {
-        content: "☐  Voeg een kopie van de akte bij de aangifte";
+    .file-copy-section {
+        grid-column: 2;
+    }
+
+    .file-copy-section > legend {
+        display: none !important;
+    }
+
+    .file-copy-section::before {
+        content: "\2610  Voeg een kopie van de akte bij de aangifte";
         display: block;
-        margin-top: 6pt;
-        font-size: 10pt;
-    }
-
-    label[for="niet-getrouwd"]::after {
-        content: " Ga verder met vraag 1c.";
+        font-size: 8.5pt;
         font-style: italic;
-        color: #555;
-        font-size: 9pt;
-    }
-
-    label[for="geen-voorwaarden"]::after {
-        content: " Ga verder met vraag 1c.";
-        font-style: italic;
-        color: #555;
-        font-size: 9pt;
-    }
-
-    label[for="geen-verrekenbeding"]::after {
-        content: " Ga verder met vraag 1c.";
-        font-style: italic;
-        color: #555;
-        font-size: 9pt;
-    }
-
-    label[for="geen-kinderen"]::after {
-        content: " Ga verder met vraag 1d.";
-        font-style: italic;
-        color: #555;
-        font-size: 9pt;
-    }
-
-    label[for="geen-overleden-kinderen"]::after {
-        content: " Ga verder met vraag 1d.";
-        font-style: italic;
-        color: #555;
-        font-size: 9pt;
-    }
-
-    label[for="geen-kinderen-overleden-kind"]::after {
-        content: " Ga verder met vraag 1d.";
-        font-style: italic;
-        color: #555;
-        font-size: 9pt;
-    }
-
-    label[for="geen-testament"]::after {
-        content: " Ga verder met vraag 2.";
-        font-style: italic;
-        color: #555;
-        font-size: 9pt;
+        margin-top: 2pt;
     }
 }
