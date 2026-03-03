@@ -951,11 +951,57 @@ input[type="submit"]:hover {
 
 /* MARK: Print */
 @media print {
+    /* ----------------------------------------
+       Page setup
+    ---------------------------------------- */
     @page {
         size: A4;
         margin: 14mm;
     }
 
+    /* ----------------------------------------
+       CSS Counters for question numbering
+       Structure:
+         section     → 1, 2, …          (form-section-card)
+         step        → a, b, c, …       (form-step inside a section)
+         subquestion → 1, 2, …          (question-group inside a step)
+    ---------------------------------------- */
+    form {
+        counter-reset: section;
+    }
+
+    .form-section-card {
+        counter-increment: section;
+        counter-reset: step;
+    }
+
+    .form-step {
+        counter-increment: step;
+        counter-reset: subquestion;
+    }
+
+    .question-group {
+        counter-increment: subquestion;
+    }
+
+    /* Section legend: "1. Gegevens van de overledene" */
+    .form-section-card > legend::before {
+        content: counter(section) ". ";
+    }
+
+    /* Step legend: "1.b Vul hier de gegevens in…" */
+    .form-step > legend::before {
+        content: counter(section) "." counter(step, lower-alpha) " ";
+    }
+
+    /* Sub-question legend: "1.b.1 Was de overledene getrouwd…" */
+    .question-group > legend::before {
+        content: counter(section) "." counter(step, lower-alpha) "." counter(subquestion) " ";
+    }
+
+    /* ----------------------------------------
+       Base resets
+    ---------------------------------------- */
     body {
         margin: 0;
         padding: 0;
@@ -970,8 +1016,8 @@ input[type="submit"]:hover {
     .school-opdracht,
     .clear-saved-data-btn,
     #feedback-dialog,
-    .answers>a,
-    .answers-body>a,
+    .answers > a,
+    .answers-body > a,
     button,
     input[type="submit"] {
         display: none !important;
@@ -980,7 +1026,7 @@ input[type="submit"]:hover {
     form,
     .answers,
     .form-section-card,
-    .form-section-card>legend,
+    .form-section-card > legend,
     .form-step,
     fieldset,
     label,
@@ -990,10 +1036,11 @@ input[type="submit"]:hover {
         box-shadow: none !important;
     }
 
-    .form-section-card>fieldset,
+    /* Force all hidden steps and groups to show in print */
+    .form-section-card > fieldset,
     .form-section-card fieldset,
     .form-section-card[hidden],
-    .form-section-card>fieldset[hidden],
+    .form-section-card > fieldset[hidden],
     .form-section-card fieldset[hidden] {
         display: block !important;
         visibility: visible !important;
@@ -1006,26 +1053,57 @@ input[type="submit"]:hover {
         margin: 0;
     }
 
+    /* ----------------------------------------
+       Fieldset & legend styling
+    ---------------------------------------- */
     fieldset {
-        border: 1px solid #000 !important;
+        border: 1pt solid #ccc !important;
         border-radius: 0;
         padding: 10pt;
-        margin: 0 0 10pt;
+        margin: 0 0 8pt;
         page-break-inside: avoid;
     }
 
-    legend {
-        font-weight: 700;
-        padding: 0 4pt;
+    /* Section card gets a heavier top border as visual separator */
+    .form-section-card {
+        border: 1.5pt solid #000 !important;
+        margin-bottom: 14pt;
     }
 
+    .form-section-card > legend {
+        font-size: 14pt;
+        font-weight: 700;
+        padding: 0 4pt;
+        border-bottom: 1pt solid #000;
+        width: 100%;
+        margin-bottom: 6pt;
+    }
+
+    .form-step > legend {
+        font-size: 11pt;
+        font-weight: 700;
+        padding: 0 4pt;
+        margin-bottom: 4pt;
+    }
+
+    .question-group > legend {
+        font-size: 10pt;
+        font-weight: 600;
+        padding: 0 4pt;
+        margin-bottom: 4pt;
+    }
+
+    /* ----------------------------------------
+       Form controls
+    ---------------------------------------- */
     input[type="text"],
     input[type="date"] {
-        border: 1px solid #000 !important;
+        border: 1pt solid #000 !important;
         background: #fff !important;
         color: #000 !important;
         border-radius: 0;
         min-height: 22pt;
+        box-shadow: none !important;
     }
 
     input[type="radio"] {
@@ -1035,19 +1113,25 @@ input[type="submit"]:hover {
     .helptekst,
     .inline-feedback {
         border: none !important;
-        padding: 0;
+        border-left: 2pt solid #999 !important;
+        padding: 0 0 0 6pt;
         margin-top: 4pt;
-        font-size: 10pt;
+        font-size: 9pt;
+        color: #555 !important;
     }
 
+    /* ----------------------------------------
+       File upload section
+    ---------------------------------------- */
     .file-copy-section label[for="kopie-akte"],
     .file-copy-section input[type="file"] {
         display: none !important;
     }
 
     .file-copy-section::after {
-        content: "lever bestand erbij";
+        content: "☐  Voeg een kopie van de akte bij de aangifte";
         display: block;
-        margin-top: 4pt;
+        margin-top: 6pt;
+        font-size: 10pt;
     }
 }
