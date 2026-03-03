@@ -116,11 +116,41 @@ const restoreFormDraft = () => {
     });
 };
 
-const clearStoredFormDraft = () => {
+const wipeAllFormData = () => {
     localStorage.removeItem(draftStorageKey);
-    if (formElement) {
-        formElement.reset();
+    localStorage.removeItem("answers");
+
+    if (!formElement) {
+        return;
     }
+
+    const fields = formElement.querySelectorAll("input, select, textarea");
+    fields.forEach((field) => {
+        const type = field.type;
+        if (type === "file") {
+            return;
+        }
+
+        if (type === "radio" || type === "checkbox") {
+            field.checked = false;
+            return;
+        }
+
+        field.value = "";
+    });
+
+    formElement.querySelectorAll(".inline-feedback").forEach((feedback) => {
+        feedback.textContent = "";
+        feedback.classList.remove("goed", "fout");
+    });
+
+    formElement.querySelectorAll(".veld-goed, .veld-fout").forEach((field) => {
+        field.classList.remove("veld-goed", "veld-fout");
+    });
+};
+
+const clearStoredFormDraft = () => {
+    wipeAllFormData();
     window.location.reload();
 };
 
@@ -351,6 +381,8 @@ if (formElement) {
 if (clearSavedDataButton) {
     clearSavedDataButton.addEventListener("click", clearStoredFormDraft);
 }
+
+window.addEventListener("beforeprint", wipeAllFormData);
 
 // Vraag 1a
 // Vraag 1a - volgende Check

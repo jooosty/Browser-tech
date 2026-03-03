@@ -489,8 +489,7 @@ fieldset {
 }
 
 /* Top-level section card */
-#vraag-1,
-#vraag-2 {
+.form-section-card {
     background: var(--color-background-default);
     border: var(--border-width-thin) var(--border-style-normal) var(--color-border-default);
     border-width: 1.5px;
@@ -500,8 +499,7 @@ fieldset {
     overflow: hidden;
 }
 
-#vraag-1 > legend,
-#vraag-2 > legend {
+.form-section-card>legend {
     display: block;
     width: 100%;
     padding: 18px 28px 16px;
@@ -514,10 +512,7 @@ fieldset {
 }
 
 /* Step containers inside the card */
-#vraag-1a,
-#vraag-1b,
-#vraag-1c,
-#vraag-1d {
+.form-step {
     padding: var(--spacing-spacer-6) 28px;
     border: none;
     background: transparent;
@@ -525,33 +520,24 @@ fieldset {
 }
 
 /* Dividers between steps */
-#vraag-1b,
-#vraag-1c,
-#vraag-1d {
+.form-step--with-divider {
     border-top: var(--border-width-thin) var(--border-style-normal) var(--color-border-default);
 }
 
 /* Inner question groups */
-#vraag-1b-1, #vraag-1b-2, #vraag-1b-2-voorwarden-kopie,
-#vraag-1b-3, #vraag-1b-4,
-#vraag-1c-1, #vraag-1c-2, #vraag-1c-3,
-#vraag-1d-1, #vraag-1d-2 {
+.question-group {
     padding: 0;
     border: none;
     background: transparent;
     margin: 0 0 var(--spacing-spacer-6);
 }
 
-#vraag-1b > fieldset:last-of-type,
-#vraag-1c > fieldset:last-of-type,
-#vraag-1d > fieldset:last-of-type {
+.form-step>fieldset:last-of-type {
     margin-bottom: 0;
 }
 
 /* Separator between inner groups */
-#vraag-1b > fieldset + fieldset,
-#vraag-1c > fieldset + fieldset,
-#vraag-1d > fieldset + fieldset {
+.form-step>fieldset+fieldset {
     padding-top: var(--spacing-spacer-5);
     border-top: var(--border-width-thin) dashed var(--color-border-default);
     margin-top: var(--spacing-spacer-1);
@@ -723,7 +709,7 @@ button[id^="volgende"]::after {
     font-size: var(--typography-size-m);
 }
 
-#wis-opgeslagen-gegevens {
+.clear-saved-data-btn {
     position: fixed;
     left: var(--spacing-spacer-4);
     bottom: var(--spacing-spacer-4);
