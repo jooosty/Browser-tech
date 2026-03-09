@@ -155,7 +155,7 @@
             <p class="helptekst">Vul de gegevens in van de gemachtigde. De gemachtigde is degene die namens 1 of meerdere personen en/of instellingen aangifte doet. Het invullen van een telefoonnummer of e-mailadres is niet verplicht, maar wel handig. Dan kunnen wij u makkelijker vragen stellen of uitleg geven.</p>
 
             <fieldset id="vraag-2a" class="form-step">
-                <legend>2a – Identificatie gemachtigde</legend>
+                <legend>Identificatie gemachtigde</legend>
                 <p class="helptekst">Vul 1 van de 3 in: het bsn of RSIN van de gemachtigde, het beconnummer van de adviseur of het protocolnummer van de notaris.</p>
 
                 <label for="bsn-rsin-gemachtigde">BSN/RSIN gemachtigde</label>
@@ -173,7 +173,7 @@
             </fieldset>
 
             <fieldset id="vraag-2b" class="form-step form-step--with-divider hidden">
-                <legend>2b – Persoonsgegevens gemachtigde</legend>
+                <legend>Persoonsgegevens gemachtigde</legend>
 
                 <label for="voorletters-gemachtigde">Voorletter(s)</label>
                 <input type="text" id="voorletters-gemachtigde" name="voorletters-gemachtigde" autocomplete="off" aria-describedby="help-voorletters-gemachtigde">
@@ -479,7 +479,7 @@
             <legend>Voor wie doet u aangifte?</legend>
 
             <fieldset id="vraag-3a" class="form-step">
-                <legend>3a – Rol van de aangever</legend>
+                <legend>Rol van de aangever</legend>
                 <p class="helptekst">Heeft de overledene in het testament een executeur aangewezen om de erfenis af te handelen? Dan moet de executeur aangifte doen voor alle personen en/of instellingen die iets krijgen uit de nalatenschap (verkrijgers).</p>
 
                 <fieldset id="vraag-3a-rol" class="question-group">
@@ -516,7 +516,7 @@
             </fieldset>
 
             <fieldset id="vraag-3b" class="form-step form-step--with-divider hidden">
-                <legend>3b – Voor wie doet u geen aangifte?</legend>
+                <legend>Voor wie doet u geen aangifte?</legend>
 
                 <fieldset id="vraag-3b-1" class="question-group">
                     <legend>Zijn er verkrijgers voor wie u geen aangifte doet?</legend>
@@ -533,7 +533,7 @@
                 <div id="vraag-3b-verkrijger-sectie" class="hidden">
                     <p class="helptekst">Vul 1 verkrijger per keer in. Sla elke verkrijger op voordat u de volgende toevoegt.</p>
 
-                    <div id="verkrijgers-opgeslagen-lijst" class="hidden">
+                    <div id="verkrijgers-opgeslagen-lijst" hidden>
                         <label for="verkrijger-dropdown">Opgeslagen verkrijgers (klik om te bewerken)</label>
                         <select id="verkrijger-dropdown" name="verkrijger-dropdown">
                             <option value="">– Selecteer een verkrijger om te bewerken –</option>
@@ -591,7 +591,7 @@
             </fieldset>
 
             <fieldset id="vraag-3c" class="form-step form-step--with-divider hidden">
-                <legend>3c – Naar wie wilt u dat wij de aanslag erfbelasting sturen?</legend>
+                <legend>Naar wie wilt u dat wij de aanslag erfbelasting sturen?</legend>
 
                 <fieldset id="vraag-3c-1" class="question-group">
                     <legend>Waar moet de aanslag naartoe?</legend>
@@ -606,10 +606,10 @@
                 </fieldset>
 
                 <fieldset id="vraag-3d" class="question-group hidden">
-                    <legend>3d – Bent u executeur of gemachtigde?</legend>
+                    <legend>Bent u executeur of gemachtigde?</legend>
                     <label for="is-executeur-nee">
                         <input type="radio" id="is-executeur-nee" name="is-executeur" value="nee">
-                        Nee. Ga verder naar vraag 4.
+                        Nee
                     </label>
                     <label for="is-executeur-ja">
                         <input type="radio" id="is-executeur-ja" name="is-executeur" value="ja">
@@ -618,7 +618,7 @@
                 </fieldset>
 
                 <fieldset id="vraag-3e" class="question-group hidden">
-                    <legend>3e – Gegevens van de executeur of gemachtigde</legend>
+                    <legend>Gegevens van de executeur of gemachtigde</legend>
 
                     <label for="executeur-bsn">BSN/RSIN</label>
                     <input type="text" id="executeur-bsn" name="executeur-bsn" autocomplete="off" inputmode="numeric" maxlength="9">
