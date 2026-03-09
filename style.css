@@ -759,13 +759,19 @@ button[id^="volgende"]::after {
 
 /* MARK: Valid/invalid field states */
 input[type="text"].veld-goed,
-input[type="date"].veld-goed {
+input[type="date"].veld-goed,
+input[type="tel"].veld-goed,
+input[type="email"].veld-goed,
+select.veld-goed {
     border-color: var(--color-border-success);
     background: var(--color-background-success-subtle);
 }
 
 input[type="text"].veld-fout,
-input[type="date"].veld-fout {
+input[type="date"].veld-fout,
+input[type="tel"].veld-fout,
+input[type="email"].veld-fout,
+select.veld-fout {
     border-color: var(--color-border-error);
     background: var(--color-background-error-subtle);
 }
