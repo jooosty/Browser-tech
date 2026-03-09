@@ -233,6 +233,9 @@ const elfValidBsn = (bsn) => {
     return sum % 11 === 0;
 };
 
+// Set all hidden classes to hidden attribute
+document.querySelectorAll(".hidden").forEach((el) => (el.hidden = true));
+
 // Blur listeners for inline validation on text/date fields
 byId("voorletters-overledene").addEventListener("blur", function() {
     if (this.value.trim() === "") {
