@@ -474,6 +474,172 @@
                 <button type="button" id="volgende-vraag-2b">Volgende vraag</button>
             </fieldset>
         </fieldset>
+
+        <fieldset id="vraag-3" class="form-section-card hidden">
+            <legend>Voor wie doet u aangifte?</legend>
+
+            <fieldset id="vraag-3a" class="form-step">
+                <legend>3a – Rol van de aangever</legend>
+                <p class="helptekst">Heeft de overledene in het testament een executeur aangewezen om de erfenis af te handelen? Dan moet de executeur aangifte doen voor alle personen en/of instellingen die iets krijgen uit de nalatenschap (verkrijgers).</p>
+
+                <fieldset id="vraag-3a-rol" class="question-group">
+                    <legend>Wat is uw rol?</legend>
+                    <label for="rol-executeur">
+                        <input type="radio" id="rol-executeur" name="rol-aangever" value="executeur">
+                        Ik ben executeur en doe aangifte voor alle personen en/of instellingen die iets krijgen uit de nalatenschap (verkrijgers).
+                    </label>
+                    <label for="rol-erfgenaam-gemachtigd">
+                        <input type="radio" id="rol-erfgenaam-gemachtigd" name="rol-aangever" value="erfgenaam-gemachtigd">
+                        Ik ben erfgenaam en ben gemachtigd om aangifte te doen voor meerdere personen en/of instellingen die iets krijgen uit de nalatenschap (verkrijgers).
+                    </label>
+                    <label for="rol-erfgenaam-samen">
+                        <input type="radio" id="rol-erfgenaam-samen" name="rol-aangever" value="erfgenaam-samen">
+                        Ik ben erfgenaam en doe samen met andere erfgenamen aangifte.
+                    </label>
+                    <label for="rol-erfgenaam-zelf">
+                        <input type="radio" id="rol-erfgenaam-zelf" name="rol-aangever" value="erfgenaam-zelf">
+                        Ik ben erfgenaam en doe alleen aangifte voor mijzelf.
+                    </label>
+                    <label for="rol-geen-erfgenaam">
+                        <input type="radio" id="rol-geen-erfgenaam" name="rol-aangever" value="geen-erfgenaam">
+                        Ik ben geen erfgenaam, maar ben gemachtigd om aangifte te doen.
+                    </label>
+                </fieldset>
+
+                <fieldset id="vraag-3a-aantal" class="question-group hidden">
+                    <legend>Aantal verkrijgers</legend>
+                    <label for="aantal-verkrijgers">Voor hoeveel verkrijgers doet u aangifte? (Tel uzelf ook mee indien van toepassing)</label>
+                    <input type="text" id="aantal-verkrijgers" name="aantal-verkrijgers" autocomplete="off" inputmode="numeric" maxlength="4">
+                </fieldset>
+
+                <button type="button" id="volgende-vraag-3a" class="hidden">Volgende vraag</button>
+            </fieldset>
+
+            <fieldset id="vraag-3b" class="form-step form-step--with-divider hidden">
+                <legend>3b – Voor wie doet u geen aangifte?</legend>
+
+                <fieldset id="vraag-3b-1" class="question-group">
+                    <legend>Zijn er verkrijgers voor wie u geen aangifte doet?</legend>
+                    <label for="geen-aangifte-nee">
+                        <input type="radio" id="geen-aangifte-nee" name="verkrijgers-geen-aangifte" value="nee">
+                        Nee. Ga naar vraag 3c.
+                    </label>
+                    <label for="geen-aangifte-ja">
+                        <input type="radio" id="geen-aangifte-ja" name="verkrijgers-geen-aangifte" value="ja">
+                        Ja. Vul hieronder de gegevens in van de verkrijgers waarvoor u geen aangifte doet.
+                    </label>
+                </fieldset>
+
+                <div id="vraag-3b-verkrijger-sectie" class="hidden">
+                    <p class="helptekst">Vul 1 verkrijger per keer in. Sla elke verkrijger op voordat u de volgende toevoegt.</p>
+
+                    <div id="verkrijgers-opgeslagen-lijst"></div>
+
+                    <fieldset id="verkrijger-formulier" class="question-group">
+                        <legend id="verkrijger-formulier-titel">Verkrijger toevoegen</legend>
+
+                        <label for="verkrijger-bsn">BSN/RSIN</label>
+                        <input type="text" id="verkrijger-bsn" name="verkrijger-bsn" autocomplete="off" inputmode="numeric" maxlength="9">
+
+                        <label for="verkrijger-voorletters">Voorletter(s)</label>
+                        <input type="text" id="verkrijger-voorletters" name="verkrijger-voorletters" autocomplete="off">
+
+                        <label for="verkrijger-tussenvoegsel">Tussenvoegsel(s)</label>
+                        <input type="text" id="verkrijger-tussenvoegsel" name="verkrijger-tussenvoegsel" autocomplete="off">
+
+                        <label for="verkrijger-achternaam">Achternaam <span class="helptekst-inline">(of naam instelling)</span></label>
+                        <input type="text" id="verkrijger-achternaam" name="verkrijger-achternaam" autocomplete="off">
+
+                        <fieldset class="question-group" style="margin-top: var(--spacing-spacer-4)">
+                            <legend>Krijgt deze verkrijger het hele vermogen waarvoor u geen aangifte doet?</legend>
+                            <label for="verkrijger-heel-vermogen-nee">
+                                <input type="radio" id="verkrijger-heel-vermogen-nee" name="verkrijger-heel-vermogen" value="nee">
+                                Nee
+                            </label>
+                            <label for="verkrijger-heel-vermogen-ja">
+                                <input type="radio" id="verkrijger-heel-vermogen-ja" name="verkrijger-heel-vermogen" value="ja">
+                                Ja
+                            </label>
+                        </fieldset>
+
+                        <fieldset class="question-group">
+                            <legend>Doet deze verkrijger een beroep op diens legitieme portie (wettelijke erfdeel)?</legend>
+                            <label for="verkrijger-legitieme-nee">
+                                <input type="radio" id="verkrijger-legitieme-nee" name="verkrijger-legitieme" value="nee">
+                                Nee
+                            </label>
+                            <label for="verkrijger-legitieme-ja">
+                                <input type="radio" id="verkrijger-legitieme-ja" name="verkrijger-legitieme" value="ja">
+                                Ja
+                            </label>
+                        </fieldset>
+
+                        <div style="display:flex; gap: var(--spacing-spacer-3); flex-wrap: wrap; margin-top: var(--spacing-spacer-5);">
+                            <button type="button" id="sla-verkrijger-op">Voeg verkrijger toe</button>
+                            <button type="button" id="annuleer-verkrijger" class="btn-secondary hidden">Annuleer</button>
+                        </div>
+                    </fieldset>
+                </div>
+
+                <button type="button" id="volgende-vraag-3b" class="hidden">Volgende vraag</button>
+            </fieldset>
+
+            <fieldset id="vraag-3c" class="form-step form-step--with-divider hidden">
+                <legend>3c – Naar wie wilt u dat wij de aanslag erfbelasting sturen?</legend>
+
+                <fieldset id="vraag-3c-1" class="question-group">
+                    <legend>Waar moet de aanslag naartoe?</legend>
+                    <label for="aanslag-iedere-verkrijger">
+                        <input type="radio" id="aanslag-iedere-verkrijger" name="aanslag-sturen" value="iedere-verkrijger">
+                        Stuur naar iedere verkrijger van (een deel van) de erfenis een eigen belastingaanslag.
+                    </label>
+                    <label for="aanslag-executeur">
+                        <input type="radio" id="aanslag-executeur" name="aanslag-sturen" value="executeur">
+                        Stuur de belastingaanslag(en) naar de executeur of naar de erfgenaam die ook namens andere personen aangifte heeft gedaan. Wij sturen de aanslag(en) naar het adres dat u bij vraag 2 heeft ingevuld.
+                    </label>
+                </fieldset>
+
+                <fieldset id="vraag-3d" class="question-group hidden">
+                    <legend>3d – Bent u executeur of gemachtigde?</legend>
+                    <label for="is-executeur-nee">
+                        <input type="radio" id="is-executeur-nee" name="is-executeur" value="nee">
+                        Nee. Ga verder naar vraag 4.
+                    </label>
+                    <label for="is-executeur-ja">
+                        <input type="radio" id="is-executeur-ja" name="is-executeur" value="ja">
+                        Ja
+                    </label>
+                </fieldset>
+
+                <fieldset id="vraag-3e" class="question-group hidden">
+                    <legend>3e – Gegevens van de executeur of gemachtigde</legend>
+
+                    <label for="executeur-bsn">BSN/RSIN</label>
+                    <input type="text" id="executeur-bsn" name="executeur-bsn" autocomplete="off" inputmode="numeric" maxlength="9">
+
+                    <label for="executeur-protocolnummer">Protocolnummer <span class="helptekst-inline">(als de executeur ook notaris is)</span></label>
+                    <input type="text" id="executeur-protocolnummer" name="executeur-protocolnummer" autocomplete="off">
+
+                    <label for="executeur-beconnummer">Beconnummer van de adviseur</label>
+                    <input type="text" id="executeur-beconnummer" name="executeur-beconnummer" autocomplete="off" inputmode="numeric">
+
+                    <label for="executeur-voorletters">Voorletter(s)</label>
+                    <input type="text" id="executeur-voorletters" name="executeur-voorletters" autocomplete="off">
+
+                    <label for="executeur-tussenvoegsel">Tussenvoegsel(s)</label>
+                    <input type="text" id="executeur-tussenvoegsel" name="executeur-tussenvoegsel" autocomplete="off">
+
+                    <label for="executeur-achternaam">Achternaam</label>
+                    <input type="text" id="executeur-achternaam" name="executeur-achternaam" autocomplete="off">
+
+                    <label for="executeur-naam-instelling">Naam instelling <span class="helptekst-inline">(bijvoorbeeld een notariskantoor)</span></label>
+                    <input type="text" id="executeur-naam-instelling" name="executeur-naam-instelling" autocomplete="off">
+                </fieldset>
+
+                <button type="button" id="volgende-vraag-3c" class="hidden">Volgende vraag</button>
+            </fieldset>
+        </fieldset>
+
         <button type="button" id="wis-opgeslagen-gegevens" class="clear-saved-data-btn">Verwijder opgeslagen gegevens</button>
         <input type="submit" value="Submit">
     </form>

@@ -1478,3 +1478,24 @@ input[type="submit"]:hover {
         margin-top: 2pt;
     }
 }
+/* MARK: Secondary button (annuleer) */
+.btn-secondary {
+    background: var(--color-background-sunken);
+    color: var(--color-content-default);
+    border: 1.5px solid var(--color-border-input-default);
+    box-shadow: none;
+}
+
+.btn-secondary:hover {
+    background: var(--color-background-accent-blue-subtle);
+    border-color: var(--color-border-interactive-default);
+    box-shadow: none;
+    transform: none;
+}
+
+/* MARK: Helptekst inline (span inside label) */
+.helptekst-inline {
+    font-weight: var(--typography-weight-normal);
+    font-size: var(--typography-size-s);
+    color: var(--color-content-subtle);
+}
