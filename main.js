@@ -850,6 +850,7 @@ byId("sla-verkrijger-op").addEventListener("click", function () {
     saveVerkrijgers(list);
     clearVerkrijgerForm();
     renderVerkrijgersList();
+    byId("vraag-3b").scrollIntoView({ behavior: "smooth", block: "start" });
 });
 
 byId("annuleer-verkrijger").addEventListener("click", function () {
