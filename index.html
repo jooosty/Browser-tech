@@ -533,7 +533,13 @@
                 <div id="vraag-3b-verkrijger-sectie" class="hidden">
                     <p class="helptekst">Vul 1 verkrijger per keer in. Sla elke verkrijger op voordat u de volgende toevoegt.</p>
 
-                    <div id="verkrijgers-opgeslagen-lijst"></div>
+                    <div id="verkrijgers-opgeslagen-lijst" class="hidden">
+                        <label for="verkrijger-dropdown">Opgeslagen verkrijgers (klik om te bewerken)</label>
+                        <select id="verkrijger-dropdown" name="verkrijger-dropdown">
+                            <option value="">– Selecteer een verkrijger om te bewerken –</option>
+                        </select>
+                        <p id="verkrijger-count" class="helptekst"></p>
+                    </div>
 
                     <fieldset id="verkrijger-formulier" class="question-group">
                         <legend id="verkrijger-formulier-titel">Verkrijger toevoegen</legend>

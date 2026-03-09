@@ -359,7 +359,19 @@ const labelMap = {
     "postcode-buitenland": "Postcode en plaats (buitenland)",
     "landcode-gemachtigde": "Landcode",
     "telefoonnummer-gemachtigde": "Telefoonnummer",
-    "email-gemachtigde": "E-mailadres"
+    "email-gemachtigde": "E-mailadres",
+    "rol-aangever": "Rol aangever",
+    "aantal-verkrijgers": "Aantal verkrijgers",
+    "verkrijgers-geen-aangifte": "Verkrijgers zonder aangifte",
+    "aanslag-sturen": "Aanslag sturen naar",
+    "is-executeur": "Bent u executeur of gemachtigde",
+    "executeur-bsn": "BSN/RSIN executeur",
+    "executeur-protocolnummer": "Protocolnummer executeur",
+    "executeur-beconnummer": "Beconnummer executeur",
+    "executeur-voorletters": "Voorletter(s) executeur",
+    "executeur-tussenvoegsel": "Tussenvoegsel(s) executeur",
+    "executeur-achternaam": "Achternaam executeur",
+    "executeur-naam-instelling": "Naam instelling executeur"
 };
 
 formElement.addEventListener("submit", function(event) {
@@ -634,8 +646,6 @@ byId("bsn-rsin-gemachtigde").addEventListener("blur", function() {
         clearMark("bsn-rsin-gemachtigde");
     } else if (!isValidBsn(val)) {
         markInvalid("bsn-rsin-gemachtigde", "BSN/RSIN moet 8 of 9 cijfers bevatten");
-    } else if (!elfValidBsn(val)) {
-        markInvalid("bsn-rsin-gemachtigde", "BSN/RSIN is niet geldig");
     } else {
         markValid("bsn-rsin-gemachtigde");
     }
@@ -657,5 +667,247 @@ byId("volgende-vraag-2b").addEventListener("click", function() {
         return;
     }
 
+    setHidden("vraag-2", true);
+    setHidden("vraag-3", false);
+});
+
+// ============================================================
+// VRAAG 3
+// ============================================================
+
+// --- Verkrijger storage helpers ---
+const verkrijgersStorageKey = "erfbelasting-verkrijgers";
+
+const getVerkrijgers = () => {
+    try {
+        return JSON.parse(localStorage.getItem(verkrijgersStorageKey) || "[]");
+    } catch { return []; }
+};
+
+const saveVerkrijgers = (list) => {
+    localStorage.setItem(verkrijgersStorageKey, JSON.stringify(list));
+};
+
+const renderVerkrijgersList = () => {
+    const list = getVerkrijgers();
+    const container = byId("verkrijgers-opgeslagen-lijst");
+    const dropdown = byId("verkrijger-dropdown");
+    const countEl = byId("verkrijger-count");
+    if (!container || !dropdown || !countEl) return;
+
+    // Remove all dynamic options (keep the placeholder at index 0)
+    while (dropdown.options.length > 1) {
+        dropdown.remove(1);
+    }
+
+    if (!list.length) {
+        container.hidden = true;
+        return;
+    }
+
+    list.forEach((v, i) => {
+        const label = [v.voorletters, v.tussenvoegsel, v.achternaam].filter(Boolean).join(" ") || v.bsn || "Verkrijger " + (i + 1);
+        const option = document.createElement("option");
+        option.value = i;
+        option.textContent = label;
+        dropdown.appendChild(option);
+    });
+
+    countEl.textContent = list.length + " verkrijger(s) opgeslagen.";
+    dropdown.value = "";
+    container.hidden = false;
+};
+
+const clearVerkrijgerForm = () => {
+    setValue("verkrijger-bsn", "");
+    setValue("verkrijger-voorletters", "");
+    setValue("verkrijger-tussenvoegsel", "");
+    setValue("verkrijger-achternaam", "");
+    clearChecked("verkrijger-heel-vermogen");
+    clearChecked("verkrijger-legitieme");
+    byId("verkrijger-formulier-titel").textContent = "Verkrijger toevoegen";
+    byId("sla-verkrijger-op").textContent = "Voeg verkrijger toe";
+    byId("sla-verkrijger-op").removeAttribute("data-edit-index");
+    setHidden("annuleer-verkrijger", true);
+    const dd = byId("verkrijger-dropdown");
+    if (dd) dd.value = "";
+};
+
+const loadVerkrijgerIntoForm = (index) => {
+    const list = getVerkrijgers();
+    const v = list[index];
+    if (!v) return;
+    setValue("verkrijger-bsn", v.bsn || "");
+    setValue("verkrijger-voorletters", v.voorletters || "");
+    setValue("verkrijger-tussenvoegsel", v.tussenvoegsel || "");
+    setValue("verkrijger-achternaam", v.achternaam || "");
+    const heelVermogenInput = document.querySelector(`input[name="verkrijger-heel-vermogen"][value="${v.heelVermogen}"]`);
+    if (heelVermogenInput) heelVermogenInput.checked = true;
+    const legitiemeInput = document.querySelector(`input[name="verkrijger-legitieme"][value="${v.legitieme}"]`);
+    if (legitiemeInput) legitiemeInput.checked = true;
+    byId("verkrijger-formulier-titel").textContent = "Verkrijger bewerken";
+    byId("sla-verkrijger-op").textContent = "Sla wijzigingen op";
+    byId("sla-verkrijger-op").setAttribute("data-edit-index", index);
+    setHidden("annuleer-verkrijger", false);
+    byId("verkrijger-formulier").scrollIntoView({ behavior: "smooth", block: "start" });
+};
+
+// --- Verkrijger dropdown: load on change ---
+byId("verkrijger-dropdown").addEventListener("change", function () {
+    const idx = this.value;
+    if (idx === "") return;
+    loadVerkrijgerIntoForm(parseInt(idx));
+});
+
+// --- Vraag 3a: rol radio buttons ---
+["rol-executeur", "rol-erfgenaam-gemachtigd", "rol-geen-erfgenaam"].forEach(id => {
+    byId(id).addEventListener("change", function () {
+        setHidden("vraag-3a-aantal", false);
+        setHidden("volgende-vraag-3a", false);
+    });
+});
+
+["rol-erfgenaam-samen", "rol-erfgenaam-zelf"].forEach(id => {
+    byId(id).addEventListener("change", function () {
+        setHidden("vraag-3a-aantal", true);
+        setValue("aantal-verkrijgers", "");
+        setHidden("volgende-vraag-3a", false);
+    });
+});
+
+byId("volgende-vraag-3a").addEventListener("click", function () {
+    const rol = checkedValue("rol-aangever");
+    if (!rol) {
+        showDialog("Selecteer uw rol.");
+        return;
+    }
+    const aantalVereist = ["executeur", "erfgenaam-gemachtigd", "geen-erfgenaam"].includes(rol);
+    if (aantalVereist) {
+        const aantal = valueOf("aantal-verkrijgers").trim();
+        if (!aantal || isNaN(aantal) || parseInt(aantal) < 1) {
+            showDialog("Vul het aantal verkrijgers in.");
+            return;
+        }
+    }
+    setHidden("vraag-3a", true);
+    setHidden("vraag-3b", false);
+});
+
+// --- Vraag 3b: verkrijgers zonder aangifte ---
+byId("geen-aangifte-nee").addEventListener("change", function () {
+    setHidden("vraag-3b-verkrijger-sectie", true);
+    setHidden("volgende-vraag-3b", false);
+});
+
+byId("geen-aangifte-ja").addEventListener("change", function () {
+    setHidden("vraag-3b-verkrijger-sectie", false);
+    renderVerkrijgersList();
+    setHidden("volgende-vraag-3b", false);
+});
+
+// Save / update verkrijger
+byId("sla-verkrijger-op").addEventListener("click", function () {
+    const achternaam = valueOf("verkrijger-achternaam").trim();
+    const bsn = valueOf("verkrijger-bsn").trim();
+    const heelVermogen = checkedValue("verkrijger-heel-vermogen");
+    const legitieme = checkedValue("verkrijger-legitieme");
+
+    if (!achternaam && !bsn) {
+        showDialog("Vul minimaal de achternaam of het BSN/RSIN van de verkrijger in.");
+        return;
+    }
+    if (!heelVermogen) {
+        showDialog("Geef aan of deze verkrijger het hele vermogen krijgt.");
+        return;
+    }
+    if (!legitieme) {
+        showDialog("Geef aan of deze verkrijger een beroep doet op de legitieme portie.");
+        return;
+    }
+
+    const entry = {
+        bsn,
+        voorletters: valueOf("verkrijger-voorletters").trim(),
+        tussenvoegsel: valueOf("verkrijger-tussenvoegsel").trim(),
+        achternaam,
+        heelVermogen,
+        legitieme
+    };
+
+    const list = getVerkrijgers();
+    const editIndex = this.getAttribute("data-edit-index");
+
+    if (editIndex !== null && editIndex !== "") {
+        list[parseInt(editIndex)] = entry;
+    } else {
+        list.push(entry);
+    }
+
+    saveVerkrijgers(list);
+    clearVerkrijgerForm();
+    renderVerkrijgersList();
+});
+
+byId("annuleer-verkrijger").addEventListener("click", function () {
+    clearVerkrijgerForm();
+});
+
+byId("volgende-vraag-3b").addEventListener("click", function () {
+    const geenAangifte = checkedValue("verkrijgers-geen-aangifte");
+    if (!geenAangifte) {
+        showDialog("Beantwoord de vraag over verkrijgers zonder aangifte.");
+        return;
+    }
+    if (geenAangifte === "ja" && getVerkrijgers().length === 0) {
+        showDialog("Voeg minimaal 1 verkrijger toe waarvoor u geen aangifte doet.");
+        return;
+    }
+    setHidden("vraag-3b", true);
+    setHidden("vraag-3c", false);
+});
+
+// --- Vraag 3c: aanslag sturen ---
+byId("aanslag-iedere-verkrijger").addEventListener("change", function () {
+    setHidden("vraag-3d", false);
+    setHidden("volgende-vraag-3c", false);
+});
+
+byId("aanslag-executeur").addEventListener("change", function () {
+    setHidden("vraag-3d", false);
+    setHidden("volgende-vraag-3c", false);
+});
+
+byId("is-executeur-nee").addEventListener("change", function () {
+    setHidden("vraag-3e", true);
+    setHidden("volgende-vraag-3c", false);
+});
+
+byId("is-executeur-ja").addEventListener("change", function () {
+    setHidden("vraag-3e", false);
+    setHidden("volgende-vraag-3c", false);
+});
+
+byId("volgende-vraag-3c").addEventListener("click", function () {
+    const aanslag = checkedValue("aanslag-sturen");
+    if (!aanslag) {
+        showDialog("Geef aan naar wie de aanslag gestuurd moet worden.");
+        return;
+    }
+    const isExecuteur = checkedValue("is-executeur");
+    if (!isExecuteur) {
+        showDialog("Beantwoord vraag 3d: bent u executeur of gemachtigde?");
+        return;
+    }
+    if (isExecuteur === "ja") {
+        const bsn = valueOf("executeur-bsn").trim();
+        const achternaam = valueOf("executeur-achternaam").trim();
+        const instelling = valueOf("executeur-naam-instelling").trim();
+        if (!bsn && !achternaam && !instelling) {
+            showDialog("Vul minimaal het BSN/RSIN of de naam in bij de gegevens van de executeur/gemachtigde.");
+            return;
+        }
+    }
+    setHidden("vraag-3c", true);
+    // For now, submit the form — more sections can follow
     formElement.requestSubmit();
 });
