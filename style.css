@@ -555,9 +555,12 @@ label {
     cursor: pointer;
 }
 
-/* MARK: Text / date inputs */
+/* MARK: Text / date / tel / email inputs + select */
 input[type="text"],
-input[type="date"] {
+input[type="date"],
+input[type="tel"],
+input[type="email"],
+select {
     display: block;
     width: 100%;
     margin-top: calc(var(--spacing-spacer-1) + var(--spacing-spacer-0-5));
@@ -575,18 +578,35 @@ input[type="date"] {
 }
 
 input[type="text"]:hover,
-input[type="date"]:hover {
+input[type="date"]:hover,
+input[type="tel"]:hover,
+input[type="email"]:hover,
+select:hover {
     border-color: var(--color-border-interactive-default);
 }
 
 /* MARK: Focus */
 input[type="text"]:focus,
 input[type="date"]:focus,
+input[type="tel"]:focus,
+input[type="email"]:focus,
+select:focus,
 input[type="file"]:focus {
     outline: none;
     border-color: var(--color-border-focus);
     box-shadow: 0 0 0 3px rgba(0, 114, 206, 0.2);
 }
+
+/* MARK: Select specific tweaks */
+select {
+    cursor: pointer;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%231f2937' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    padding-right: 36px;
+}
+
+
 
 /* MARK: File input */
 input[type="file"] {
@@ -1211,7 +1231,10 @@ input[type="submit"]:hover {
     }
 
     input[type="text"],
-    input[type="date"] {
+    input[type="date"],
+    input[type="tel"],
+    input[type="email"],
+    select {
         border: none !important;
         border-bottom: 1pt dotted #000 !important;
         border-radius: 0 !important;
