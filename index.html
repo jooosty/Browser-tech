@@ -13,26 +13,27 @@
     <h1 class="visually-hidden">Aangifte erfbelasting</h1>
 
     <form>
+        <p class="form-legend">Velden gemarkeerd met <span class="required-marker">*</span> zijn verplicht. Velden met <span class="required-marker">*¹</span> zijn verplicht als groep — vul er minimaal één in.</p>
         <fieldset id="vraag-1" class="form-section-card">
             
             <legend>Gegevens van de overledene</legend>
             <fieldset id="vraag-1a" class="form-step">
                 <legend>Vul hier de gegevens in van de overledene</legend>
-                <label for="voorletters-overledene">Voorletter(s)*</label>
+                <label for="voorletters-overledene" class="label--required">Voorletter(s)</label>
                 <input type="text" id="voorletters-overledene" name="voorletters-overledene" autocomplete="honorific-prefix" required aria-required="true" aria-describedby="help-voorletters">
                 <p class="helptekst" id="help-voorletters">Vul de voorletters in, gescheiden door punten. Bijvoorbeeld: A.B.</p>
 
                 <label for="tussenvoegsels-overledene">Tussenvoegsel(s)</label>
                 <input type="text" id="tussenvoegsels-overledene" name="tussenvoegsels-overledene" autocomplete="off">
 
-                <label for="achternaam-overledene">Achternaam*</label>
+                <label for="achternaam-overledene" class="label--required">Achternaam</label>
                 <input type="text" id="achternaam-overledene" name="achternaam-overledene" autocomplete="family-name" required aria-required="true">
 
-                <label for="bsn-overledene">BSN*</label>
+                <label for="bsn-overledene" class="label--required">BSN</label>
                 <input type="text" id="bsn-overledene" name="bsn-overledene" autocomplete="off" required aria-required="true" inputmode="numeric" maxlength="9" aria-describedby="help-bsn">
                 <p class="helptekst" id="help-bsn">Het BSN (Burgerservicenummer) bestaat uit 8 of 9 cijfers. U vindt het BSN op het paspoort, rijbewijs of identiteitskaart van de overledene.</p>
 
-                <label for="datum-overlijden">Overlijdensdatum*</label>
+                <label for="datum-overlijden" class="label--required">Overlijdensdatum</label>
                 <input type="date" id="datum-overlijden" name="datum-overlijden" required aria-required="true" aria-describedby="help-datum-overlijden">
                 <p class="helptekst" id="help-datum-overlijden">Vul de datum in waarop de overledene is gestorven. Deze datum staat op de overlijdensakte.</p>
 
@@ -82,7 +83,7 @@
 
                 <fieldset id="vraag-1b-4" class="question-group hidden">
                     <legend>Datum huwelijkse of partnerschapsvoorwaarden</legend>
-                    <label for="datum-voorwaarden">Datum</label>
+                    <label for="datum-voorwaarden" class="label--required">Datum</label>
                     <input type="date" id="datum-voorwaarden" name="datum-voorwaarden">
                 </fieldset>
                 <button type="button" id="volgende-vraag-1b" class="hidden">Volgende vraag</button>
@@ -144,9 +145,9 @@
                     <input type="text" id="tussenvoegsels-notaris" name="Tussenvoegsels-notaris" autocomplete="off">
                     <label for="Achternaam-notaris">Achternaam notaris</label>
                     <input type="text" id="achternaam-notaris" name="Achternaam-notaris" autocomplete="off">
-                    <label for="vestigingsplaats">Vestigingsplaats notaris</label>
+                    <label for="vestigingsplaats" class="label--required">Vestigingsplaats notaris</label>
                     <input type="text" id="vestigingsplaats" name="vestigingsplaats" autocomplete="off">
-                    <label for="datum-testament">Datum van het testament of van de laatste wijziging</label>
+                    <label for="datum-testament" class="label--required">Datum van het testament of van de laatste wijziging</label>
                     <input type="date" id="datum-testament" name="datum-testament">
                 </fieldset>
                 <button type="button" id="volgende-vraag-1d" class="hidden">Volgende vraag</button>
@@ -161,14 +162,14 @@
                 <legend>Identificatie gemachtigde</legend>
                 <p class="helptekst">Vul 1 van de 3 in: het bsn of RSIN van de gemachtigde, het beconnummer van de adviseur of het protocolnummer van de notaris.</p>
 
-                <label for="bsn-rsin-gemachtigde">BSN/RSIN gemachtigde</label>
+                <label for="bsn-rsin-gemachtigde" class="label--required-one-of">BSN/RSIN gemachtigde</label>
                 <input type="text" id="bsn-rsin-gemachtigde" name="bsn-rsin-gemachtigde" autocomplete="off" inputmode="numeric" maxlength="9" aria-describedby="help-bsn-rsin">
                 <p class="helptekst" id="help-bsn-rsin">Het BSN bestaat uit 8 of 9 cijfers. Het RSIN (voor instellingen) bestaat uit 9 cijfers.</p>
 
-                <label for="beconnummer-adviseur">Beconnummer adviseur</label>
+                <label for="beconnummer-adviseur" class="label--required-one-of">Beconnummer adviseur</label>
                 <input type="text" id="beconnummer-adviseur" name="beconnummer-adviseur" autocomplete="off" inputmode="numeric">
 
-                <label for="protocolnummer-notaris-2">Protocolnummer notaris</label>
+                <label for="protocolnummer-notaris-2" class="label--required-one-of">Protocolnummer notaris</label>
                 <input type="text" id="protocolnummer-notaris-2" name="protocolnummer-notaris-2" autocomplete="off" aria-describedby="help-protocolnummer-2">
                 <p class="helptekst" id="help-protocolnummer-2">Lees ook de toelichting bij vraag 1d.</p>
 
@@ -185,10 +186,10 @@
                 <label for="tussenvoegsels-gemachtigde">Tussenvoegsel(s)</label>
                 <input type="text" id="tussenvoegsels-gemachtigde" name="tussenvoegsels-gemachtigde" autocomplete="off">
 
-                <label for="achternaam-gemachtigde">Achternaam</label>
+                <label for="achternaam-gemachtigde" class="label--required-one-of">Achternaam</label>
                 <input type="text" id="achternaam-gemachtigde" name="achternaam-gemachtigde" autocomplete="family-name">
 
-                <label for="naam-instelling">Naam instelling <span class="helptekst-inline">(bijvoorbeeld een notariskantoor)</span></label>
+                <label for="naam-instelling" class="label--required-one-of">Naam instelling <span class="helptekst-inline">(bijvoorbeeld een notariskantoor)</span></label>
                 <input type="text" id="naam-instelling" name="naam-instelling" autocomplete="organization">
 
                 <fieldset id="vraag-2b-adres-nl" class="question-group">
@@ -511,7 +512,7 @@
 
                 <fieldset id="vraag-3a-aantal" class="question-group hidden">
                     <legend>Aantal verkrijgers</legend>
-                    <label for="aantal-verkrijgers">Voor hoeveel verkrijgers doet u aangifte? (Tel uzelf ook mee indien van toepassing)</label>
+                    <label for="aantal-verkrijgers" class="label--required">Voor hoeveel verkrijgers doet u aangifte? (Tel uzelf ook mee indien van toepassing)</label>
                     <input type="text" id="aantal-verkrijgers" name="aantal-verkrijgers" autocomplete="off" inputmode="numeric" maxlength="4">
                 </fieldset>
 
@@ -547,7 +548,7 @@
                     <fieldset id="verkrijger-formulier" class="question-group">
                         <legend id="verkrijger-formulier-titel">Verkrijger toevoegen</legend>
 
-                        <label for="verkrijger-bsn">BSN/RSIN</label>
+                        <label for="verkrijger-bsn" class="label--required-one-of">BSN/RSIN</label>
                         <input type="text" id="verkrijger-bsn" name="verkrijger-bsn" autocomplete="off" inputmode="numeric" maxlength="9">
 
                         <label for="verkrijger-voorletters">Voorletter(s)</label>
@@ -556,7 +557,7 @@
                         <label for="verkrijger-tussenvoegsel">Tussenvoegsel(s)</label>
                         <input type="text" id="verkrijger-tussenvoegsel" name="verkrijger-tussenvoegsel" autocomplete="off">
 
-                        <label for="verkrijger-achternaam">Achternaam <span class="helptekst-inline">(of naam instelling)</span></label>
+                        <label for="verkrijger-achternaam" class="label--required-one-of">Achternaam <span class="helptekst-inline">(of naam instelling)</span></label>
                         <input type="text" id="verkrijger-achternaam" name="verkrijger-achternaam" autocomplete="off">
 
                         <fieldset class="question-group question-group--top-spacing">
@@ -623,7 +624,7 @@
                 <fieldset id="vraag-3e" class="question-group hidden">
                     <legend>Gegevens van de executeur of gemachtigde</legend>
 
-                    <label for="executeur-bsn">BSN/RSIN</label>
+                    <label for="executeur-bsn" class="label--required-one-of">BSN/RSIN</label>
                     <input type="text" id="executeur-bsn" name="executeur-bsn" autocomplete="off" inputmode="numeric" maxlength="9">
 
                     <label for="executeur-protocolnummer">Protocolnummer <span class="helptekst-inline">(als de executeur ook notaris is)</span></label>
@@ -638,10 +639,10 @@
                     <label for="executeur-tussenvoegsel">Tussenvoegsel(s)</label>
                     <input type="text" id="executeur-tussenvoegsel" name="executeur-tussenvoegsel" autocomplete="off">
 
-                    <label for="executeur-achternaam">Achternaam</label>
+                    <label for="executeur-achternaam" class="label--required-one-of">Achternaam</label>
                     <input type="text" id="executeur-achternaam" name="executeur-achternaam" autocomplete="off">
 
-                    <label for="executeur-naam-instelling">Naam instelling <span class="helptekst-inline">(bijvoorbeeld een notariskantoor)</span></label>
+                    <label for="executeur-naam-instelling" class="label--required-one-of">Naam instelling <span class="helptekst-inline">(bijvoorbeeld een notariskantoor)</span></label>
                     <input type="text" id="executeur-naam-instelling" name="executeur-naam-instelling" autocomplete="off">
                 </fieldset>
 

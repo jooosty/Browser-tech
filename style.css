@@ -1516,3 +1516,29 @@ input[type="submit"]:hover {
     flex-wrap: wrap;
     margin-top: var(--spacing-spacer-5);
 }
+
+/* MARK: Required field labels */
+.label--required::after {
+    content: " *";
+    color: var(--color-content-error);
+    font-weight: var(--typography-weight-bold);
+}
+
+.label--required-one-of::after {
+    content: " *¹";
+    color: var(--color-content-error);
+    font-weight: var(--typography-weight-bold);
+}
+
+/* MARK: Form legend */
+.form-legend {
+    max-width: 680px;
+    margin: 0 auto var(--spacing-spacer-4);
+    font-size: var(--typography-size-s);
+    color: var(--color-content-subtle);
+}
+
+.required-marker {
+    color: var(--color-content-error);
+    font-weight: var(--typography-weight-bold);
+}
