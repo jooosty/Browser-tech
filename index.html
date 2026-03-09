@@ -151,8 +151,328 @@
         </fieldset>
 
         <fieldset id="vraag-2" class="form-section-card hidden">
-            <legend>Vragen over de aanvrager</legend>
-            <!-- Vragen over de aanvrager komen hier -->
+            <legend>Gegevens gemachtigde</legend>
+            <p class="helptekst">Vul de gegevens in van de gemachtigde. De gemachtigde is degene die namens 1 of meerdere personen en/of instellingen aangifte doet. Het invullen van een telefoonnummer of e-mailadres is niet verplicht, maar wel handig. Dan kunnen wij u makkelijker vragen stellen of uitleg geven.</p>
+
+            <fieldset id="vraag-2a" class="form-step">
+                <legend>2a – Identificatie gemachtigde</legend>
+                <p class="helptekst">Vul 1 van de 3 in: het bsn of RSIN van de gemachtigde, het beconnummer van de adviseur of het protocolnummer van de notaris.</p>
+
+                <label for="bsn-rsin-gemachtigde">BSN/RSIN gemachtigde</label>
+                <input type="text" id="bsn-rsin-gemachtigde" name="bsn-rsin-gemachtigde" autocomplete="off" inputmode="numeric" maxlength="9" aria-describedby="help-bsn-rsin">
+                <p class="helptekst" id="help-bsn-rsin">Het BSN bestaat uit 8 of 9 cijfers. Het RSIN (voor instellingen) bestaat uit 9 cijfers.</p>
+
+                <label for="beconnummer-adviseur">Beconnummer adviseur</label>
+                <input type="text" id="beconnummer-adviseur" name="beconnummer-adviseur" autocomplete="off" inputmode="numeric">
+
+                <label for="protocolnummer-notaris-2">Protocolnummer notaris</label>
+                <input type="text" id="protocolnummer-notaris-2" name="protocolnummer-notaris-2" autocomplete="off" aria-describedby="help-protocolnummer-2">
+                <p class="helptekst" id="help-protocolnummer-2">Lees ook de toelichting bij vraag 1d.</p>
+
+                <button type="button" id="volgende-vraag-2a">Volgende vraag</button>
+            </fieldset>
+
+            <fieldset id="vraag-2b" class="form-step form-step--with-divider hidden">
+                <legend>2b – Persoonsgegevens gemachtigde</legend>
+
+                <label for="voorletters-gemachtigde">Voorletter(s)</label>
+                <input type="text" id="voorletters-gemachtigde" name="voorletters-gemachtigde" autocomplete="off" aria-describedby="help-voorletters-gemachtigde">
+                <p class="helptekst" id="help-voorletters-gemachtigde">Vul de voorletters in, gescheiden door punten. Bijvoorbeeld: A.B.</p>
+
+                <label for="tussenvoegsels-gemachtigde">Tussenvoegsel(s)</label>
+                <input type="text" id="tussenvoegsels-gemachtigde" name="tussenvoegsels-gemachtigde" autocomplete="off">
+
+                <label for="achternaam-gemachtigde">Achternaam</label>
+                <input type="text" id="achternaam-gemachtigde" name="achternaam-gemachtigde" autocomplete="off">
+
+                <label for="naam-instelling">Naam instelling <span class="helptekst-inline">(bijvoorbeeld een notariskantoor)</span></label>
+                <input type="text" id="naam-instelling" name="naam-instelling" autocomplete="off">
+
+                <fieldset id="vraag-2b-adres-nl" class="question-group">
+                    <legend>Adres in Nederland</legend>
+                    <label for="straat-huisnummer-gemachtigde">Straat, huisnummer en toevoeging</label>
+                    <input type="text" id="straat-huisnummer-gemachtigde" name="straat-huisnummer-gemachtigde" autocomplete="off">
+
+                    <label for="postcode-gemachtigde">Postcode</label>
+                    <input type="text" id="postcode-gemachtigde" name="postcode-gemachtigde" autocomplete="off" maxlength="7" aria-describedby="help-postcode-gemachtigde">
+                    <p class="helptekst" id="help-postcode-gemachtigde">Vul de postcode in, bijvoorbeeld: 1234 AB</p>
+
+                    <label for="woonplaats-gemachtigde">Woonplaats</label>
+                    <input type="text" id="woonplaats-gemachtigde" name="woonplaats-gemachtigde" autocomplete="off">
+                </fieldset>
+
+                <fieldset id="vraag-2b-adres-buitenland" class="question-group">
+                    <legend>Adres in het buitenland</legend>
+                    <label for="straat-huisnummer-buitenland">Straat en huisnummer</label>
+                    <input type="text" id="straat-huisnummer-buitenland" name="straat-huisnummer-buitenland" autocomplete="off">
+
+                    <label for="postcode-buitenland">Postcode en plaats</label>
+                    <input type="text" id="postcode-buitenland" name="postcode-buitenland" autocomplete="off">
+
+                    <label for="landcode-gemachtigde">Land</label>
+                    <select id="landcode-gemachtigde" name="landcode-gemachtigde" aria-describedby="help-landcode">
+                        <option value="">– Selecteer een land –</option>
+                        <option value="AFG">Afghanistan (AFG)</option>
+                        <option value="ALB">Albanië (ALB)</option>
+                        <option value="DZA">Algerije (DZA)</option>
+                        <option value="ASM">Amerikaans-Samoa (ASM)</option>
+                        <option value="VIR">Amerikaanse Maagdeneilanden (VIR)</option>
+                        <option value="AND">Andorra (AND)</option>
+                        <option value="AGO">Angola (AGO)</option>
+                        <option value="AIA">Anguilla (AIA)</option>
+                        <option value="ATA">Antarctica (ATA)</option>
+                        <option value="ATG">Antigua en Barbuda (ATG)</option>
+                        <option value="ARG">Argentinië (ARG)</option>
+                        <option value="ARM">Armenië (ARM)</option>
+                        <option value="ABW">Aruba (ABW)</option>
+                        <option value="AUS">Australië (AUS)</option>
+                        <option value="AZE">Azerbeidzjan (AZE)</option>
+                        <option value="BHS">Bahama's (BHS)</option>
+                        <option value="BHR">Bahrein (BHR)</option>
+                        <option value="BGD">Bangladesh (BGD)</option>
+                        <option value="BRB">Barbados (BRB)</option>
+                        <option value="BLR">Belarus (Wit-Rusland) (BLR)</option>
+                        <option value="BEL">België (BEL)</option>
+                        <option value="BLZ">Belize (BLZ)</option>
+                        <option value="BEN">Benin (BEN)</option>
+                        <option value="BMU">Bermuda (BMU)</option>
+                        <option value="BTN">Bhutan (BTN)</option>
+                        <option value="BOL">Bolivia (BOL)</option>
+                        <option value="BES">Bonaire, St. Eustatius en Saba (BES)</option>
+                        <option value="BIH">Bosnië en Herzegovina (BIH)</option>
+                        <option value="BWA">Botswana (BWA)</option>
+                        <option value="BVT">Bouveteiland (BVT)</option>
+                        <option value="BRA">Brazilië (BRA)</option>
+                        <option value="IOT">Brits Indische Oceaanterritorium (IOT)</option>
+                        <option value="VGB">Britse Maagdeneilanden (VGB)</option>
+                        <option value="BRN">Brunei (BRN)</option>
+                        <option value="BGR">Bulgarije (BGR)</option>
+                        <option value="BFA">Burkina Faso (BFA)</option>
+                        <option value="BDI">Burundi (BDI)</option>
+                        <option value="KHM">Cambodja (KHM)</option>
+                        <option value="CAN">Canada (CAN)</option>
+                        <option value="CAF">Centraal-Afrikaanse Republiek (CAF)</option>
+                        <option value="CHL">Chili (CHL)</option>
+                        <option value="CHN">China (CHN)</option>
+                        <option value="CXR">Christmaseiland (CXR)</option>
+                        <option value="CCK">Cocoseilanden (CCK)</option>
+                        <option value="COL">Colombia (COL)</option>
+                        <option value="COM">Comoren (COM)</option>
+                        <option value="COG">Congo-Brazzaville (COG)</option>
+                        <option value="COD">Congo-Kinshasa (COD)</option>
+                        <option value="COK">Cookeilanden (COK)</option>
+                        <option value="CRI">Costa Rica (CRI)</option>
+                        <option value="CUB">Cuba (CUB)</option>
+                        <option value="CUW">Curaçao (CUW)</option>
+                        <option value="CYP">Cyprus (CYP)</option>
+                        <option value="DNK">Denemarken (DNK)</option>
+                        <option value="DJI">Djibouti (DJI)</option>
+                        <option value="DMA">Dominica (DMA)</option>
+                        <option value="DOM">Dominicaanse Republiek (DOM)</option>
+                        <option value="DEU">Duitsland (DEU)</option>
+                        <option value="ECU">Ecuador (ECU)</option>
+                        <option value="EGY">Egypte (EGY)</option>
+                        <option value="SLV">El Salvador (SLV)</option>
+                        <option value="GNQ">Equatoriaal-Guinea (GNQ)</option>
+                        <option value="ERI">Eritrea (ERI)</option>
+                        <option value="EST">Estland (EST)</option>
+                        <option value="ETH">Ethiopië (ETH)</option>
+                        <option value="FRO">Faeröer (FRO)</option>
+                        <option value="FLK">Falklandeilanden (FLK)</option>
+                        <option value="FJI">Fiji (FJI)</option>
+                        <option value="PHL">Filipijnen (PHL)</option>
+                        <option value="FIN">Finland (FIN)</option>
+                        <option value="FRA">Frankrijk (FRA)</option>
+                        <option value="GUF">Frans-Guyana (GUF)</option>
+                        <option value="PYF">Frans-Polynesië (PYF)</option>
+                        <option value="ATF">Franse Zuidelijke en Antarctische Gebieden (ATF)</option>
+                        <option value="GAB">Gabon (GAB)</option>
+                        <option value="GMB">Gambia (GMB)</option>
+                        <option value="GEO">Georgië (GEO)</option>
+                        <option value="GHA">Ghana (GHA)</option>
+                        <option value="GIB">Gibraltar (GIB)</option>
+                        <option value="GRD">Grenada (GRD)</option>
+                        <option value="GRC">Griekenland (GRC)</option>
+                        <option value="GRL">Groenland (GRL)</option>
+                        <option value="GLP">Guadeloupe (GLP)</option>
+                        <option value="GUM">Guam (GUM)</option>
+                        <option value="GTM">Guatemala (GTM)</option>
+                        <option value="GGY">Guernsey (GGY)</option>
+                        <option value="GIN">Guinee (GIN)</option>
+                        <option value="GNB">Guinee-Bissau (GNB)</option>
+                        <option value="GUY">Guyana (GUY)</option>
+                        <option value="HTI">Haïti (HTI)</option>
+                        <option value="HMD">Heard en McDonaldeilanden (HMD)</option>
+                        <option value="HND">Honduras (HND)</option>
+                        <option value="HUN">Hongarije (HUN)</option>
+                        <option value="HKG">Hongkong (HKG)</option>
+                        <option value="ISL">IJsland (ISL)</option>
+                        <option value="IRL">Ierland (IRL)</option>
+                        <option value="IND">India (IND)</option>
+                        <option value="IDN">Indonesië (IDN)</option>
+                        <option value="IRQ">Irak (IRQ)</option>
+                        <option value="IRN">Iran (IRN)</option>
+                        <option value="ISR">Israël (ISR)</option>
+                        <option value="ITA">Italië (ITA)</option>
+                        <option value="CIV">Ivoorkust (CIV)</option>
+                        <option value="JAM">Jamaica (JAM)</option>
+                        <option value="JPN">Japan (JPN)</option>
+                        <option value="YEM">Jemen (YEM)</option>
+                        <option value="JEY">Jersey (JEY)</option>
+                        <option value="JOR">Jordanië (JOR)</option>
+                        <option value="CYM">Kaaimaneilanden (CYM)</option>
+                        <option value="CPV">Kaapverdië (CPV)</option>
+                        <option value="CMR">Kameroen (CMR)</option>
+                        <option value="KAZ">Kazachstan (KAZ)</option>
+                        <option value="KEN">Kenia (KEN)</option>
+                        <option value="KGZ">Kirgizië (KGZ)</option>
+                        <option value="KIR">Kiribati (KIR)</option>
+                        <option value="UMI">Kleine Pacifische eilanden van de Verenigde Staten (UMI)</option>
+                        <option value="KWT">Koeweit (KWT)</option>
+                        <option value="HRV">Kroatië (HRV)</option>
+                        <option value="LAO">Laos (LAO)</option>
+                        <option value="LSO">Lesotho (LSO)</option>
+                        <option value="LVA">Letland (LVA)</option>
+                        <option value="LBN">Libanon (LBN)</option>
+                        <option value="LBR">Liberia (LBR)</option>
+                        <option value="LBY">Libië (LBY)</option>
+                        <option value="LIE">Liechtenstein (LIE)</option>
+                        <option value="LTU">Litouwen (LTU)</option>
+                        <option value="LUX">Luxemburg (LUX)</option>
+                        <option value="MAC">Macau (MAC)</option>
+                        <option value="MDG">Madagaskar (MDG)</option>
+                        <option value="MWI">Malawi (MWI)</option>
+                        <option value="MDV">Maldiven (MDV)</option>
+                        <option value="MYS">Maleisië (MYS)</option>
+                        <option value="MLI">Mali (MLI)</option>
+                        <option value="MLT">Malta (MLT)</option>
+                        <option value="IMN">Man (IMN)</option>
+                        <option value="MAR">Marokko (MAR)</option>
+                        <option value="MHL">Marshalleilanden (MHL)</option>
+                        <option value="MTQ">Martinique (MTQ)</option>
+                        <option value="MRT">Mauritanië (MRT)</option>
+                        <option value="MUS">Mauritius (MUS)</option>
+                        <option value="MYT">Mayotte (MYT)</option>
+                        <option value="MEX">Mexico (MEX)</option>
+                        <option value="FSM">Micronesia (FSM)</option>
+                        <option value="MDA">Moldavië (MDA)</option>
+                        <option value="MCO">Monaco (MCO)</option>
+                        <option value="MNG">Mongolië (MNG)</option>
+                        <option value="MNE">Montenegro (MNE)</option>
+                        <option value="MSR">Montserrat (MSR)</option>
+                        <option value="MOZ">Mozambique (MOZ)</option>
+                        <option value="MMR">Myanmar (MMR)</option>
+                        <option value="NAM">Namibië (NAM)</option>
+                        <option value="NRU">Nauru (NRU)</option>
+                        <option value="NLD">Nederland (NLD)</option>
+                        <option value="NPL">Nepal (NPL)</option>
+                        <option value="NIC">Nicaragua (NIC)</option>
+                        <option value="NCL">Nieuw-Caledonië (NCL)</option>
+                        <option value="NZL">Nieuw-Zeeland (NZL)</option>
+                        <option value="NER">Niger (NER)</option>
+                        <option value="NGA">Nigeria (NGA)</option>
+                        <option value="NIU">Niue (NIU)</option>
+                        <option value="PRK">Noord-Korea (PRK)</option>
+                        <option value="MKD">Noord-Macedonië (MKD)</option>
+                        <option value="MNP">Noordelijke Marianen (MNP)</option>
+                        <option value="NOR">Noorwegen (NOR)</option>
+                        <option value="NFK">Norfolk (NFK)</option>
+                        <option value="UGA">Oeganda (UGA)</option>
+                        <option value="UKR">Oekraïne (UKR)</option>
+                        <option value="UZB">Oezbekistan (UZB)</option>
+                        <option value="OMN">Oman (OMN)</option>
+                        <option value="TLS">Oost-Timor (TLS)</option>
+                        <option value="AUT">Oostenrijk (AUT)</option>
+                        <option value="PAK">Pakistan (PAK)</option>
+                        <option value="PLW">Palau (PLW)</option>
+                        <option value="PSE">Palestina (PSE)</option>
+                        <option value="PAN">Panama (PAN)</option>
+                        <option value="PNG">Papoea-Nieuw-Guinea (PNG)</option>
+                        <option value="PRY">Paraguay (PRY)</option>
+                        <option value="PER">Peru (PER)</option>
+                        <option value="PCN">Pitcairneilanden (PCN)</option>
+                        <option value="POL">Polen (POL)</option>
+                        <option value="PRT">Portugal (PRT)</option>
+                        <option value="PRI">Puerto Rico (PRI)</option>
+                        <option value="QAT">Qatar (QAT)</option>
+                        <option value="REU">Réunion (REU)</option>
+                        <option value="ROU">Roemenië (ROU)</option>
+                        <option value="RUS">Rusland (RUS)</option>
+                        <option value="RWA">Rwanda (RWA)</option>
+                        <option value="KNA">Saint Kitts en Nevis (KNA)</option>
+                        <option value="LCA">Saint Lucia (LCA)</option>
+                        <option value="VCT">Saint Vincent en de Grenadines (VCT)</option>
+                        <option value="BLM">Saint-Barthélemy (BLM)</option>
+                        <option value="SPM">Saint-Pierre en Miquelon (SPM)</option>
+                        <option value="SLB">Salomonseilanden (SLB)</option>
+                        <option value="WSM">Samoa (WSM)</option>
+                        <option value="SMR">San Marino (SMR)</option>
+                        <option value="STP">Sao Tomé en Principe (STP)</option>
+                        <option value="SAU">Saoedi-Arabië (SAU)</option>
+                        <option value="SEN">Senegal (SEN)</option>
+                        <option value="SRB">Servië (SRB)</option>
+                        <option value="SYC">Seychellen (SYC)</option>
+                        <option value="SLE">Sierra Leone (SLE)</option>
+                        <option value="SGP">Singapore (SGP)</option>
+                        <option value="SXM">Sint Maarten (SXM)</option>
+                        <option value="SHN">Sint-Helena, Ascension en Tristan da Cunha (SHN)</option>
+                        <option value="MAF">Sint-Maarten (MAF)</option>
+                        <option value="SVN">Slovenië (SVN)</option>
+                        <option value="SVK">Slowakije (SVK)</option>
+                        <option value="SDN">Soedan (SDN)</option>
+                        <option value="SOM">Somalië (SOM)</option>
+                        <option value="ESP">Spanje (ESP)</option>
+                        <option value="SJM">Spitsbergen en Jan Mayen (SJM)</option>
+                        <option value="LKA">Sri Lanka (LKA)</option>
+                        <option value="SUR">Suriname (SUR)</option>
+                        <option value="SWZ">Swaziland (SWZ)</option>
+                        <option value="SYR">Syrië (SYR)</option>
+                        <option value="TJK">Tadzjikistan (TJK)</option>
+                        <option value="TWN">Taiwan (TWN)</option>
+                        <option value="TZA">Tanzania (TZA)</option>
+                        <option value="THA">Thailand (THA)</option>
+                        <option value="TGO">Togo (TGO)</option>
+                        <option value="TKL">Tokelau (TKL)</option>
+                        <option value="TON">Tonga (TON)</option>
+                        <option value="TTO">Trinidad en Tobago (TTO)</option>
+                        <option value="TCD">Tsjaad (TCD)</option>
+                        <option value="CZE">Tsjechië (CZE)</option>
+                        <option value="TUN">Tunesië (TUN)</option>
+                        <option value="TUR">Turkije (TUR)</option>
+                        <option value="TKM">Turkmenistan (TKM)</option>
+                        <option value="TCA">Turks- en Caicoseilanden (TCA)</option>
+                        <option value="TUV">Tuvalu (TUV)</option>
+                        <option value="URY">Uruguay (URY)</option>
+                        <option value="VUT">Vanuatu (VUT)</option>
+                        <option value="VAT">Vaticaanstad (VAT)</option>
+                        <option value="VEN">Venezuela (VEN)</option>
+                        <option value="GBR">Verenigd Koninkrijk (GBR)</option>
+                        <option value="ARE">Verenigde Arabische Emiraten (ARE)</option>
+                        <option value="USA">Verenigde Staten (USA)</option>
+                        <option value="VNM">Vietnam (VNM)</option>
+                        <option value="WLF">Wallis en Futuna (WLF)</option>
+                        <option value="ESH">Westelijke Sahara (ESH)</option>
+                        <option value="ZMB">Zambia (ZMB)</option>
+                        <option value="ZWE">Zimbabwe (ZWE)</option>
+                        <option value="ZAF">Zuid-Afrika (ZAF)</option>
+                        <option value="SGS">Zuid-Georgia en de Zuidelijke Sandwicheilanden (SGS)</option>
+                        <option value="KOR">Zuid-Korea (KOR)</option>
+                        <option value="SSD">Zuid-Soedan (SSD)</option>
+                        <option value="SWE">Zweden (SWE)</option>
+                        <option value="CHE">Zwitserland (CHE)</option>
+                        <option value="ALA">Åland (ALA)</option>
+                    </select>
+                    <p class="helptekst" id="help-landcode">Selecteer het land van het buitenlandse adres. De 3-letterige landcode wordt automatisch opgeslagen.</p>
+                </fieldset>
+
+                <label for="telefoonnummer-gemachtigde">Telefoonnummer</label>
+                <input type="tel" id="telefoonnummer-gemachtigde" name="telefoonnummer-gemachtigde" autocomplete="off" inputmode="tel">
+
+                <label for="email-gemachtigde">E-mailadres</label>
+                <input type="email" id="email-gemachtigde" name="email-gemachtigde" autocomplete="off">
+
+                <button type="button" id="volgende-vraag-2b">Volgende vraag</button>
+            </fieldset>
         </fieldset>
         <button type="button" id="wis-opgeslagen-gegevens" class="clear-saved-data-btn">Verwijder opgeslagen gegevens</button>
         <input type="submit" value="Submit">
