@@ -91,3 +91,20 @@
 - Make my javascript more css
 
 
+## 9 march 2026
+
+### Things i did today
+- Added question 2/3
+- Added validation for question 2/3
+- Made the form more user friendly.
+
+### time it took
+- 1,5 hour
+- 2,5 hours
+- 1 hour
+
+### What i learned
+- Better understanding of how to use JavaScript to validate form inputs and provide feedback to the user
+
+### What I want to do next
+- Add more questions to the form.
