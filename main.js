@@ -180,8 +180,8 @@ const getFeedback = (el) => {
     let next = el.nextElementSibling;
     while (next) {
         if (next.classList.contains("inline-feedback")) return next;
-        // stop looking if we hit another input or label (belongs to a different field)
-        if (next.tagName === "INPUT" || next.tagName === "LABEL") break;
+        // stop looking if we hit another field or label (belongs to a different field)
+        if (["INPUT", "LABEL", "SELECT", "TEXTAREA", "FIELDSET", "BUTTON"].includes(next.tagName)) break;
         next = next.nextElementSibling;
     }
     // None found — create one right after this input
@@ -923,9 +923,9 @@ byId("volgende-vraag-3c").addEventListener("click", function () {
 const visibleParent = (id) => {
     const el = byId(id);
     if (!el) return false;
-    let node = el.parentElement;
-    while (node && node !== document.body) {
-        if (node.hidden) return false;
+    let node = el;
+    while (node && node !== document.documentElement) {
+        if (node.hidden || node.style.display === "none") return false;
         node = node.parentElement;
     }
     return true;
@@ -944,35 +944,56 @@ byId("beconnummer-adviseur").addEventListener("blur", function () {
 
 byId("protocolnummer-notaris-2").addEventListener("blur", function () {
     if (!visibleParent("protocolnummer-notaris-2")) return;
-    clearMark("protocolnummer-notaris-2");
+    if (this.value.trim()) {
+        markValid("protocolnummer-notaris-2");
+    } else {
+        clearMark("protocolnummer-notaris-2");
+    }
 });
 
 // Vraag 2b - blur
 byId("voorletters-gemachtigde").addEventListener("blur", function () {
     if (!visibleParent("voorletters-gemachtigde")) return;
-    clearMark("voorletters-gemachtigde");
+    if (this.value.trim()) {
+        markValid("voorletters-gemachtigde");
+    } else {
+        clearMark("voorletters-gemachtigde");
+    }
+});
+
+byId("tussenvoegsels-gemachtigde").addEventListener("blur", function () {
+    if (!visibleParent("tussenvoegsels-gemachtigde")) return;
+    if (this.value.trim()) {
+        markValid("tussenvoegsels-gemachtigde");
+    } else {
+        clearMark("tussenvoegsels-gemachtigde");
+    }
 });
 
 byId("achternaam-gemachtigde").addEventListener("blur", function () {
     if (!visibleParent("achternaam-gemachtigde")) return;
-    const achternaam = this.value.trim();
-    const instelling = valueOf("naam-instelling").trim();
-    if (!achternaam && !instelling) {
-        markInvalid("achternaam-gemachtigde", "Vul de achternaam of de naam van de instelling in");
-    } else {
+    if (this.value.trim()) {
         markValid("achternaam-gemachtigde");
+    } else {
+        clearMark("achternaam-gemachtigde");
     }
 });
 
 byId("naam-instelling").addEventListener("blur", function () {
     if (!visibleParent("naam-instelling")) return;
-    const achternaam = valueOf("achternaam-gemachtigde").trim();
-    const instelling = this.value.trim();
-    if (!achternaam && !instelling) {
-        markInvalid("naam-instelling", "Vul de naam van de instelling of de achternaam in");
+    if (this.value.trim()) {
+        markValid("naam-instelling");
     } else {
         clearMark("naam-instelling");
-        clearMark("achternaam-gemachtigde");
+    }
+});
+
+byId("straat-huisnummer-gemachtigde").addEventListener("blur", function () {
+    if (!visibleParent("straat-huisnummer-gemachtigde")) return;
+    if (this.value.trim()) {
+        markValid("straat-huisnummer-gemachtigde");
+    } else {
+        clearMark("straat-huisnummer-gemachtigde");
     }
 });
 
@@ -985,6 +1006,33 @@ byId("postcode-gemachtigde").addEventListener("blur", function () {
         markValid("postcode-gemachtigde");
     } else {
         clearMark("postcode-gemachtigde");
+    }
+});
+
+byId("woonplaats-gemachtigde").addEventListener("blur", function () {
+    if (!visibleParent("woonplaats-gemachtigde")) return;
+    if (this.value.trim()) {
+        markValid("woonplaats-gemachtigde");
+    } else {
+        clearMark("woonplaats-gemachtigde");
+    }
+});
+
+byId("straat-huisnummer-buitenland").addEventListener("blur", function () {
+    if (!visibleParent("straat-huisnummer-buitenland")) return;
+    if (this.value.trim()) {
+        markValid("straat-huisnummer-buitenland");
+    } else {
+        clearMark("straat-huisnummer-buitenland");
+    }
+});
+
+byId("postcode-buitenland").addEventListener("blur", function () {
+    if (!visibleParent("postcode-buitenland")) return;
+    if (this.value.trim()) {
+        markValid("postcode-buitenland");
+    } else {
+        clearMark("postcode-buitenland");
     }
 });
 
@@ -1037,6 +1085,22 @@ byId("verkrijger-bsn").addEventListener("blur", function () {
     }
 });
 
+byId("verkrijger-voorletters").addEventListener("blur", function () {
+    if (this.value.trim()) {
+        markValid("verkrijger-voorletters");
+    } else {
+        clearMark("verkrijger-voorletters");
+    }
+});
+
+byId("verkrijger-tussenvoegsel").addEventListener("blur", function () {
+    if (this.value.trim()) {
+        markValid("verkrijger-tussenvoegsel");
+    } else {
+        clearMark("verkrijger-tussenvoegsel");
+    }
+});
+
 byId("verkrijger-achternaam").addEventListener("blur", function () {
     const achternaam = this.value.trim();
     const bsn = valueOf("verkrijger-bsn").trim();
@@ -1062,6 +1126,24 @@ byId("executeur-bsn").addEventListener("blur", function () {
     }
 });
 
+byId("executeur-voorletters").addEventListener("blur", function () {
+    if (!visibleParent("executeur-voorletters")) return;
+    if (this.value.trim()) {
+        markValid("executeur-voorletters");
+    } else {
+        clearMark("executeur-voorletters");
+    }
+});
+
+byId("executeur-tussenvoegsel").addEventListener("blur", function () {
+    if (!visibleParent("executeur-tussenvoegsel")) return;
+    if (this.value.trim()) {
+        markValid("executeur-tussenvoegsel");
+    } else {
+        clearMark("executeur-tussenvoegsel");
+    }
+});
+
 byId("executeur-achternaam").addEventListener("blur", function () {
     if (!visibleParent("executeur-achternaam")) return;
     const achternaam = this.value.trim();
@@ -1078,6 +1160,31 @@ byId("executeur-achternaam").addEventListener("blur", function () {
 
 byId("executeur-naam-instelling").addEventListener("blur", function () {
     if (!visibleParent("executeur-naam-instelling")) return;
-    clearMark("executeur-naam-instelling");
+    if (this.value.trim()) {
+        markValid("executeur-naam-instelling");
+    } else {
+        clearMark("executeur-naam-instelling");
+    }
     if (valueOf("executeur-achternaam").trim()) clearMark("executeur-achternaam");
+});
+
+byId("executeur-protocolnummer").addEventListener("blur", function () {
+    if (!visibleParent("executeur-protocolnummer")) return;
+    if (this.value.trim()) {
+        markValid("executeur-protocolnummer");
+    } else {
+        clearMark("executeur-protocolnummer");
+    }
+});
+
+byId("executeur-beconnummer").addEventListener("blur", function () {
+    if (!visibleParent("executeur-beconnummer")) return;
+    const val = this.value.trim();
+    if (val && !/^\d+$/.test(val)) {
+        markInvalid("executeur-beconnummer", "Beconnummer mag alleen cijfers bevatten");
+    } else if (val) {
+        markValid("executeur-beconnummer");
+    } else {
+        clearMark("executeur-beconnummer");
+    }
 });
