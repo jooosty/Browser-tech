@@ -1,7 +1,4 @@
-/* ============================================================
-Primitive Color Scale
-These are the raw color values that semantic tokens reference.
-============================================================ */
+/* MARK: Primitive color scale */
 
 :root {
     /* --- Gray --- */
@@ -60,24 +57,10 @@ These are the raw color values that semantic tokens reference.
 }
 
 
-/* ============================================================
-Design System Tokens
-Sections:
-1. Typography
-2. Border
-3. Elevation
-4. Spacing
-5. Layout
-6. Color — Content
-7. Color — Background
-8. Color — Border
-9. Color — Chart
-============================================================ */
+/* MARK: Design system tokens */
 
 
-/* ============================================================
-1. TYPOGRAPHY
-============================================================ */
+/* MARK: Typography */
 
 :root {
     /* --- Size: Fluid --- */
@@ -103,9 +86,7 @@ Sections:
 }
 
 
-/* ============================================================
-2. BORDER
-============================================================ */
+/* MARK: Border */
 
 :root {
     /* --- Stroke Width --- */
@@ -122,9 +103,7 @@ Sections:
 }
 
 
-/* ============================================================
-3. ELEVATION
-============================================================ */
+/* MARK: Elevation */
 
 :root {
     /* --- Web Shadows --- */
@@ -138,9 +117,7 @@ Sections:
 }
 
 
-/* ============================================================
-4. SPACING
-============================================================ */
+/* MARK: Spacing */
 
 :root {
     /* --- Scale (4px base unit) --- */
@@ -157,7 +134,7 @@ Sections:
     --spacing-inset-l: var(--spacing-spacer-6); /* 24px */
 }
 
-/* Inset-l collapses at breakpoint m and below */
+/* MARK: Inset-l responsive collapse */
 @media (max-width: 1023px) {
     :root {
         --spacing-inset-l: var(--spacing-spacer-4); /* 24px → 16px */
@@ -165,9 +142,7 @@ Sections:
 }
 
 
-/* ============================================================
-5. LAYOUT
-============================================================ */
+/* MARK: Layout */
 
 :root {
     /* --- Breakpoints (for reference) ---
@@ -185,7 +160,7 @@ Sections:
     --layout-max-width: 1200px;
 }
 
-/* Page Layout — Navigation Top */
+/* MARK: Layout - nav top */
 .layout-nav-top {
     display: grid;
     grid-template-rows: auto 1fr;
@@ -208,7 +183,7 @@ Sections:
 .layout-nav-top__default     { grid-area: default; }
 .layout-nav-top__panel-right { grid-area: panel-right; }
 
-/* Page Layout — Navigation Left */
+/* MARK: Layout - nav left */
 .layout-nav-left {
     display: grid;
     grid-template-columns: auto 1fr;
@@ -228,7 +203,7 @@ Sections:
 .layout-nav-left__default     { grid-area: default; }
 .layout-nav-left__panel-right { grid-area: panel-right; }
 
-/* Default Content Area */
+/* MARK: Layout - default content area */
 .layout-default {
     width: 100%;
     max-width: var(--layout-max-width);
@@ -236,7 +211,7 @@ Sections:
     padding-inline: var(--spacing-inset-l);
 }
 
-/* Grid System */
+/* MARK: Grid system */
 .grid {
     display: grid;
     grid-template-columns: repeat(var(--layout-columns), 1fr);
@@ -253,14 +228,14 @@ Sections:
 .col-6    { grid-column: span 6; }
 .col-fill { grid-column: 1 / -1; }
 
-/* Responsive: l < 1200px */
+/* MARK: Responsive l */
 @media (max-width: 1199px) {
     :root {
         --layout-columns: 6;
     }
 }
 
-/* Responsive: m < 1024px */
+/* MARK: Responsive m */
 @media (max-width: 1023px) {
     :root {
         --layout-columns: 4;
@@ -277,7 +252,7 @@ Sections:
     }
 }
 
-/* Responsive: s < 768px */
+/* MARK: Responsive s */
 @media (max-width: 767px) {
     :root {
         --layout-columns: 2;
@@ -296,7 +271,7 @@ Sections:
     }
 }
 
-/* Responsive: xs < 480px */
+/* MARK: Responsive xs */
 @media (max-width: 479px) {
     :root {
         --layout-columns: 1;
@@ -312,9 +287,7 @@ Sections:
 }
 
 
-/* ============================================================
-6. COLOR — CONTENT
-============================================================ */
+/* MARK: Color - content */
 
 :root {
     --color-content-default:              var(--gray-800);
@@ -335,9 +308,7 @@ Sections:
 }
 
 
-/* ============================================================
-7. COLOR — BACKGROUND
-============================================================ */
+/* MARK: Color - background */
 
 :root {
     --color-background-default:               white;
@@ -368,9 +339,7 @@ Sections:
 }
 
 
-/* ============================================================
-8. COLOR — BORDER
-============================================================ */
+/* MARK: Color - border */
 
 :root {
     --color-border-default:              var(--alpha-black-100);
@@ -391,10 +360,7 @@ Sections:
 }
 
 
-/* ============================================================
-NS Brand Tokens
-Brand-specific values not covered by the design system.
-============================================================ */
+/* MARK: NS brand tokens */
 
 :root {
     /* NS brand yellow (no equivalent in design system) */
@@ -430,7 +396,7 @@ body {
     background-color: var(--color-background-sunken);
 }
 
-/* NS yellow top bar */
+/* MARK: NS yellow top bar */
 body::before {
     content: "";
     display: block;
@@ -441,6 +407,39 @@ body::before {
     left: 0;
     right: 0;
     z-index: 100;
+}
+
+
+/* MARK: Skip link */
+.skip-link {
+    position: absolute;
+    top: -100%;
+    left: var(--spacing-spacer-4);
+    padding: var(--spacing-spacer-2) var(--spacing-spacer-4);
+    background: var(--ns-yellow);
+    color: var(--color-background-default-inverse);
+    font-weight: var(--typography-weight-bold);
+    border-radius: var(--border-radius-m);
+    text-decoration: none;
+    z-index: 300;
+    transition: top 0.1s;
+}
+
+.skip-link:focus {
+    top: var(--spacing-spacer-2);
+}
+
+/* MARK: Visually hidden */
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
 }
 
 /* MARK: School badge */
@@ -478,7 +477,7 @@ fieldset {
     border-radius: 0;
 }
 
-/* Top-level section card */
+/* MARK: Section card */
 .form-section-card {
     background: var(--color-background-default);
     border: var(--border-width-thin) var(--border-style-normal) var(--color-border-default);
@@ -501,7 +500,7 @@ fieldset {
     letter-spacing: 0.01em;
 }
 
-/* Step containers inside the card */
+/* MARK: Form step */
 .form-step {
     padding: var(--spacing-spacer-6) 28px;
     border: none;
@@ -509,12 +508,12 @@ fieldset {
     margin: 0;
 }
 
-/* Dividers between steps */
+/* MARK: Form step divider */
 .form-step--with-divider {
     border-top: var(--border-width-thin) var(--border-style-normal) var(--color-border-default);
 }
 
-/* Inner question groups */
+/* MARK: Question group */
 .question-group {
     padding: 0;
     border: none;
@@ -526,7 +525,7 @@ fieldset {
     margin-bottom: 0;
 }
 
-/* Separator between inner groups */
+/* MARK: Question group separator */
 .form-step > fieldset + fieldset {
     padding-top: var(--spacing-spacer-5);
     border-top: var(--border-width-thin) dashed var(--color-border-default);
@@ -639,7 +638,7 @@ input[type="radio"] {
     cursor: pointer;
 }
 
-/* Radio wrapper labels */
+/* MARK: Radio wrapper labels */
 fieldset label:has(input[type="radio"]) {
     display: flex;
     align-items: flex-start;
