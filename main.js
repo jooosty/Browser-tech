@@ -19,6 +19,26 @@ const showDialog = (message) => {
 };
 
 const byId = (id) => document.getElementById(id);
+
+const TOTAL_STEPS = 9;
+const STAP_NAMEN = {
+    1: "Gegevens overledene — namen & BSN",
+    2: "Gegevens overledene — burgerlijke staat",
+    3: "Gegevens overledene — kinderen",
+    4: "Gegevens overledene — testament",
+    5: "Gegevens gemachtigde — identificatie",
+    6: "Gegevens gemachtigde — persoonsgegevens",
+    7: "Voor wie doet u aangifte? — rol",
+    8: "Voor wie doet u aangifte? — verkrijgers",
+    9: "Voor wie doet u aangifte? — aanslag",
+};
+const setStep = (n) => {
+    const vulling = byId("voortgang-vulling");
+    vulling.style.width = ((n / TOTAL_STEPS) * 100) + "%";
+    byId("voortgangsbalk").setAttribute("aria-valuenow", n);
+};
+
+
 const valueOf = (id) => byId(id)?.value ?? "";
 const setValue = (id, value) => {
     const element = byId(id);
@@ -451,6 +471,7 @@ byId("volgende-vraag-1a").addEventListener("click", function() {
         return;
     }
 
+    setStep(1);
     setHidden("vraag-1a", true);
     setHidden("vraag-1b", false);
 });
@@ -520,6 +541,7 @@ byId("volgende-vraag-1b").addEventListener("click", function() {
     } else if (moetDatumVoorwaardenIngevuldZijn && datumVoorwaardenValue > valueOf("datum-overlijden")) {
         showDialog("De datum van de voorwaarden kan niet na de datum van overlijden liggen");
     } else {
+        setStep(2);
         setHidden("vraag-1b", true);
         setHidden("vraag-1c", false);
     }
@@ -569,6 +591,7 @@ byId("volgende-vraag-1c").addEventListener("click", function() {
     } else if (vraag1c3Visible && overledenKindKinderenValue === "") {
         showDialog("De vraag Kinderen van overleden kind is verplicht");
     } else {
+        setStep(3);
         setHidden("vraag-1c", true);
         setHidden("vraag-1d", false);
     }
@@ -613,6 +636,7 @@ byId("volgende-vraag-1d").addEventListener("click", function() {
     } else if (vraag1d2Visible && datumTestament > valueOf("datum-overlijden")) {
         showDialog("De datum van het testament kan niet na de datum van overlijden liggen");
     } else {
+        setStep(4);
         setHidden("vraag-1d", true);
         setHidden("vraag-2", false);
     }
@@ -635,6 +659,7 @@ byId("volgende-vraag-2a").addEventListener("click", function() {
         return;
     }
 
+    setStep(5);
     setHidden("vraag-2a", true);
     setHidden("vraag-2b", false);
 });
@@ -667,6 +692,7 @@ byId("volgende-vraag-2b").addEventListener("click", function() {
         return;
     }
 
+    setStep(6);
     setHidden("vraag-2", true);
     setHidden("vraag-3", false);
 });
@@ -793,6 +819,7 @@ byId("volgende-vraag-3a").addEventListener("click", function () {
             return;
         }
     }
+    setStep(7);
     setHidden("vraag-3a", true);
     setHidden("vraag-3b", false);
 });
@@ -867,7 +894,9 @@ byId("volgende-vraag-3b").addEventListener("click", function () {
         showDialog("Voeg minimaal 1 verkrijger toe waarvoor u geen aangifte doet.");
         return;
     }
+    setStep(8);
     setHidden("vraag-3b", true);
+    setStep(9);
     setHidden("vraag-3c", false);
 });
 
