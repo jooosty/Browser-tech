@@ -108,3 +108,15 @@
 
 ### What I want to do next
 - Add more questions to the form.
+
+## 10 march 2026
+
+### Things i did today
+- Added progress bar to the form
+- Made better validation for all inputs and clear input for osme parts
+- Added a source list
+
+### time it took
+- 1 hour
+- 3 hours
+- 1 hour
