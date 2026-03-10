@@ -242,6 +242,17 @@ const clearMark = (id) => {
     feedback.textContent = "";
 };
 
+const visibleParent = (id) => {
+    const el = byId(id);
+    if (!el) return false;
+    let node = el;
+    while (node && node !== document.documentElement) {
+        if (node.hidden || node.style.display === "none") return false;
+        node = node.parentElement;
+    }
+    return true;
+};
+
 const elfValidBsn = (bsn) => {
     if (!/^\d{8,9}$/.test(bsn)) return false;
     const normalizedBsn = bsn.padStart(9, "0");
@@ -257,12 +268,22 @@ const elfValidBsn = (bsn) => {
 document.querySelectorAll(".hidden").forEach((el) => (el.hidden = true));
 
 // Blur listeners for inline validation on text/date fields
-byId("voorletters-overledene").addEventListener("blur", function() {
-    if (this.value.trim() === "") {
-        markInvalid("voorletters-overledene", "Voorletter(s) is verplicht");
+const validateVoorletters = (id, val) => {
+    if (val === "") {
+        markInvalid(id, "Voorletter(s) is verplicht");
+    } else if (!/^([A-Za-z]\.)+$/.test(val)) {
+        markInvalid(id, "Vul de voorletters in, gescheiden door punten. Bijvoorbeeld: A.B.");
     } else {
-        markValid("voorletters-overledene");
+        markValid(id);
     }
+};
+
+byId("voorletters-overledene").addEventListener("blur", function() {
+    validateVoorletters("voorletters-overledene", this.value.trim());
+});
+
+byId("voorletters-overledene").addEventListener("input", function() {
+    validateVoorletters("voorletters-overledene", this.value.trim());
 });
 
 byId("achternaam-overledene").addEventListener("blur", function() {
@@ -643,6 +664,71 @@ byId("volgende-vraag-1d").addEventListener("click", function() {
 });
 
 restoreFormDraft();
+
+const restoreValidation = () => {
+    if (!formElement) return;
+
+    // Re-fire change on all checked radios to restore conditional visibility
+    formElement.querySelectorAll("input[type='radio']:checked").forEach(radio => {
+        radio.dispatchEvent(new Event("change", { bubbles: true }));
+    });
+
+    // Validate all restored text/date/tel/email/select fields
+    const textFields = formElement.querySelectorAll(
+        "input[type='text'], input[type='date'], input[type='tel'], input[type='email'], select"
+    );
+
+    textFields.forEach(field => {
+        const val = field.value.trim();
+        if (!val) return; // empty = no mark needed
+
+        const id = field.id;
+        if (!id) return;
+
+        // Skip hidden fields
+        if (!visibleParent(id)) return;
+
+        // Field-specific validation
+        if (id === "bsn-overledene" || id === "bsn-rsin-gemachtigde" ||
+            id === "verkrijger-bsn" || id === "executeur-bsn") {
+            isValidBsn(val) ? markValid(id) : markInvalid(id, "BSN/RSIN moet 8 of 9 cijfers bevatten");
+
+        } else if (id === "postcode-gemachtigde") {
+            /^\d{4}\s?[A-Za-z]{2}$/.test(val)
+                ? markValid(id)
+                : markInvalid(id, "Vul een geldige postcode in, bijv. 1234 AB");
+
+        } else if (id === "telefoonnummer-gemachtigde") {
+            /^[0-9\s\+\-\(\)]{7,15}$/.test(val)
+                ? markValid(id)
+                : markInvalid(id, "Vul een geldig telefoonnummer in");
+
+        } else if (id === "email-gemachtigde") {
+            /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val)
+                ? markValid(id)
+                : markInvalid(id, "Vul een geldig e-mailadres in");
+
+        } else if (id === "beconnummer-adviseur" || id === "executeur-beconnummer") {
+            /^\d+$/.test(val)
+                ? markValid(id)
+                : markInvalid(id, "Beconnummer mag alleen cijfers bevatten");
+
+        } else if (id.startsWith("voorletters")) {
+            validateVoorletters(id, val);
+            return;
+
+        } else if (id === "datum-overlijden" || id === "datum-voorwaarden" || id === "datum-testament") {
+            markValid(id);
+
+        } else {
+            // All other text fields: if filled, mark valid
+            markValid(id);
+        }
+    });
+};
+
+restoreValidation();
+
 // Vraag 2a - volgende check
 byId("volgende-vraag-2a").addEventListener("click", function() {
     const bsnRsin = valueOf("bsn-rsin-gemachtigde").trim();
@@ -953,17 +1039,6 @@ byId("volgende-vraag-3c").addEventListener("click", function () {
 // Blur validation - Vraag 2 & 3
 
 // Check if field is visible
-const visibleParent = (id) => {
-    const el = byId(id);
-    if (!el) return false;
-    let node = el;
-    while (node && node !== document.documentElement) {
-        if (node.hidden || node.style.display === "none") return false;
-        node = node.parentElement;
-    }
-    return true;
-};
-
 // Vraag 2a - blur
 byId("beconnummer-adviseur").addEventListener("blur", function () {
     if (!visibleParent("beconnummer-adviseur")) return;
@@ -987,11 +1062,11 @@ byId("protocolnummer-notaris-2").addEventListener("blur", function () {
 // Vraag 2b - blur
 byId("voorletters-gemachtigde").addEventListener("blur", function () {
     if (!visibleParent("voorletters-gemachtigde")) return;
-    if (this.value.trim()) {
-        markValid("voorletters-gemachtigde");
-    } else {
-        clearMark("voorletters-gemachtigde");
-    }
+    validateVoorletters("voorletters-gemachtigde", this.value.trim());
+});
+byId("voorletters-gemachtigde").addEventListener("input", function () {
+    if (!visibleParent("voorletters-gemachtigde")) return;
+    validateVoorletters("voorletters-gemachtigde", this.value.trim());
 });
 
 byId("tussenvoegsels-gemachtigde").addEventListener("blur", function () {
@@ -1119,11 +1194,10 @@ byId("verkrijger-bsn").addEventListener("blur", function () {
 });
 
 byId("verkrijger-voorletters").addEventListener("blur", function () {
-    if (this.value.trim()) {
-        markValid("verkrijger-voorletters");
-    } else {
-        clearMark("verkrijger-voorletters");
-    }
+    validateVoorletters("verkrijger-voorletters", this.value.trim());
+});
+byId("verkrijger-voorletters").addEventListener("input", function () {
+    validateVoorletters("verkrijger-voorletters", this.value.trim());
 });
 
 byId("verkrijger-tussenvoegsel").addEventListener("blur", function () {
@@ -1161,11 +1235,11 @@ byId("executeur-bsn").addEventListener("blur", function () {
 
 byId("executeur-voorletters").addEventListener("blur", function () {
     if (!visibleParent("executeur-voorletters")) return;
-    if (this.value.trim()) {
-        markValid("executeur-voorletters");
-    } else {
-        clearMark("executeur-voorletters");
-    }
+    validateVoorletters("executeur-voorletters", this.value.trim());
+});
+byId("executeur-voorletters").addEventListener("input", function () {
+    if (!visibleParent("executeur-voorletters")) return;
+    validateVoorletters("executeur-voorletters", this.value.trim());
 });
 
 byId("executeur-tussenvoegsel").addEventListener("blur", function () {
