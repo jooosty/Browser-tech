@@ -753,6 +753,10 @@ const clearVerkrijgerForm = () => {
     setValue("verkrijger-achternaam", "");
     clearChecked("verkrijger-heel-vermogen");
     clearChecked("verkrijger-legitieme");
+    clearMark("verkrijger-bsn");
+    clearMark("verkrijger-voorletters");
+    clearMark("verkrijger-tussenvoegsel");
+    clearMark("verkrijger-achternaam");
     byId("verkrijger-formulier-titel").textContent = "Verkrijger toevoegen";
     byId("sla-verkrijger-op").textContent = "Voeg verkrijger toe";
     byId("sla-verkrijger-op").removeAttribute("data-edit-index");
