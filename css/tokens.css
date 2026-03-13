@@ -1,0 +1,161 @@
+/* MARK: Primitive color scale */
+
+:root {
+    /* --- Gray --- */
+    --gray-75: #f5f6f7;
+    --gray-100: #eaecef;
+    --gray-300: #b0b7c3;
+    --gray-800: #1f2937;
+    --gray-900: #111827;
+    --gray-950: #080d14;
+
+    /* --- Blue --- */
+    --blue-75: #f0f8ff;
+    --blue-100: #e8f4fd;
+    --blue-400: #60a5fa;
+    --blue-500: #0072ce;
+    --blue-600: #00519c;
+    --blue-700: #003b73;
+    --blue-900: #1e3a5f;
+    --blue-950: #0f1f35;
+
+    /* --- Green --- */
+    --green-100: #edfdf3;
+    --green-300: #6ee7b7;
+    --green-600: #1a7f3c;
+    --green-900: #064e3b;
+
+    /* --- Red --- */
+    --red-100: #fff5f5;
+    --red-300: #fca5a5;
+    --red-600: #c0392b;
+    --red-900: #7f1d1d;
+
+    /* --- Yellow --- */
+    --yellow-100: #fffbe6;
+    --yellow-950: #422006;
+
+    /* --- Alpha Black --- */
+    --alpha-black-100: rgba(0, 0, 0, 0.06);
+    --alpha-black-400: rgba(0, 0, 0, 0.28);
+    --alpha-black-500: rgba(0, 0, 0, 0.40);
+
+    /* --- Alpha White --- */
+    --alpha-white-75: rgba(255, 255, 255, 0.04);
+    --alpha-white-100: rgba(255, 255, 255, 0.06);
+    --alpha-white-400: rgba(255, 255, 255, 0.28);
+    --alpha-white-500: rgba(255, 255, 255, 0.40);
+}
+
+/* MARK: Custom font */
+@font-face {
+    font-family: "NS Sans";
+    src: url("./nssans-regular.woff2") format("woff2");
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+
+/* MARK: Design system tokens */
+
+
+/* MARK: Typography */
+
+:root {
+    /* --- Size: Fluid --- */
+    --typography-size-xxxl: clamp(1.375rem, 1.125rem + 0.8333vi, 1.75rem);
+    /* 22px → 28px */
+
+    /* --- Size: Fixed --- */
+    --typography-size-m: 1rem;
+    /* 16px */
+    --typography-size-s: 0.875rem;
+    /* 14px */
+    --typography-size-xs: 0.75rem;
+    /* 12px */
+
+    /* --- Line Height --- */
+    --typography-leading-l: 1.5;
+    --typography-leading-m: 1.25;
+    --typography-leading-s: 1;
+
+    /* --- Weight --- */
+    --typography-weight-normal: 400;
+    --typography-weight-bold: 700;
+}
+
+
+/* MARK: Border */
+
+:root {
+    /* --- Stroke Width --- */
+    --border-width-thin: 1px;
+    --border-width-medium: 2px;
+    --border-width-thick: 4px;
+
+    /* --- Style --- */
+    --border-style-normal: solid;
+
+    /* --- Radius --- */
+    --border-radius-m: 6px;
+    --border-radius-full: 9999px;
+}
+
+
+/* MARK: Elevation */
+
+:root {
+    /* --- Web Shadows --- */
+    --web-shadow-elevated-1:
+        0px 1px 4px 0px rgba(0, 0, 0, 0.08),
+        0px 1px 2px 0px rgba(0, 0, 0, 0.08);
+
+    --web-shadow-elevated-2:
+        0px 8px 20px 0px rgba(0, 0, 0, 0.04),
+        0px 1px 1px 0px rgba(0, 0, 0, 0.03);
+}
+
+
+/* MARK: Spacing */
+
+:root {
+    /* --- Scale (4px base unit) --- */
+    --spacing-spacer-0-5: 0.125rem;  /*  2px */
+    --spacing-spacer-1:   0.25rem;   /*  4px */
+    --spacing-spacer-2:   0.5rem;    /*  8px */
+    --spacing-spacer-3:   0.75rem;   /* 12px */
+    --spacing-spacer-4:   1rem;      /* 16px */
+    --spacing-spacer-5:   1.25rem;   /* 20px */
+    --spacing-spacer-6:   1.5rem;    /* 24px */
+    --spacing-spacer-8:   2rem;      /* 32px */
+
+    /* --- Inset (breakpoints xl, l) --- */
+    --spacing-inset-l: var(--spacing-spacer-6); /* 24px */
+}
+
+/* MARK: Inset-l responsive collapse */
+@media (max-width: 1023px) {
+    :root {
+        --spacing-inset-l: var(--spacing-spacer-4); /* 24px → 16px */
+    }
+}
+
+
+/* MARK: Layout */
+
+:root {
+    /* --- Breakpoints (for reference) ---
+    xs: < 480px
+    s:  < 768px
+    m:  < 1024px
+    l:  < 1200px
+    xl: >= 1200px
+    */
+
+    /* --- Grid --- */
+    --layout-columns: 6;
+    --layout-gap-m: var(--spacing-spacer-4);  /* 16px — default */
+    --layout-gap-xl: var(--spacing-spacer-8); /* 32px — less dense */
+    --layout-max-width: 1200px;
+}

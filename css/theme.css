@@ -1,0 +1,87 @@
+@import "./tokens.css";
+
+/* MARK: Color - content */
+
+:root {
+    --color-content-default:              var(--gray-800);
+    --color-content-emphasis:             var(--blue-700);
+    --color-content-subtle:               var(--alpha-black-500);
+    --color-content-interactive-default:  var(--blue-500);
+    --color-content-success:              var(--green-600);
+    --color-content-error:                var(--red-600);
+}
+
+[data-theme="dark"] {
+    --color-content-default:              var(--gray-300);
+    --color-content-emphasis:             var(--gray-100);
+    --color-content-subtle:               var(--alpha-white-500);
+    --color-content-interactive-default:  var(--blue-400);
+    --color-content-success:              var(--green-300);
+    --color-content-error:                var(--red-300);
+}
+
+
+/* MARK: Color - background */
+
+:root {
+    --color-background-default:               white;
+    --color-background-default-inverse:       var(--gray-900);
+    --color-background-sunken:                var(--gray-75);
+    --color-background-primary-default:       var(--blue-500);
+    --color-background-primary-hover:         var(--blue-600);
+    --color-background-input-default:         white;
+    --color-background-success-subtle:        var(--green-100);
+    --color-background-error-subtle:          var(--red-100);
+    --color-background-accent-blue-default:   var(--blue-100);
+    --color-background-accent-blue-subtle:    var(--blue-75);
+    --color-background-accent-yellow-subtle:  var(--yellow-100);
+}
+
+[data-theme="dark"] {
+    --color-background-default:               var(--gray-900);
+    --color-background-default-inverse:       white;
+    --color-background-sunken:                var(--gray-950);
+    --color-background-primary-default:       var(--blue-500);
+    --color-background-primary-hover:         var(--blue-400);
+    --color-background-input-default:         var(--alpha-white-75);
+    --color-background-success-subtle:        var(--green-900);
+    --color-background-error-subtle:          var(--red-900);
+    --color-background-accent-blue-default:   var(--blue-900);
+    --color-background-accent-blue-subtle:    var(--blue-950);
+    --color-background-accent-yellow-subtle:  var(--yellow-950);
+}
+
+
+/* MARK: Color - border */
+
+:root {
+    --color-border-default:              var(--alpha-black-100);
+    --color-border-interactive-default:  var(--blue-500);
+    --color-border-input-default:        var(--alpha-black-400);
+    --color-border-success:              var(--green-600);
+    --color-border-error:                var(--red-600);
+    --color-border-focus:                var(--blue-500);
+}
+
+[data-theme="dark"] {
+    --color-border-default:              var(--alpha-white-100);
+    --color-border-interactive-default:  var(--blue-400);
+    --color-border-input-default:        var(--alpha-white-400);
+    --color-border-success:              var(--green-300);
+    --color-border-error:                var(--red-300);
+    --color-border-focus:                var(--blue-400);
+}
+
+
+/* MARK: NS brand tokens */
+
+:root {
+    /* NS brand yellow (no equivalent in design system) */
+    --ns-yellow:       #f6c800;
+    --ns-yellow-hover: #e0b500;
+
+    /* Radius — design system has s(3px), m(6px), l(12px), full(9999px)
+    These intermediate values are NS-specific                        */
+    --border-radius-md-ns: 10px;
+    --border-radius-xl-ns: 20px;
+}
