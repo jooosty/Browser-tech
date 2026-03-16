@@ -317,8 +317,6 @@ select.veld-fout {
 }
 
 /* MARK: Valid/invalid field states — CSS laag (zonder JavaScript)
-   :user-invalid vuurt alleen nadat de gebruiker het veld heeft aangeraakt,
-   niet direct bij het laden van de pagina.
    Bron: https://developer.mozilla.org/en-US/docs/Web/CSS/:user-invalid
    Bron: https://developer.mozilla.org/en-US/docs/Web/CSS/:user-valid */
 input[type="text"]:user-invalid,

@@ -218,7 +218,9 @@
                     <input type="text" id="postcode-buitenland" name="postcode-buitenland" autocomplete="off">
 
                     <label for="landcode-gemachtigde">Land</label>
-                    <select id="landcode-gemachtigde" name="landcode-gemachtigde" aria-describedby="help-landcode">
+                    <input type="text" id="landcode-gemachtigde" name="landcode-gemachtigde" list="landcode-gemachtigde-lijst"
+                        autocomplete="off" aria-describedby="help-landcode">
+                    <datalist id="landcode-gemachtigde-lijst">
                         <option value="">– Selecteer een land –</option>
                         <option value="AFG">Afghanistan (AFG)</option>
                         <option value="ALB">Albanië (ALB)</option>
@@ -469,7 +471,7 @@
                         <option value="SWE">Zweden (SWE)</option>
                         <option value="CHE">Zwitserland (CHE)</option>
                         <option value="ALA">Åland (ALA)</option>
-                    </select>
+                    </datalist>
                     <p class="helptekst" id="help-landcode">Selecteer het land van het buitenlandse adres. De 3-letterige landcode wordt automatisch opgeslagen.</p>
                 </fieldset>
 
