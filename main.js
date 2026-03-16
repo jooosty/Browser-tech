@@ -40,6 +40,13 @@ const setStep = (n) => {
     byId("voortgangsbalk").setAttribute("aria-valuenow", n);
 };
 
+const collapseSectionTitle = (sectionId) => {
+    const section = byId(sectionId);
+    if (!section) return;
+    const legend = section.querySelector(":scope > legend");
+    if (legend) legend.hidden = true;
+};
+
 
 const valueOf = (id) => byId(id)?.value ?? "";
 const setValue = (id, value) => {
@@ -671,6 +678,7 @@ byId("volgende-vraag-1d").addEventListener("click", function() {
     } else {
         setStep(4);
         setHidden("vraag-1d", true);
+        collapseSectionTitle("vraag-1");
         setHidden("vraag-2", false);
     }
 });
@@ -774,6 +782,21 @@ byId("bsn-rsin-gemachtigde").addEventListener("blur", function() {
     }
 });
 
+// Vraag 2b - adres keuze
+byId("adres-nl").addEventListener("change", function() {
+    setHidden("vraag-2b-adres-nl", false);
+    setHidden("vraag-2b-adres-buitenland", true);
+    clearValues(["straat-huisnummer-buitenland", "postcode-buitenland", "landcode-gemachtigde"]);
+    ["straat-huisnummer-buitenland", "postcode-buitenland", "landcode-gemachtigde"].forEach(clearMark);
+});
+
+byId("adres-buitenland").addEventListener("change", function() {
+    setHidden("vraag-2b-adres-buitenland", false);
+    setHidden("vraag-2b-adres-nl", true);
+    clearValues(["straat-huisnummer-gemachtigde", "postcode-gemachtigde", "woonplaats-gemachtigde"]);
+    ["straat-huisnummer-gemachtigde", "postcode-gemachtigde", "woonplaats-gemachtigde"].forEach(clearMark);
+});
+
 // Vraag 2b - volgende check
 byId("volgende-vraag-2b").addEventListener("click", function() {
     const achternaam = valueOf("achternaam-gemachtigde").trim();
@@ -792,6 +815,7 @@ byId("volgende-vraag-2b").addEventListener("click", function() {
 
     setStep(6);
     setHidden("vraag-2", true);
+    collapseSectionTitle("vraag-2");
     setHidden("vraag-3", false);
 });
 

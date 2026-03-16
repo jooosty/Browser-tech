@@ -196,7 +196,21 @@
                 <label for="naam-instelling" class="label--required-one-of">Naam instelling <span class="helptekst-inline">(bijvoorbeeld een notariskantoor)</span></label>
                 <input type="text" id="naam-instelling" name="naam-instelling" autocomplete="organization">
 
-                <fieldset id="vraag-2b-adres-nl" class="question-group">
+                <fieldset id="vraag-2b-adres-keuze" class="question-group question-group--inline-radios">
+                    <legend>Waar woont de gemachtigde?</legend>
+                    <div class="radio-row">
+                        <label for="adres-nl">
+                            In Nederland
+                            <input type="radio" id="adres-nl" name="adres-type" value="nl">
+                        </label>
+                        <label for="adres-buitenland">
+                            In het buitenland
+                            <input type="radio" id="adres-buitenland" name="adres-type" value="buitenland">
+                        </label>
+                    </div>
+                </fieldset>
+
+                <fieldset id="vraag-2b-adres-nl" class="question-group hidden">
                     <legend>Adres in Nederland</legend>
                     <label for="straat-huisnummer-gemachtigde">Straat, huisnummer en toevoeging</label>
                     <input type="text" id="straat-huisnummer-gemachtigde" name="straat-huisnummer-gemachtigde" autocomplete="street-address">
@@ -209,7 +223,7 @@
                     <input type="text" id="woonplaats-gemachtigde" name="woonplaats-gemachtigde" autocomplete="address-level2">
                 </fieldset>
 
-                <fieldset id="vraag-2b-adres-buitenland" class="question-group">
+                <fieldset id="vraag-2b-adres-buitenland" class="question-group hidden">
                     <legend>Adres in het buitenland</legend>
                     <label for="straat-huisnummer-buitenland">Straat en huisnummer</label>
                     <input type="text" id="straat-huisnummer-buitenland" name="straat-huisnummer-buitenland" autocomplete="off">

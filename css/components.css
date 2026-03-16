@@ -41,6 +41,10 @@ fieldset {
     letter-spacing: 0.01em;
 }
 
+.form-section-card > legend[hidden] {
+    display: none;
+}
+
 /* MARK: Form step */
 .form-step {
     padding: var(--spacing-spacer-6) 28px;
@@ -533,4 +537,18 @@ input[type="submit"]:hover {
     #empty-state {
         margin: var(--spacing-spacer-4) var(--spacing-spacer-5);
     }
+}
+/* MARK: Inline (side-by-side) radio options */
+.question-group--inline-radios > legend {
+    margin-bottom: var(--spacing-spacer-3);
+}
+
+.radio-row {
+    display: flex;
+    gap: var(--spacing-spacer-3);
+}
+
+.radio-row label:has(input[type="radio"]) {
+    flex: 1;
+    margin-top: 0 !important;
 }
