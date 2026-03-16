@@ -1337,3 +1337,100 @@ byId("executeur-beconnummer").addEventListener("blur", function () {
         clearMark("executeur-beconnummer");
     }
 });
+
+// ─── Terug-knoppen ────────────────────────────────────────────────────────────
+
+// Helper: scroll the newly visible step into view
+const scrollToStep = (id) => {
+    const el = byId(id);
+    if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+};
+
+// Terug 1b → 1a
+byId("terug-vraag-1b").addEventListener("click", function () {
+    setHidden("vraag-1b", true);
+    setHidden("vraag-1a", false);
+    setStep(0);
+    scrollToStep("vraag-1a");
+});
+
+// Terug 1c → 1b
+byId("terug-vraag-1c").addEventListener("click", function () {
+    setHidden("vraag-1c", true);
+    setHidden("vraag-1b", false);
+    // Restore the volgende-1b button if the user already picked a huwelijk radio
+    const huwelijk = checkedValue("huwelijk");
+    if (huwelijk === "nee" || checkedValue("voorwaarden") !== "") {
+        setHidden("volgende-vraag-1b", false);
+    }
+    setStep(1);
+    scrollToStep("vraag-1b");
+});
+
+// Terug 1d → 1c
+byId("terug-vraag-1d").addEventListener("click", function () {
+    setHidden("vraag-1d", true);
+    setHidden("vraag-1c", false);
+    // Restore the volgende-1c button if kinderen radio was already picked
+    if (checkedValue("kinderen") !== "") {
+        setHidden("volgende-vraag-1c", false);
+    }
+    setStep(2);
+    scrollToStep("vraag-1c");
+});
+
+// Terug 2a → 1d  (also un-collapse vraag-1 section title)
+byId("terug-vraag-2a").addEventListener("click", function () {
+    setHidden("vraag-2", true);
+    setHidden("vraag-1", false);
+    setHidden("vraag-1d", false);
+    // Un-collapse vraag-1 section header
+    const legend1 = byId("vraag-1")?.querySelector(":scope > legend");
+    if (legend1) legend1.hidden = false;
+    // Restore the volgende-1d button if testament radio was already picked
+    if (checkedValue("testament") !== "") {
+        setHidden("volgende-vraag-1d", false);
+    }
+    setStep(3);
+    scrollToStep("vraag-1d");
+});
+
+// Terug 2b → 2a
+byId("terug-vraag-2b").addEventListener("click", function () {
+    setHidden("vraag-2b", true);
+    setHidden("vraag-2a", false);
+    setStep(4);
+    scrollToStep("vraag-2a");
+});
+
+// Terug 3a → 2b  (also un-collapse vraag-2 section title)
+byId("terug-vraag-3a").addEventListener("click", function () {
+    setHidden("vraag-3", true);
+    setHidden("vraag-2", false);
+    setHidden("vraag-2b", false);
+    // Un-collapse vraag-2 section header
+    const legend2 = byId("vraag-2")?.querySelector(":scope > legend");
+    if (legend2) legend2.hidden = false;
+    setStep(5);
+    scrollToStep("vraag-2b");
+});
+
+// Terug 3b → 3a
+byId("terug-vraag-3b").addEventListener("click", function () {
+    setHidden("vraag-3b", true);
+    setHidden("vraag-3a", false);
+    // Restore the volgende-3a button if rol-aangever radio was already picked
+    if (checkedValue("rol-aangever") !== "") {
+        setHidden("volgende-vraag-3a", false);
+    }
+    setStep(6);
+    scrollToStep("vraag-3a");
+});
+
+// Terug 3c → 3b
+byId("terug-vraag-3c").addEventListener("click", function () {
+    setHidden("vraag-3c", true);
+    setHidden("vraag-3b", false);
+    setStep(7);
+    scrollToStep("vraag-3b");
+});

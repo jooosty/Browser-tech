@@ -538,6 +538,26 @@ input[type="submit"]:hover {
         margin: var(--spacing-spacer-4) var(--spacing-spacer-5);
     }
 }
+/* MARK: Nav buttons (terug + volgende row) */
+.nav-buttons {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-spacer-3);
+    flex-wrap: wrap;
+    margin-top: var(--spacing-spacer-5);
+}
+
+.nav-buttons button {
+    margin-top: 0;
+}
+
+/* Hide nav-buttons in print */
+@media print {
+    .nav-buttons {
+        display: none !important;
+    }
+}
+
 /* MARK: Inline (side-by-side) radio options */
 .question-group--inline-radios > legend {
     margin-bottom: var(--spacing-spacer-3);
