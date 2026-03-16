@@ -139,11 +139,13 @@ In deze week heb ik de grootste sprong gemaakt qua omvang: vragen 2 en 3 zijn vo
 - Fixed some styling issues in the form
 - Fixed some validation issues in the form
 - Added a back button to the form
+- Updated print styling
 
 ### time it took
 - 30 minutes
-- 1,5 hours
-- 1,5 hours
+- 1 hour
+- 1 hour
+- 1 hour
 - 1 hour
 
 ### What i learned
