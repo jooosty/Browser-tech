@@ -297,7 +297,7 @@ button[id^="volgende"]::after {
     color: var(--color-content-error);
 }
 
-/* MARK: Valid/invalid field states */
+/* MARK: Valid/invalid field states — JS classes */
 input[type="text"].veld-goed,
 input[type="date"].veld-goed,
 input[type="tel"].veld-goed,
@@ -314,6 +314,29 @@ input[type="email"].veld-fout,
 select.veld-fout {
     border-color: var(--color-border-error);
     background: var(--color-background-error-subtle);
+}
+
+/* MARK: Valid/invalid field states — CSS laag (zonder JavaScript)
+   :user-invalid vuurt alleen nadat de gebruiker het veld heeft aangeraakt,
+   niet direct bij het laden van de pagina.
+   Bron: https://developer.mozilla.org/en-US/docs/Web/CSS/:user-invalid
+   Bron: https://developer.mozilla.org/en-US/docs/Web/CSS/:user-valid */
+input[type="text"]:user-invalid,
+input[type="date"]:user-invalid,
+input[type="tel"]:user-invalid,
+input[type="email"]:user-invalid,
+select:user-invalid {
+    border-color: var(--color-border-error);
+    background: var(--color-background-error-subtle);
+}
+
+input[type="text"]:user-valid,
+input[type="date"]:user-valid,
+input[type="tel"]:user-valid,
+input[type="email"]:user-valid,
+select:user-valid {
+    border-color: var(--color-border-success);
+    background: var(--color-background-success-subtle);
 }
 
 /* MARK: Dialog */
