@@ -130,3 +130,21 @@ Deze week stond in het teken van stevige technische verbeteringen. De elfproef i
 
 ### Wekelijkse reflectie — week 3
 In deze week heb ik de grootste sprong gemaakt qua omvang: vragen 2 en 3 zijn volledig gebouwd inclusief validatie, en de voortgangsbalk geeft nu duidelijk aan hoe ver de gebruiker is. Ik merk dat naarmate het formulier groter wordt, de JavaScript ook complexer wordt, je moet goed nadenken over welke velden zichtbaar zijn en wanneer je validatie moet uitvoeren. De voortgangsbalk toevoegen was relatief snel, maar het goed aansluiten op de stappen in het formulier vroeg om extra aandacht. De bronnenlijst aanleggen hielp me terug te kijken op alles wat ik gebruikt heb, ik ontdekte dat ik meer technieken had ingezet dan ik dacht. Als ik terugkijk op de afgelopen weken zie ik duidelijke groei, de code is leesbaarder, de validatie robuuster en het ontwerp consistenter geworden.
+
+
+## 16 march 2026
+
+### Things i did today
+- Made datalist for country selection
+- Fixed some styling issues in the form
+- Fixed some validation issues in the form
+- Added a back button to the form
+
+### time it took
+- 30 minutes
+- 1,5 hours
+- 1,5 hours
+- 1 hour
+
+### What i learned
+- Better understanding of how to use the datalist element to provide a list of options for an input field.
