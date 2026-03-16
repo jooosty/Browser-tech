@@ -4,6 +4,8 @@ const feedbackDialog = document.getElementById("feedback-dialog");
 const feedbackDialogMessage = document.getElementById("feedback-dialog-message");
 const feedbackDialogClose = document.getElementById("feedback-dialog-close");
 
+// <dialog> element voor foutmeldingen
+// Bron: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/dialog
 const showDialog = (message) => {
     if (!feedbackDialog || !feedbackDialogMessage) {
         return;
@@ -68,6 +70,8 @@ const formElement = document.querySelector("form");
 const draftStorageKey = "erfbelasting-form-draft";
 const clearSavedDataButton = byId("wis-opgeslagen-gegevens");
 
+// Formuliergegevens opslaan als concept in localStorage zodat de gebruiker
+// later verder kan gaan. Bron: https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage
 const saveFormDraft = () => {
     if (!formElement) {
         return;
@@ -192,6 +196,8 @@ if (feedbackDialogClose && feedbackDialog) {
     });
 }
 
+// BSN-formaatcheck (8 of 9 cijfers) — vóór elfproef
+// Bron: https://www.rijksoverheid.nl/onderwerpen/privacy-en-persoonsgegevens/vraag-en-antwoord/wat-is-het-burgerservicenummer-bsn
 const isValidBsn = (value) => /^\d{8,9}$/.test(value);
 
 // Inline field validation helpers
@@ -253,6 +259,9 @@ const visibleParent = (id) => {
     return true;
 };
 
+// Elfproef-validatie voor BSN
+// Bron: https://nl.wikipedia.org/wiki/Elfproef
+// Bron: https://www.testnummers.nl/ (testgetallen)
 const elfValidBsn = (bsn) => {
     if (!/^\d{8,9}$/.test(bsn)) return false;
     const normalizedBsn = bsn.padStart(9, "0");
@@ -268,6 +277,9 @@ const elfValidBsn = (bsn) => {
 document.querySelectorAll(".hidden").forEach((el) => (el.hidden = true));
 
 // Blur listeners for inline validation on text/date fields
+// Voorletters valideren met reguliere expressie — elk letter gevolgd door een punt
+// Bron: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp
+// Bron: https://regex101.com (getest)
 const validateVoorletters = (id, val) => {
     if (val === "") {
         markInvalid(id, "Voorletter(s) is verplicht");
@@ -380,10 +392,10 @@ const labelMap = {
     "overleden-kinderen": "Eerder overleden kind",
     "kinderen-overleden-kind": "Kinderen van overleden kind",
     "testament": "Testament",
-    "Protocolnummer-notaris": "Protocolnummer notaris",
-    "Voorletters-notaris": "Voorletter(s) notaris",
-    "Tussenvoegsels-notaris": "Tussenvoegsel(s) notaris",
-    "Achternaam-notaris": "Achternaam notaris",
+    "protocolnummer-notaris": "Protocolnummer notaris",
+    "voorletters-notaris": "Voorletter(s) notaris",
+    "tussenvoegsels-notaris": "Tussenvoegsel(s) notaris",
+    "achternaam-notaris": "Achternaam notaris",
     "vestigingsplaats": "Vestigingsplaats notaris",
     "datum-testament": "Datum testament",
     "bsn-rsin-gemachtigde": "BSN/RSIN gemachtigde",
@@ -1186,6 +1198,9 @@ byId("verkrijger-bsn").addEventListener("blur", function () {
     const val = this.value.trim();
     if (val && !isValidBsn(val)) {
         markInvalid("verkrijger-bsn", "BSN/RSIN moet 8 of 9 cijfers bevatten");
+    } else if (val && !elfValidBsn(val)) {
+        // Elfproef — bron: https://nl.wikipedia.org/wiki/Elfproef
+        markInvalid("verkrijger-bsn", "BSN/RSIN is niet geldig (elfproef mislukt)");
     } else if (val) {
         markValid("verkrijger-bsn");
     } else {
@@ -1226,6 +1241,9 @@ byId("executeur-bsn").addEventListener("blur", function () {
     const val = this.value.trim();
     if (val && !isValidBsn(val)) {
         markInvalid("executeur-bsn", "BSN/RSIN moet 8 of 9 cijfers bevatten");
+    } else if (val && !elfValidBsn(val)) {
+        // Elfproef — bron: https://nl.wikipedia.org/wiki/Elfproef
+        markInvalid("executeur-bsn", "BSN/RSIN is niet geldig (elfproef mislukt)");
     } else if (val) {
         markValid("executeur-bsn");
     } else {

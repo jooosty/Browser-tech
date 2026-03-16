@@ -17,6 +17,7 @@
 - **MDN Web Docs** — [`<input>` element](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input)
 - **MDN Web Docs** — [`<select>` element](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/select)
 - **MDN Web Docs** — [autocomplete attribuut](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/autocomplete)
+- **MDN Web Docs** — [inputmode attribuut](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/inputmode)
 - **MDN Web Docs** — [`hidden` attribuut](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/hidden)
 - **MDN Web Docs** — [`<dialog>` element](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/dialog)
 - **MDN Web Docs** — [Formuliervalidatie (client-side)](https://developer.mozilla.org/en-US/docs/Learn/Forms/Form_validation)
@@ -35,6 +36,12 @@
 - **MDN Web Docs** — [NodeList: forEach](https://developer.mozilla.org/en-US/docs/Web/API/NodeList/forEach)
 - **MDN Web Docs** — [RegExp (reguliere expressies in JS)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp)
 - **MDN Web Docs** — [String: trim](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/trim)
+- **MDN Web Docs** — [Element: scrollIntoView](https://developer.mozilla.org/en-US/docs/Web/API/Element/scrollIntoView)
+- **MDN Web Docs** — [FormData](https://developer.mozilla.org/en-US/docs/Web/API/FormData)
+- **MDN Web Docs** — [Element: setAttribute / getAttribute](https://developer.mozilla.org/en-US/docs/Web/API/Element/setAttribute)
+- **MDN Web Docs** — [HTMLElement: hidden (JS property)](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/hidden)
+- **MDN Web Docs** — [HTMLFormElement: requestSubmit](https://developer.mozilla.org/en-US/docs/Web/API/HTMLFormElement/requestSubmit)
+- **MDN Web Docs** — [Array.from](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/from)
 - **Regex101** — [Reguliere expressies testen (BSN, postcode, e-mail, voorletters)](https://regex101.com)
 - **Wikipedia** — [Elfproef (BSN-validatie algoritme)](https://nl.wikipedia.org/wiki/Elfproef)
 
@@ -50,6 +57,9 @@
 - **MDN Web Docs** — [CSS `@font-face`](https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face)
 - **MDN Web Docs** — [CSS `:focus-visible`](https://developer.mozilla.org/en-US/docs/Web/CSS/:focus-visible)
 - **MDN Web Docs** — [CSS grid layout](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_grid_layout)
+- **MDN Web Docs** — [CSS @keyframes](https://developer.mozilla.org/en-US/docs/Web/CSS/@keyframes)
+- **MDN Web Docs** — [CSS clamp()](https://developer.mozilla.org/en-US/docs/Web/CSS/clamp)
+- **MDN Web Docs** — [CSS backdrop-filter](https://developer.mozilla.org/en-US/docs/Web/CSS/backdrop-filter)
 
 ---
 
@@ -59,6 +69,7 @@
 - **MDN Web Docs** — [ARIA: progressbar role](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/progressbar_role)
 - **MDN Web Docs** — [ARIA: aria-live](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-live)
 - **MDN Web Docs** — [ARIA: aria-describedby](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-describedby)
+- **MDN Web Docs** — [ARIA: aria-labelledby](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-labelledby)
 - **MDN Web Docs** — [ARIA: aria-required](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-required)
 - **WebAIM** — [Skip navigation links](https://webaim.org/techniques/skipnav/)
 - **WebAIM** — [Accessible form validation and error recovery](https://webaim.org/techniques/formvalidation/)
@@ -68,6 +79,8 @@
 ## Ontwerp & huisstijl
 
 - **NS (Nederlandse Spoorwegen)** — [NS huisstijl](https://tractie.ns.nl/2e23992f3/p/226ce1-tractie--ns-design-system)
+
+---
 
 ## Overige bronnen
 
