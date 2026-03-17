@@ -22,7 +22,7 @@ const showDialog = (message) => {
 
 const byId = (id) => document.getElementById(id);
 
-const TOTAL_STEPS = 10;
+const TOTAL_STEPS = 9;
 const STAP_NAMEN = {
     0: "Gegevens overledene — namen & BSN",
     1: "Gegevens overledene — burgerlijke staat",
@@ -36,15 +36,14 @@ const STAP_NAMEN = {
 };
 const setStep = (n) => {
     const vulling = byId("voortgang-vulling");
-    vulling.style.width = ((n / TOTAL_STEPS) * 100) + "%";
-    byId("voortgangsbalk").setAttribute("aria-valuenow", n);
+    vulling.style.width = (((n + 1) / TOTAL_STEPS) * 100) + "%";
+    byId("voortgangsbalk").setAttribute("aria-valuenow", n + 1);
 
     const indicator = byId("stap-indicator");
     if (indicator) {
         indicator.hidden = false;
-        const naam = n === 0 ? STAP_NAMEN[1] : (STAP_NAMEN[n] || "");
-        indicator.querySelector(".stap-teller").textContent = n === 0 ? `Stap 1 van ${TOTAL_STEPS}` : `Stap ${n + 1} van ${TOTAL_STEPS}`;
-        indicator.querySelector(".stap-naam").textContent = naam;
+        indicator.querySelector(".stap-teller").textContent = `Stap ${n + 1} van ${TOTAL_STEPS}`;
+        indicator.querySelector(".stap-naam").textContent = STAP_NAMEN[n] || "";
     }
 };
 
@@ -292,14 +291,7 @@ const elfValidBsn = (bsn) => {
 document.querySelectorAll(".hidden").forEach((el) => (el.hidden = true));
 
 // Show step indicator immediately on page load
-{
-    const indicator = byId("stap-indicator");
-    if (indicator) {
-        indicator.hidden = false;
-        indicator.querySelector(".stap-teller").textContent = `Stap 1 van ${TOTAL_STEPS}`;
-        indicator.querySelector(".stap-naam").textContent = STAP_NAMEN[1] || "";
-    }
-}
+setStep(0);
 
 // Blur listeners for inline validation on text/date fields
 // Voorletters valideren met reguliere expressie — elk letter gevolgd door een punt
@@ -1040,7 +1032,6 @@ byId("volgende-vraag-3b").addEventListener("click", function () {
     }
     setStep(8);
     setHidden("vraag-3b", true);
-    setStep(9);
     setHidden("vraag-3c", false);
 });
 
