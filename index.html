@@ -12,7 +12,11 @@
     <div id="voortgangsbalk" class="voortgang" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="9" aria-label="Voortgang formulier">
         <div class="voortgang__vulling" id="voortgang-vulling"></div>
     </div>
-    <!-- voortgang track is yellow via CSS background, blue fill grows on top -->
+    <div id="stap-indicator" class="stap-indicator" aria-live="polite" hidden>
+        <span class="stap-teller"></span>
+        <span class="stap-scheidingsteken" aria-hidden="true">–</span>
+        <span class="stap-naam"></span>
+    </div>
     <main id="formulier">
     <h1 class="visually-hidden">Aangifte erfbelasting</h1>
 

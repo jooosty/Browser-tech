@@ -22,22 +22,30 @@ const showDialog = (message) => {
 
 const byId = (id) => document.getElementById(id);
 
-const TOTAL_STEPS = 9;
+const TOTAL_STEPS = 10;
 const STAP_NAMEN = {
-    1: "Gegevens overledene — namen & BSN",
-    2: "Gegevens overledene — burgerlijke staat",
-    3: "Gegevens overledene — kinderen",
-    4: "Gegevens overledene — testament",
-    5: "Gegevens gemachtigde — identificatie",
-    6: "Gegevens gemachtigde — persoonsgegevens",
-    7: "Voor wie doet u aangifte? — rol",
-    8: "Voor wie doet u aangifte? — verkrijgers",
-    9: "Voor wie doet u aangifte? — aanslag",
+    0: "Gegevens overledene — namen & BSN",
+    1: "Gegevens overledene — burgerlijke staat",
+    2: "Gegevens overledene — kinderen",
+    3: "Gegevens overledene — testament",
+    4: "Gegevens gemachtigde — identificatie",
+    5: "Gegevens gemachtigde — persoonsgegevens",
+    6: "Voor wie doet u aangifte? — rol",
+    7: "Voor wie doet u aangifte? — verkrijgers",
+    8: "Voor wie doet u aangifte? — aanslag",
 };
 const setStep = (n) => {
     const vulling = byId("voortgang-vulling");
     vulling.style.width = ((n / TOTAL_STEPS) * 100) + "%";
     byId("voortgangsbalk").setAttribute("aria-valuenow", n);
+
+    const indicator = byId("stap-indicator");
+    if (indicator) {
+        indicator.hidden = false;
+        const naam = n === 0 ? STAP_NAMEN[1] : (STAP_NAMEN[n] || "");
+        indicator.querySelector(".stap-teller").textContent = n === 0 ? `Stap 1 van ${TOTAL_STEPS}` : `Stap ${n + 1} van ${TOTAL_STEPS}`;
+        indicator.querySelector(".stap-naam").textContent = naam;
+    }
 };
 
 const collapseSectionTitle = (sectionId) => {
@@ -282,6 +290,16 @@ const elfValidBsn = (bsn) => {
 
 // Set all hidden classes to hidden attribute
 document.querySelectorAll(".hidden").forEach((el) => (el.hidden = true));
+
+// Show step indicator immediately on page load
+{
+    const indicator = byId("stap-indicator");
+    if (indicator) {
+        indicator.hidden = false;
+        indicator.querySelector(".stap-teller").textContent = `Stap 1 van ${TOTAL_STEPS}`;
+        indicator.querySelector(".stap-naam").textContent = STAP_NAMEN[1] || "";
+    }
+}
 
 // Blur listeners for inline validation on text/date fields
 // Voorletters valideren met reguliere expressie — elk letter gevolgd door een punt
@@ -1141,6 +1159,18 @@ byId("straat-huisnummer-gemachtigde").addEventListener("blur", function () {
     }
 });
 
+const validatePostcode = (id, val) => {
+    if (!val) {
+        clearMark(id);
+    } else if (/^\d{4}\s?[A-Za-z]{2}$/.test(val)) {
+        markValid(id);
+    } else if (val.length >= 6) {
+        markInvalid(id, "Vul een geldige postcode in, bijv. 1234 AB");
+    } else {
+        clearMark(id);
+    }
+};
+
 byId("postcode-gemachtigde").addEventListener("blur", function () {
     if (!visibleParent("postcode-gemachtigde")) return;
     const val = this.value.trim();
@@ -1151,6 +1181,11 @@ byId("postcode-gemachtigde").addEventListener("blur", function () {
     } else {
         clearMark("postcode-gemachtigde");
     }
+});
+
+byId("postcode-gemachtigde").addEventListener("input", function () {
+    if (!visibleParent("postcode-gemachtigde")) return;
+    validatePostcode("postcode-gemachtigde", this.value.trim());
 });
 
 byId("woonplaats-gemachtigde").addEventListener("blur", function () {
@@ -1340,10 +1375,16 @@ byId("executeur-beconnummer").addEventListener("blur", function () {
 
 // ─── Terug-knoppen ────────────────────────────────────────────────────────────
 
-// Helper: scroll the newly visible step into view
+let _scrollTimer = null;
 const scrollToStep = (id) => {
-    const el = byId(id);
-    if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+    if (_scrollTimer) {
+        clearTimeout(_scrollTimer);
+    }
+    _scrollTimer = setTimeout(() => {
+        const el = byId(id);
+        if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+        _scrollTimer = null;
+    }, 80);
 };
 
 // Terug 1b → 1a
