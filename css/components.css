@@ -506,7 +506,7 @@ input[type="submit"]:hover {
 /* MARK: Responsive */
 @media (max-width: 640px) {
     body {
-        padding: 56px var(--spacing-spacer-3) 64px;
+        padding: 48px var(--spacing-spacer-3) 64px;
     }
 
     #vraag-1 > legend,
@@ -571,4 +571,114 @@ input[type="submit"]:hover {
 .radio-row label:has(input[type="radio"]) {
     flex: 1;
     margin-top: 0 !important;
+}
+
+/* MARK: Theme toggle */
+/* MARK: Theme toggle — sun/moon switch */
+.theme-toggle {
+    position: fixed;
+    top: 12px;
+    right: 12px;
+    z-index: 1000;
+    margin: 0;
+    width: 56px;
+    height: 28px;
+    padding: 0;
+    background: #b0bec5;
+    border: none;
+    border-radius: var(--border-radius-full);
+    cursor: pointer;
+    box-shadow: inset 0 1px 3px rgba(0,0,0,0.2), var(--web-shadow-elevated-1);
+    transition: background 0.35s ease;
+    overflow: hidden;
+}
+
+.theme-toggle:focus-visible {
+    outline: var(--border-width-medium) solid var(--color-border-focus);
+    outline-offset: 3px;
+}
+
+/* Track fills to night sky when dark */
+.theme-toggle[data-theme-active="dark"] {
+    background: #1a2744;
+}
+
+/* Sliding knob */
+.theme-toggle__knob {
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: #fff;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.25);
+    transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.theme-toggle[data-theme-active="dark"] .theme-toggle__knob {
+    transform: translateX(28px);
+    background: #f6c800;
+}
+
+/* Sun icon (light mode) */
+.theme-toggle__sun,
+.theme-toggle__moon {
+    position: absolute;
+    width: 14px;
+    height: 14px;
+    transition: opacity 0.2s ease, transform 0.3s ease;
+}
+
+.theme-toggle__sun {
+    opacity: 1;
+    transform: scale(1) rotate(0deg);
+}
+
+.theme-toggle__moon {
+    opacity: 0;
+    transform: scale(0.5) rotate(-30deg);
+}
+
+.theme-toggle[data-theme-active="dark"] .theme-toggle__sun {
+    opacity: 0;
+    transform: scale(0.5) rotate(30deg);
+}
+
+.theme-toggle[data-theme-active="dark"] .theme-toggle__moon {
+    opacity: 1;
+    transform: scale(1) rotate(0deg);
+}
+
+/* Stars on the track (dark mode) */
+.theme-toggle__track-icons {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+}
+
+.theme-toggle__star {
+    position: absolute;
+    width: 3px;
+    height: 3px;
+    border-radius: 50%;
+    background: white;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.theme-toggle[data-theme-active="dark"] .theme-toggle__star {
+    opacity: 0.7;
+}
+
+.theme-toggle__star:nth-child(1) { top: 6px;  left: 8px;  transition-delay: 0.05s; }
+.theme-toggle__star:nth-child(2) { top: 14px; left: 12px; transition-delay: 0.1s;  width: 2px; height: 2px; }
+.theme-toggle__star:nth-child(3) { top: 9px;  left: 16px; transition-delay: 0.15s; width: 2px; height: 2px; }
+
+@media print {
+    .theme-toggle { display: none !important; }
 }

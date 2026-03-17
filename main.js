@@ -1,3 +1,44 @@
+// Theme toggle — light / dark mode
+// Bron: https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-color-scheme
+const root = document.documentElement;
+const themeKey = "erfbelasting-theme";
+
+const applyTheme = (theme) => {
+    root.setAttribute("data-theme", theme);
+    localStorage.setItem(themeKey, theme);
+    const btn = document.getElementById("theme-toggle");
+    if (btn) {
+        btn.setAttribute("aria-label",
+            theme === "dark" ? "Schakel lichte modus in" : "Schakel donkere modus in"
+        );
+        btn.setAttribute("data-theme-active", theme);
+    }
+};
+
+const savedTheme = localStorage.getItem(themeKey);
+if (savedTheme) {
+    applyTheme(savedTheme);
+} else {
+    const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+    applyTheme(prefersDark ? "dark" : "light");
+}
+
+window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", (e) => {
+    if (!localStorage.getItem(themeKey)) {
+        applyTheme(e.matches ? "dark" : "light");
+    }
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+    const btn = document.getElementById("theme-toggle");
+    if (btn) {
+        btn.addEventListener("click", () => {
+            const current = root.getAttribute("data-theme");
+            applyTheme(current === "dark" ? "light" : "dark");
+        });
+    }
+});
+
 // Helper functions 
 
 const feedbackDialog = document.getElementById("feedback-dialog");
