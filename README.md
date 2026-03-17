@@ -150,3 +150,19 @@ In deze week heb ik de grootste sprong gemaakt qua omvang: vragen 2 en 3 zijn vo
 
 ### What i learned
 - Better understanding of how to use the datalist element to provide a list of options for an input field.
+
+## 17 march 2026
+### Things i did today
+- Added text step to the progress bar
+- Fixed steps
+- Fixed mobile styling
+- Added dark light mode button
+
+### time it took
+- 1,5 hours
+- 30 minutes
+- 15 minutes
+- 2,5 hours
+
+### What i learned
+- How to draw good lines using html svg
