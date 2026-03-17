@@ -506,7 +506,7 @@ input[type="submit"]:hover {
 /* MARK: Responsive */
 @media (max-width: 640px) {
     body {
-        padding: 48px var(--spacing-spacer-3) 64px;
+        padding: 56px var(--spacing-spacer-3) 64px;
     }
 
     #vraag-1 > legend,
