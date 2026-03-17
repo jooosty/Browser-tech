@@ -682,3 +682,156 @@ input[type="submit"]:hover {
 @media print {
     .theme-toggle { display: none !important; }
 }
+
+
+
+/* =============================================================================
+   SCREEN-ONLY RULES
+   ============================================================================= */
+
+/* MARK: Secondary button (terug) */
+.btn-secondary {
+    background: var(--color-background-sunken);
+    color: var(--color-content-default);
+    border: 1.5px solid var(--color-border-input-default);
+    box-shadow: none;
+}
+
+.btn-secondary:hover {
+    background: var(--color-background-accent-blue-subtle);
+    border-color: var(--color-border-interactive-default);
+    box-shadow: none;
+    transform: none;
+}
+
+/* MARK: Helptekst inline */
+.helptekst-inline {
+    font-weight: var(--typography-weight-normal);
+    font-size: var(--typography-size-s);
+    color: var(--color-content-subtle);
+}
+
+/* MARK: Verkrijger form */
+.question-group--top-spacing {
+    margin-top: var(--spacing-spacer-4);
+}
+
+.verkrijger-actions {
+    display: flex;
+    gap: var(--spacing-spacer-3);
+    flex-wrap: wrap;
+    margin-top: var(--spacing-spacer-5);
+}
+
+/* MARK: Required field labels */
+.label--required::after {
+    content: " *";
+    color: var(--color-content-error);
+    font-weight: var(--typography-weight-bold);
+}
+
+.label--required-one-of::after {
+    content: " *¹";
+    color: var(--color-content-error);
+    font-weight: var(--typography-weight-bold);
+}
+
+/* MARK: Form legend */
+.form-legend {
+    max-width: 680px;
+    margin: 0 auto var(--spacing-spacer-4);
+    font-size: var(--typography-size-s);
+    color: var(--color-content-subtle);
+}
+
+.required-marker {
+    color: var(--color-content-error);
+    font-weight: var(--typography-weight-bold);
+}
+
+/* MARK: Progress bar */
+.voortgang {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 999;
+    height: 5px;
+    background: var(--ns-yellow);
+    background-image: repeating-linear-gradient(
+        to right,
+        transparent,
+        transparent calc(100% / 9 - 1px),
+        rgba(255,255,255,0.4) calc(100% / 9 - 1px),
+        rgba(255,255,255,0.4) calc(100% / 9)
+    );
+    background-size: calc(100% / 9 * 9) 100%;
+}
+
+.voortgang__vulling {
+    height: 100%;
+    width: 0%;
+    background: #003082;
+    background-image: repeating-linear-gradient(
+        to right,
+        transparent,
+        transparent calc(100vw / 9 - 1px),
+        rgba(255,255,255,0.4) calc(100vw / 9 - 1px),
+        rgba(255,255,255,0.4) calc(100vw / 9)
+    );
+    transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* MARK: Step indicator */
+.stap-indicator {
+    position: fixed;
+    top: 5px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 998;
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-spacer-2);
+    height: 28px;
+    padding: 0 var(--spacing-spacer-4);
+    background: var(--color-background-default);
+    border: 1.5px solid var(--color-border-default);
+    border-top: none;
+    border-radius: 0 0 var(--border-radius-m) var(--border-radius-m);
+    box-shadow: var(--web-shadow-elevated-1);
+    font-size: 0.75rem;
+    line-height: 1;
+    white-space: nowrap;
+    max-width: calc(100vw - 2rem);
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.stap-teller {
+    font-weight: var(--typography-weight-bold);
+    color: var(--color-content-emphasis);
+    flex-shrink: 0;
+}
+
+.stap-scheidingsteken {
+    color: var(--color-content-subtle);
+    flex-shrink: 0;
+}
+
+.stap-naam {
+    color: var(--color-content-subtle);
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+@media (max-width: 480px) {
+    .stap-naam {
+        display: none;
+    }
+}
+
+@media print {
+    .stap-indicator {
+        display: none !important;
+    }
+}
